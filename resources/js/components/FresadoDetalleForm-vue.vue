@@ -213,7 +213,7 @@ export default {
 
 
     data_foraneo(){
-        axios.get(`Api/Acero/create`).then(response => {
+        axios.get(`/Appvia40express/Api/Appvia40express/Api/Acero/create`).then(response => {
         this.data_foraneo_fresado_id= response.data.fresado_id
         this.data_foraneo_estado_tramite_id= response.data.estado_tramite_id
 
@@ -241,7 +241,7 @@ export default {
       };
 
       if(this.editar_dato == true){
-        axios.put(Api/`/FresadoDetalle/${this.input_FresadoDetalle_id}`, data)
+        axios.put(`/Appvia40express/Api/FresadoDetalle/${this.input_FresadoDetalle_id}`, data)
         .then(response => {
 
             const datos = response.data;
@@ -267,7 +267,7 @@ export default {
 
       }else{
 
-        axios.post(`Api/FresadoDetalle`, data).then(response => {
+        axios.post(`/Appvia40express/Api/FresadoDetalle`, data).then(response => {
             const datos = response.data;
             if(response.data.errors){
               this.$toastr.warning("Verifique los datos", "Verifique los datos");
@@ -306,7 +306,7 @@ export default {
       this.mensaje_formulario="Editar un registro"
 
 
-      axios.get(`Api/FresadoDetalle/${data_id}`).then(response => {
+      axios.get(`/Appvia40express/Api/FresadoDetalle/${data_id}`).then(response => {
             const data = response.data;
             if(!response.data){
               this.$toastr.warning("Operacio no exitosa", "Regitro no obtenido");

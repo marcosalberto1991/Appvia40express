@@ -319,7 +319,7 @@ export default {
       this.page = page;
       //axios.get("ConcretoDetalles/consulta?page=" +page+"&consulta_data="+this.input_consulta_data)
       axios
-        .get(`Api/FresadoDetalle/${this.input_Fresado_id}/consulta_data`)
+        .get(`/Appvia40express/Api/FresadoDetalle/${this.input_Fresado_id}/consulta_data`)
         .then((response) => {
           this.consulta_datos = response.data;
           const parsed = JSON.stringify(response.data);
@@ -342,7 +342,7 @@ export default {
 
 
 
-        axios.post(`Api/FresadoDetalles_update/${this.input_AceroDetalles_id}`, formData,{ headers:{'Content-Type':'multipart/form-data'}})
+        axios.post(`/Appvia40express/Api/FresadoDetalles_update/${this.input_AceroDetalles_id}`, formData,{ headers:{'Content-Type':'multipart/form-data'}})
         //axios.put(`/ConcretoDetalles/${this.input_AceroDetalles_id}`, data)
         .then(
           (response) => {
@@ -382,7 +382,7 @@ export default {
     eliminar_registro_delete() {
       var data_id = this.input_AceroDetalles_id;
       axios
-        .delete(`Api/ConcretoDetalles/${this.input_AceroDetalles_id}`)
+        .delete(`/Appvia40express/Api/ConcretoDetalles/${this.input_AceroDetalles_id}`)
         .then((response) => {
           const data = response.data;
           if (response.data.id) {
