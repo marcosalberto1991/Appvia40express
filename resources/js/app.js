@@ -76,9 +76,9 @@ import FresadoForm from './components/FresadoForm-vue.vue';
 //{ path: '/FresadoDetalle', component: FresadoDetalle, name: 'fresadodetalle' },
 //{ path: '/FresadoDetalle/:id/edit', component: FresadoDetalleForm, name: 'fresadodetalleform' },
 //{ path: '/FresadoDetalle/create', component: FresadoDetalleForm, name: 'fresadodetalleformadd' },
-Vue.prototype.$url = '/Appvia40express/public'
-//var url='';
-var url='/Appvia40express/public';
+Vue.prototype.$url = ''
+var url='';
+//var url='/Appvia40express/public';
 const router = new VueRouter({
     mode:'history',
     routes:[
