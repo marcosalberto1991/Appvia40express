@@ -18,11 +18,9 @@
         <b-button v-if="$can('Concreto Anadir')"  @click='anadir_registro()' type='button' class='btn btn-wangir btn-lg' data-toggle='button' size='sm' aria-pressed='false' variant='success' style='margin-bottom: 5px; margin: 5px;'>Añadir registro
         </b-button>
         -->
-      <router-link v-if="$can('Concreto Anadir')" :to="{ name: 'concretoformadd',params:{id:0} }">
+      <router-link v-if="$can('Concreto Anadir')" :to="{ name: 'concretoformadd',params:{id:0} }" class='btn-sm btn btn-success mr-1' size='sm' style='margin-bottom: 5px; margin: 5px;' >
 
-        <a v-bind:href="'/Marca/create'" class='btn-sm btn btn-success mr-1' size='sm' style='margin-bottom: 5px; margin: 5px;'>
               Añadir Registro
-        </a>
       </router-link>
       <div class='flexbox  float-right' >
         <form ref='form'    v-on:submit.prevent='consulta()'>
