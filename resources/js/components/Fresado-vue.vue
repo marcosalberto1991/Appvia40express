@@ -160,7 +160,7 @@ export default {
 
       this.page=page;
       //axios.get("Fresado/consulta?page=" +page+"&consulta_data="+this.input_consulta_data)
-      axios.get(`/Api/Fresado?page=${page}&consulta_data=${this.input_consulta_data}`)
+      axios.get(`Api/Fresado?page=${page}&consulta_data=${this.input_consulta_data}`)
       .then(response => {
         this.consulta_datos = response.data;
         const parsed = JSON.stringify(response.data);
@@ -176,7 +176,7 @@ export default {
     },
     eliminar_registro_delete(){
       var data_id=this.input_Fresado_id;
-      axios.delete(`/Api/Fresado/${this.input_Fresado_id}`).then(response => {
+      axios.delete(`Api/Fresado/${this.input_Fresado_id}`).then(response => {
         const data = response.data;
         if(response.data.id){
           this.validacion="";

@@ -180,7 +180,7 @@ export default {
       this.mensaje_formulario="Añadir un nuevo registro"
     },
     data_foraneo(){
-      axios.get(`/Api/Acero/create`).then(response => {
+      axios.get(`Api/Acero/create`).then(response => {
         this.data_foraneo_unidad_funcional_id= response.data.unidad_funcional_id
         this.data_foraneo_estado_tramite_id= response.data.estado_tramite_id
       });
@@ -231,7 +231,7 @@ export default {
 
       }else{
 
-        axios.post(`/Api/Acero`, data).then(response => {
+        axios.post(`Api/Acero`, data).then(response => {
             const datos = response.data;
             if(response.data.errors){
               this.$toastr.warning("Verifique los datos", "Verifique los datos");
