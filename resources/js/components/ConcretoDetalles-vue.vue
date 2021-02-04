@@ -328,6 +328,7 @@ export default {
       input_fecha: "",
       input_ConcretoDetalles_id: 0,
 
+
       fields: [
         {
           key: "Acciones",
@@ -376,7 +377,7 @@ export default {
       this.page = page;
       //axios.get("ConcretoDetalles/consulta?page=" +page+"&consulta_data="+this.input_consulta_data)
       axios
-        .get(`/Api/ConcretoDetalles/${this.input_Concreto_id}/consulta_data`)
+        .get(`this.$url/Api/ConcretoDetalles/${this.input_Concreto_id}/consulta_data`)
         .then((response) => {
           this.consulta_datos = response.data;
           const parsed = JSON.stringify(response.data);
