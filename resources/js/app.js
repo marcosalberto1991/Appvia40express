@@ -77,7 +77,8 @@ import FresadoForm from './components/FresadoForm-vue.vue';
 //{ path: '/FresadoDetalle/:id/edit', component: FresadoDetalleForm, name: 'fresadodetalleform' },
 //{ path: '/FresadoDetalle/create', component: FresadoDetalleForm, name: 'fresadodetalleformadd' },
 
-
+//var url='';
+var url='/Appvia40express/public';
 const router = new VueRouter({
     mode:'history',
     routes:[
@@ -85,30 +86,30 @@ const router = new VueRouter({
 
         {path:'home',component:home,name:'home' },
         //Unidad funcional
-        { path: '/UnidadFuncional', component: UnidadFuncional, name: 'unidadfuncional' },
-        { path: '/UnidadFuncional/:id/edit', component: UnidadFuncionalForm, name: 'unidadfuncionalform' },
-        { path: '/UnidadFuncional/create', component: UnidadFuncionalForm, name: 'unidadfuncionalformadd' },
+        { path: url+'/UnidadFuncional', component: UnidadFuncional, name: 'unidadfuncional' },
+        { path: url+'/UnidadFuncional/:id/edit', component: UnidadFuncionalForm, name: 'unidadfuncionalform' },
+        { path: url+'/UnidadFuncional/create', component: UnidadFuncionalForm, name: 'unidadfuncionalformadd' },
         //EstadoTramite
-        { path: '/EstadoTramite', component: EstadoTramite, name: 'estadotramite' },
-        { path: '/EstadoTramite/:id/edit', component: EstadoTramiteForm, name: 'estadotramiteform' },
-        { path: '/EstadoTramite/create', component: EstadoTramiteForm, name: 'estadotramiteformadd' },
+        { path: url+'/EstadoTramite', component: EstadoTramite, name: 'estadotramite' },
+        { path: url+'/EstadoTramite/:id/edit', component: EstadoTramiteForm, name: 'estadotramiteform' },
+        { path: url+'/EstadoTramite/create', component: EstadoTramiteForm, name: 'estadotramiteformadd' },
         //concreto
-        { path: '/Concreto', component: Concreto, name: 'concreto' },
-        { path: '/Concreto/:id/edit', component: ConcretoForm, name: 'concretoform' },
-        { path: '/Concreto/create', component: ConcretoForm, name: 'concretoformadd'},
+        { path: url+'/Concreto', component: Concreto, name: 'concreto' },
+        { path: url+'/Concreto/:id/edit', component: ConcretoForm, name: 'concretoform' },
+        { path: url+'/Concreto/create', component: ConcretoForm, name: 'concretoformadd'},
 
         //ConcretoDetalles
-        { path: '/ConcretoDetalles', component: ConcretoDetalles, name: 'concretodetalles' },
-        { path: '/ConcretoDetalles/:id/edit', component: ConcretoDetallesForm, name: 'concretodetallesform' },
-        { path: '/ConcretoDetalles/create', component: ConcretoDetallesForm, name: 'concretodetallesformadd' },
+        { path: url+'/ConcretoDetalles', component: ConcretoDetalles, name: 'concretodetalles' },
+        { path: url+'/ConcretoDetalles/:id/edit', component: ConcretoDetallesForm, name: 'concretodetallesform' },
+        { path: url+'/ConcretoDetalles/create', component: ConcretoDetallesForm, name: 'concretodetallesformadd' },
         //acero
-        { path: '/Acero', component: Acero, name: 'acero' },
-        { path: '/Acero/:id/edit', component: AceroForm, name: 'aceroform' },
-        { path: '/Acero/create', component: AceroForm, name: 'aceroformadd' },
+        { path: url+'/Acero', component: Acero, name: 'acero' },
+        { path: url+'/Acero/:id/edit', component: AceroForm, name: 'aceroform' },
+        { path: url+'/Acero/create', component: AceroForm, name: 'aceroformadd' },
         //
-        { path: '/Fresado', component: Fresado, name: 'fresado' },
-        { path: '/Fresado/:id/edit', component: FresadoForm, name: 'fresadoform' },
-        { path: '/Fresado/create', component: FresadoForm, name: 'fresadoformadd' },
+        { path: url+'/Fresado', component: Fresado, name: 'fresado' },
+        { path: url+'/Fresado/:id/edit', component: FresadoForm, name: 'fresadoform' },
+        { path: url+'/Fresado/create', component: FresadoForm, name: 'fresadoformadd' },
 
     ] // short for `routes: routes`
   })
