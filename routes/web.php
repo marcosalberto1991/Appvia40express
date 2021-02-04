@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'homeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('UnidadFuncional/consulta', 'UnidadFuncionalController@consulta');
 Route::resource('UnidadFuncional','UnidadFuncionalController');
