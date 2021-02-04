@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'homeController@index')->name('home');
 
 Route::get('UnidadFuncional/consulta', 'UnidadFuncionalController@consulta');
 Route::resource('UnidadFuncional','UnidadFuncionalController');
@@ -28,15 +28,15 @@ Route::resource('UnidadFuncional','UnidadFuncionalController');
 Route::get('EstadoTramite/consulta', 'EstadoTramiteController@consulta');
 Route::resource('EstadoTramite','EstadoTramiteController');
 
-Route::get("Concreto/create", function(){return View::make("Home");});
-Route::get("Concreto", function(){return View::make("Home");});
-Route::get("Concreto/{id}/edit", function(){return View::make("Home");});
+Route::get("Concreto/create", function(){return View::make("home");});
+Route::get("Concreto", function(){return View::make("home");});
+Route::get("Concreto/{id}/edit", function(){return View::make("home");});
 
 
 
 
 Route::group(['prefix' => '*'], function () {
-    return View::make("Home");
+    return View::make("home");
 });
 //Route::group(['middleware' => 'api'], function() {
 
@@ -60,9 +60,9 @@ Route::get('Concreto/{file}', function ($file) {
 
 Route::get('Api/Acero/consulta', 'AceroController@consulta');
 Route::resource('Api/Acero','AceroController');
-Route::get("Acero/create", function(){return View::make("Home");});
-Route::get("Acero", function(){return View::make("Home");});
-Route::get("Acero/{id}/edit", function(){return View::make("Home");});
+Route::get("Acero/create", function(){return View::make("home");});
+Route::get("Acero", function(){return View::make("home");});
+Route::get("Acero/{id}/edit", function(){return View::make("home");});
 Route::get('Api/AceroDetalle/{id}/consulta_data', 'AceroDetalleController@consulta_data');
 Route::post('Api/AceroDetalles_update/{id}', 'AceroDetalleController@update');
 
@@ -70,9 +70,9 @@ Route::post('Api/AceroDetalles_update/{id}', 'AceroDetalleController@update');
 //Fresado
 Route::get('Api/Fresado/consulta', 'FresadoController@consulta');
 Route::resource('Api/Fresado','FresadoController');
-Route::get("Fresado/create", function(){return View::make("Home");});
-Route::get("Fresado", function(){return View::make("Home");});
-Route::get("Fresado/{id}/edit", function(){return View::make("Home");});
+Route::get("Fresado/create", function(){return View::make("home");});
+Route::get("Fresado", function(){return View::make("home");});
+Route::get("Fresado/{id}/edit", function(){return View::make("home");});
 Route::get('Api/FresadoDetalle/consulta', 'FresadoDetalleController@consulta');
 Route::resource('Api/FresadoDetalle','FresadoDetalleController');
 Route::get('Api/FresadoDetalle/{id}/consulta_data', 'FresadoDetalleController@consulta_data');
