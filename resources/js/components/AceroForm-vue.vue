@@ -205,7 +205,7 @@ export default {
       };
 
       if(this.editar_dato == true){
-        axios.put(`/Api/Acero/${this.input_Acero_id}`, data)
+        axios.put(`Api/Acero/${this.input_Acero_id}`, data)
         .then(response => {
 
             const datos = response.data;
@@ -270,7 +270,7 @@ export default {
       this.mensaje_formulario="Editar un registro"
 
 
-      axios.get(`/Api/Acero/${data_id}`).then(response => {
+      axios.get(`Api/Acero/${data_id}`).then(response => {
             const data = response.data;
             if(!response.data){
               this.$toastr.warning("Operacio no exitosa", "Regitro no obtenido");
