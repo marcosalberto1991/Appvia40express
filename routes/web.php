@@ -48,7 +48,7 @@ Route::resource('Api/ConcretoDetalles','ConcretoDetallesController');
 Route::get('Api/ConcretoDetalles/{concreto_id}/consulta_data', 'ConcretoDetallesController@consulta_data');
 Route::post('Api/ConcretoDetalles_update/{id}', 'ConcretoDetallesController@update');
 Route::get('Concreto/{concreto_id}/pdfConcreto', 'ConcretoController@pdfConcreto');
-Route::get('Appvia40express/Concreto/{file}', function ($file) {
+Route::get('Appvia40express/Concreto_file/{file}', function ($file) {
     $data =Storage::disk('Concreto')->response("$file");
     if($data){
         return $data;
