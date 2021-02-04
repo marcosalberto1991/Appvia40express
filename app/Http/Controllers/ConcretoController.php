@@ -10,7 +10,7 @@ use Auth;
 use App\ConcretoModel;
 use App\UnidadFuncionalModel;
 use App\EstadoTramiteModel;
-
+use App\ConcretoDetalle;
 use PDF;
 
 use View;
@@ -39,9 +39,9 @@ class ConcretoController extends Controller
     {
         $consulta_data = $request->get("consulta_data");
         if ($consulta_data == "") {
-            $data = ConcretoModel::paginate(20);
+            $data = ConcretoModel::with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
         } else {
-            $data = ConcretoModel::where("id", 1)
+            $data = ConcretoModel::with('users_id')
                 ->orwhere("id", "like", "%" . $consulta_data . "%")
                 ->orwhere("users_id", "like", "%" . $consulta_data . "%")
                 ->orwhere("unidad_funcional_id", "like", "%" . $consulta_data . "%")
@@ -62,8 +62,8 @@ class ConcretoController extends Controller
     public function create()
     {
         $data_foraneos = [
-            "unidad_funcional_id" => UnidadFuncionalModel::select("id", "id as nombre", "id as text")->get(),
-            "estado_tramite_id" => EstadoTramiteModel::select("id", "id as nombre", "id as text")->get(),
+            "unidad_funcional_id" => UnidadFuncionalModel::select("id", "id as nombre", "nombre as text")->get(),
+            "estado_tramite_id" => EstadoTramiteModel::select("id", "id as nombre", "nombre as text")->get(),
 
             //"departamento_id" => DepartamentoModel::select("id_departamento as id","departamento as text")->get(),
         ];
@@ -111,7 +111,7 @@ class ConcretoController extends Controller
         } else {
             $Concreto = ConcretoModel::findOrFail($id);
 
-            $Concreto->users_id = $request->users_id;
+           // $Concreto->users_id = $request->users_id;
             $Concreto->unidad_funcional_id = $request->unidad_funcional_id;
             $Concreto->calzada = $request->calzada;
             $Concreto->estrutura = $request->estrutura;
@@ -134,24 +134,33 @@ class ConcretoController extends Controller
         return response()->json($Concreto);
     }
     public function pdfConcreto($id){
-        $data = ConcretoModel::findOrFail($id);
-        //\Cache::put('fecha',intval($fecha[2]).'/'.$mes[intval($fecha[1])].'/'.$fecha[0], 10);
+        $data = ConcretoModel::with('concretoDetalleAll')->findOrFail($id);
+        \Cache::put('unidad_funcional_id', $data->unidad_funcional_id, 10);
+        \Cache::put('calzada', $data->calzada, 10);
+        \Cache::put('estrutura', $data->estrutura, 10);
+        \Cache::put('elemento', $data->elemento, 10);
+        \Cache::put('plano_codigo', $data->plano_codigo, 10);
+        \Cache::put('version', $data->version, 10);
+        \Cache::put('resistencia_concreto', $data->resistencia_concreto, 10);
 
         $view =  \View::make('Concreto.Pdf',
         compact('data')
             )->render();
         $pdf = \App::make('dompdf.wrapper');
+        //$pdf->set('isRemoteEnabled', true);
         $pdf->loadHTML($view);
             //Codigo de Numero de pagina
-            $pdf->output();
-            $dom_pdf = $pdf->getDomPDF();
-            $canvas = $dom_pdf ->get_canvas();
+            //$options = new Options();
+
+        $pdf->output();
+        $dom_pdf = $pdf->getDomPDF();
+        $canvas = $dom_pdf ->get_canvas();
             //$canvas->page_text(170, 119, $data['codigo_2'] .''. $data['codigo_3'], null, 11, array(0, 0, 0));
             //$canvas->page_text(350, 119, intval($fecha[2]).'/'.$mes[intval($fecha[1])].'/'.$fecha[0], null, 11, array(0, 0, 0));
             //$canvas->page_text(480, 125, "Pagina {PAGE_NUM} de {PAGE_COUNT}", null, 15, array(0, 0, 0));
-            $canvas->page_text(250, 805, "Pagina {PAGE_NUM} de {PAGE_COUNT}", null, 11, array(0, 0, 0));
+            //$canvas->page_text(250, 805, "Pagina {PAGE_NUM} de {PAGE_COUNT}", null, 11, array(0, 0, 0));
             //Codigo de numero de pagina
-        return $pdf->stream('orden_servicio_'.$data.'.pdf');
+        return $pdf->stream('orden_servicio_'.$data['id'].'.pdf');
     }
     public function Footer() {
         // Position at 15 mm from bottom

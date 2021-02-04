@@ -47,7 +47,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('unidadfuncional-vue', require('./components/UnidadFuncional-vue.vue'));
 Vue.component('pagination', require('laravel-vue-pagination')); //https://www.npmjs.com/package/laravel-vue-pagination
 Vue.component('concretodetalles-vue', require('./components/ConcretoDetalles-vue.vue').default);
+Vue.component('acerodetalle-vue', require('./components/acerodetalle-vue.vue').default);
 
+Vue.component('fresadodetalle-vue', require('./components/FresadoDetalle-vue.vue').default);
 
 import home from './components/ExampleComponent.vue';
 
@@ -60,6 +62,20 @@ import ConcretoForm from './components/ConcretoForm-vue.vue';
 
 import ConcretoDetalles from './components/ConcretoDetalles-vue.vue';
 import ConcretoDetallesForm from './components/ConcretoDetallesForm-vue.vue';
+
+import Acero from './components/Acero-vue.vue';
+import AceroForm from './components/AceroForm-vue.vue';
+
+import Fresado from './components/Fresado-vue.vue';
+import FresadoForm from './components/FresadoForm-vue.vue';
+
+
+//import FresadoDetalle from './components/FresadoDetalle-vue.vue';
+//import FresadoDetalleForm from './components/FresadoDetalleForm-vue.vue';
+
+//{ path: '/FresadoDetalle', component: FresadoDetalle, name: 'fresadodetalle' },
+//{ path: '/FresadoDetalle/:id/edit', component: FresadoDetalleForm, name: 'fresadodetalleform' },
+//{ path: '/FresadoDetalle/create', component: FresadoDetalleForm, name: 'fresadodetalleformadd' },
 
 
 const router = new VueRouter({
@@ -85,6 +101,14 @@ const router = new VueRouter({
         { path: '/ConcretoDetalles', component: ConcretoDetalles, name: 'concretodetalles' },
         { path: '/ConcretoDetalles/:id/edit', component: ConcretoDetallesForm, name: 'concretodetallesform' },
         { path: '/ConcretoDetalles/create', component: ConcretoDetallesForm, name: 'concretodetallesformadd' },
+        //acero
+        { path: '/Acero', component: Acero, name: 'acero' },
+        { path: '/Acero/:id/edit', component: AceroForm, name: 'aceroform' },
+        { path: '/Acero/create', component: AceroForm, name: 'aceroformadd' },
+        //
+        { path: '/Fresado', component: Fresado, name: 'fresado' },
+        { path: '/Fresado/:id/edit', component: FresadoForm, name: 'fresadoform' },
+        { path: '/Fresado/create', component: FresadoForm, name: 'fresadoformadd' },
 
     ] // short for `routes: routes`
   })

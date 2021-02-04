@@ -556,6 +556,14 @@
                                     <i class="metismenu-icon pe-7s-rocket"></i>
                                     Concreto
                                 </router-link>
+                                <router-link :to="{ name: 'acero'}">
+                                    <i class="metismenu-icon pe-7s-rocket"></i>
+                                    Acero
+                                </router-link>
+                                <router-link :to="{ name: 'fresado'}">
+                                    <i class="metismenu-icon pe-7s-rocket"></i>
+                                    Fresado
+                                </router-link>
 
                             </li>
                             <li class="app-sidebar__heading">Datos Foraneos</li>

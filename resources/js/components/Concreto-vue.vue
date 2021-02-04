@@ -65,13 +65,13 @@
 
 
         </template>
-        
+
         <template v-slot:head(Acciones)="scope">
           <div class='text-nowrap'>Acciones</div>
         </template>
-        
+
       </b-table>
-            
+
 </div>
 </div>
 </div>
@@ -123,17 +123,17 @@ export default {
       noCollapse: false,
       fields: [
       { key: "Acciones",stickyColumn: true, label:"Acciones" ,sortable: false },
-      { key: 'id', sortable:true},
-      { key: 'users_id', sortable:true},
-      { key: 'unidad_funcional_id', sortable:true},
-      { key: 'calzada', sortable:true},
-      { key: 'estrutura', sortable:true},
-      { key: 'elemento', sortable:true},
-      { key: 'plano_codigo', sortable:true},
-      { key: 'version', sortable:true},
-      { key: 'resistencia_concreto', sortable:true},
-      { key: 'estado_tramite_id', sortable:true},
-      
+      //{ key: 'id', sortable:true},
+      { key: 'users_id.name', sortable:true,label:'Usuario'},
+      { key: 'unidad_funcional_id.nombre', sortable:true,label:'Unidad Funcional'},
+      { key: 'calzada', sortable:true,label:'Calzada'},
+      { key: 'estrutura', sortable:true,label:'Estrutura'},
+      { key: 'elemento', sortable:true,label:'Elemento'},
+      { key: 'plano_codigo', sortable:true,label:'Cod. Plano'},
+      { key: 'version', sortable:true,label:'Version'},
+      { key: 'resistencia_concreto', sortable:true,label:'Resi. Concreto'},
+      { key: 'estado_tramite_id.nombre', sortable:true,label:'Tramite'},
+
       ],
 
 

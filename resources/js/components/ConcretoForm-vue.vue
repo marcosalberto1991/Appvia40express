@@ -27,9 +27,7 @@
               <label for="exampleInputEmail1">Unidad Funcional<span class="tx-danger">*</span></label>
               <Select2 v-model="input_unidad_funcional_id" :options="data_foraneo_unidad_funcional_id" />
               <small id="emailHelp" class="form-text text-muted"></small>
-              <b-alert show v-for="data in validacion.unidad_funcional_id" v-bind:key="data.unidad_funcional_id" variant="danger">
-                {{data}}
-              </b-alert>
+
 
                 <div class="invalid-feedback" style ="display:block" v-for="data in validacion.unidad_funcional_id" v-bind:key="data.unidad_funcional_id" >
                                             <b>{{data}}</b>
@@ -39,7 +37,7 @@
 
             <div class="form-group col-md-3 col-sm-12">
                 <label for="exampleInputEmail1">calzada<span class="tx-danger">*</span> </label>
-                <input type="text" v-model="input_calzada" placeholder="calzada" class="form-control"  aria-describedby="emailHelp" >
+                <input type="text" v-model="input_calzada" placeholder="calzada" class="form-control" :class="{ 'is-invalid':this.validacion.calzada, 'is-valid':!this.validacion.calzada && is_enviar  }" >
                 <div class="invalid-feedback" style ="display:block" v-for="data in validacion.calzada" v-bind:key="data.calzada" >
                     <b>{{data}}</b>
                 </div>
@@ -48,7 +46,7 @@
 
             <div class="form-group col-md-3 col-sm-12">
                 <label for="exampleInputEmail1">estrutura<span class="tx-danger">*</span> </label>
-                <input type="text" v-model="input_estrutura" placeholder="estrutura" class="form-control"  aria-describedby="emailHelp" >
+                <input type="text" v-model="input_estrutura" placeholder="estrutura" class="form-control"  :class="{ 'is-invalid':this.validacion.estrutura, 'is-valid':!this.validacion.estrutura && is_enviar  }" >
                 <div class="invalid-feedback" style ="display:block" v-for="data in validacion.estrutura" v-bind:key="data.estrutura" >
                     <b>{{data}}</b>
                 </div>
@@ -57,7 +55,7 @@
 
             <div class="form-group col-md-3 col-sm-12">
                 <label for="exampleInputEmail1">elemento<span class="tx-danger">*</span> </label>
-                <input type="text" v-model="input_elemento" placeholder="elemento" class="form-control"  aria-describedby="emailHelp" >
+                <input type="text" v-model="input_elemento" placeholder="elemento" class="form-control" :class="{ 'is-invalid':this.validacion.elemento, 'is-valid':!this.validacion.elemento && is_enviar  }" >
                 <div class="invalid-feedback" style ="display:block" v-for="data in validacion.elemento" v-bind:key="data.elemento" >
                     <b>{{data}}</b>
                 </div>
@@ -66,7 +64,7 @@
 
             <div class="form-group col-md-3 col-sm-12">
                 <label for="exampleInputEmail1">plano_codigo<span class="tx-danger">*</span> </label>
-                <input type="text" v-model="input_plano_codigo" placeholder="plano_codigo" class="form-control"  aria-describedby="emailHelp" >
+                <input type="text" v-model="input_plano_codigo" placeholder="plano_codigo" class="form-control"  :class="{ 'is-invalid':this.validacion.plano_codigo, 'is-valid':!this.validacion.plano_codigo && is_enviar  }" >
                 <div class="invalid-feedback" style ="display:block" v-for="data in validacion.plano_codigo" v-bind:key="data.plano_codigo" >
                     <b>{{data}}</b>
                 </div>
@@ -75,7 +73,7 @@
 
             <div class="form-group col-md-2 col-sm-12">
                 <label for="exampleInputEmail1">version<span class="tx-danger">*</span> </label>
-                <input type="text" v-model="input_version" placeholder="version" class="form-control"  aria-describedby="emailHelp" >
+                <input type="text" v-model="input_version" placeholder="version" class="form-control"  :class="{ 'is-invalid':this.validacion.version, 'is-valid':!this.validacion.version && is_enviar  }" >
                 <div class="invalid-feedback" style ="display:block" v-for="data in validacion.version" v-bind:key="data.version" >
                     <b>{{data}}</b>
                 </div>
@@ -84,7 +82,7 @@
 
             <div class="form-group col-md-2 col-sm-12">
                 <label for="exampleInputEmail1">resistencia_concreto<span class="tx-danger">*</span> </label>
-                <input type="text" v-model="input_resistencia_concreto" placeholder="resistencia_concreto" class="form-control"  aria-describedby="emailHelp" >
+                <input type="text" v-model="input_resistencia_concreto" placeholder="resistencia_concreto" class="form-control"  :class="{ 'is-invalid':this.validacion.version, 'is-valid':!this.validacion.version && is_enviar  }" >
                 <div class="invalid-feedback" style ="display:block" v-for="data in validacion.resistencia_concreto" v-bind:key="data.resistencia_concreto" >
                     <b>{{data}}</b>
                 </div>
@@ -94,9 +92,7 @@
               <label for="exampleInputEmail1">Estado trasmite<span class="tx-danger">*</span></label>
               <Select2 v-model="input_estado_tramite_id" :options="data_foraneo_estado_tramite_id" />
               <small id="emailHelp" class="form-text text-muted"></small>
-              <b-alert show v-for="data in validacion.estado_tramite_id" v-bind:key="data.estado_tramite_id" variant="danger">
-                {{data}}
-              </b-alert>
+
 
                 <div class="invalid-feedback" style ="display:block" v-for="data in validacion.estado_tramite_id" v-bind:key="data.estado_tramite_id" >
                                             <b>{{data}}</b>
@@ -144,9 +140,9 @@ export default {
   data() {
 
     return {
-
-      validacion: [],
-      editar_dato: false,
+        is_enviar:false,
+        validacion: [],
+        editar_dato: false,
       data: [],
       datas: [],
       input_consulta_data:"",
@@ -201,7 +197,7 @@ export default {
       });
     },
     formulario(is_volve=0){
-
+        this.is_enviar=true
       const data = {
         id: this.input_Concreto_id,
         id :this.input_id,

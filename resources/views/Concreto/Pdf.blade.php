@@ -6,9 +6,9 @@
                 margin: 0cm 0cm;
             }
             body {
-                margin-top: 200px;
-                margin-left: 76px;
-                margin-right: 76px;
+                margin-top: 130px;
+                margin-left: 30px;
+                margin-right: 30px;
                 margin-bottom: 150px;
                 _font-family: cen
             }
@@ -73,7 +73,15 @@
              }
              .color_naranja span{
                  font-size: 13px;
-             }
+            }
+             .verticalText {
+                writing-mode: vertical-lr;
+                transform: rotate(270deg);
+
+            }
+            .table-100{
+                width:100%;
+            }
 
         </style>
 
@@ -81,26 +89,32 @@
 
     <header>
 
-        <img style="margin-left: 5px;margin-top: 10px" align="center" src="/img/aaa.jpg" width="90%" height="30%"/>
+        <img style="margin-left: 5px;margin-top: 10px" align="center"
+        src="{{ url('/formato_concreto.png') }}"
 
-        <table align="center"  style=" font-size: 10px">
+        width="90%" height="30%">
+        <?php
+        //dd(asset('formato_concreto.png'));
+      //  exit();
+        ?>
+        <table  border="0" align="center"     style="width:780px; margin-left: 30px;  font-size: 10px">
             <tr>
-                <td>UNIDAD FUNCIONAL:</td><td>___________________</td>
-                <td>CALZADA:</td>   <td>___________________</td>
+                <td >UNIDAD FUNCIONAL:</td><td><u>{{Cache::get('unidad_funcional_id')}}</u></td>
+                <td>CALZADA:</td>   <td>{{Cache::get('calzada')}}</td>
                 <td></td>           <td></td>
-                <td></td>           <td></td>
+                <td></td>           <td style="width:30px" ></td>
             </tr>
             <tr>
-                <td>ESTRUCTURA:</td> <td>______________</td>
+                <td>ESTRUCTURA:</td> <td>{{Cache::get('estrutura')}}</td>
+                <td>ELEMENTO:</td> <td>{{Cache::get('elemento')}}</td>
                 <td></td> <td></td>
-                <td>ELEMENTO:</td> <td>______________</td>
                 <td></td> <td></td>
             </tr>
             <tr>
-                <td>PLANO CÓDIGO No.</td> <td>______________</td>
-                <td></td> <td>______________</td>
-                <td>VERSIÓN:</td> <td>______________</td>
-                <td>RESISTENCIA CONCRETO:</td> <td>______________</td>
+                <td>PLANO CÓDIGO No.</td> <td>{{Cache::get('plano_codigo')}}</td>
+                <td>VERSIÓN:</td> <td>{{Cache::get('version')}}</td>
+                <td>RESISTENCIA CONCRETO:</td> <td> {{Cache::get('resistencia_concreto')}}</td>
+                <td></td> <td ></td>
             </tr>
 
         </table>
@@ -109,6 +123,7 @@
 
     <body>
         <footer>
+            <!--
             <div class="text-center"><br>
               ___________________________________________________________________________________
             <br>
@@ -121,48 +136,74 @@
             </span>
 
         </div>
+    -->
         </footer>
 
         <main>
 
-        <table class="table-espacio" cellspacing="0" style="padding:0px;margin:0px;width: 100%" cellpadding="0"  border="1">
-            <tr align="center" style="padding:0px;margin:0px;">
+        <table class="" cellspacing="0" style="padding:0px;margin:0px;width: 100%;font-size: 8px"  cellpadding="0"  border="1">
 
-                <td rowspan="2" class="color_naranja" style="text-align:center;color:#000000">
+            <tr align="center" style="padding:0px;margin:2px;">
+
+                <td width="100" rowspan="2" colspan="2"  style="text-align:center;color:#000000">
                     ACTIVIDAD
                 </td>
-                <td colspan="2">APLICA</td>
-                <td colspan="2">CUMPLIMIENTO</td>
+                <td style="width:10px;" colspan="2">APLICA</td>
+                <td style="width:10px;" colspan="2">CUMPLE</td>
+                <td style="width:50px;">FECHA</td>
+                <td style="width:120px;" rowspan="2">OBSERVACIONES</td>
+                <td style="width:120px;" rowspan="2">REGISTRO FOTOGRÁFICO</td>
 
 
             </tr>
-            <tr>
 
-                <td>SI</td>
-                <td>NO</td>
-                <td>SI</td>
-                <td>NO</td>
-                <td>ss</td>
-                <td>ss</td>
+            <tr align="center">
 
-            </tr>
-            <tr>
-                <td>ss</td>
-                <td>s</td>
-                <td>s</td>
-                <td>s</td>
+                <td style="width:15px;">SI</td>
+                <td style="width:15px;">NO</td>
+                <td style="width:20px;">SI</td>
+                <td style="width:20px;">NO</td>
+                <td>DD/MM/AAAA</td>
+
 
             </tr>
-<br>
+            <?php
+            //$d=true
+            $conteo=0
+            ?>
+            @foreach($data['concretoDetalleAll'] as $datas)
+            <tr align="center">
+
+                @if($conteo==0)
+                    <td style="width: 20px" rowspan="8"><p class="verticalText">PRELIMINARES</p></td>
+                @endif
+                @if($conteo==8)
+                    <td style="width: 20px" rowspan="4"><p class="verticalText">POST FUNDIDA</p></td>
+                @endif
+            <?php
+            //$d=false;
+            $conteo++
+            ?>
+
+                <td align="justify"><?php echo $datas['titulo'] ?></td>
+                <td>{{ $datas['si_aplica']==1? 'SI':''  }}</td>
+                <td>{{ $datas['si_aplica']==0? 'NO':''  }}</td>
+                <td>{{ $datas['si_cumple']==1? 'SI':''  }}</td>
+                <td>{{ $datas['si_cumple']==0? 'SI':''  }}</td>
+                <td>{{ $datas['fecha'] }}</td>
+                <td>{{ $datas['observaciones'] }}</td>
+                <td>
+
+                    <img style="margin: 1px" align="center" src="/Concreto/<?php echo $datas['registro_fotografico']?>"  width="90px" height="90px"/>
+                </td>
+
+            </tr>
+            @endforeach
+
+            <br>
 
 
         </table>
-
-            <table class="table-espacio" cellspacing="0" style="padding:0px;margin:0px;width: 100%" cellpadding="0"  border="1">
-                    <tr align="center" style="padding:0px;margin:0px;">
-                        <td class="color_naranja" style="text-align:center;color:#000000"><span style="color:#ff4e1f" >DATOS DEL SOLICITANTE</span></td>
-                    </tr>
-            </table>
 
 
 

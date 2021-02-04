@@ -153,8 +153,8 @@ class NewController_4_1_vue extends Command
           ";
          }
        }
-       
-       
+
+
 $p="'";
 $tr="App\\";
 //$co="$tr.$NombreModel;";
@@ -281,6 +281,7 @@ $vue_componete_list="";
 
 $data="";
 $pp='"';
+$p="'";
 
 $data="";
     $data_dt="";
@@ -345,9 +346,7 @@ $vue_componete_form=$vue_componete_form.'<template>
               <label for="exampleInputEmail1">'.$value->Field.'<span class="tx-danger">*</span></label>
               <Select2 v-model="input_'.$value->Field.'" :options="data_foraneo_'.$value->Field.'" />
               <small id="emailHelp" class="form-text text-muted"></small>
-              <b-alert show v-for="data in validacion.'.$value->Field.'" v-bind:key="data.'.$value->Field.'" variant="danger">
-                {{data}}
-              </b-alert>
+
 
                 <div class="invalid-feedback" style ="display:block" v-for="data in validacion.'.$value->Field.'" v-bind:key="data.'.$value->Field.'" >
                                             <b>{{data}}</b>
@@ -374,7 +373,7 @@ $vue_componete_form=$vue_componete_form.'<template>
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">'.$value->Field.'<span class="tx-danger">*</span> </label>
-                <input type="text" v-model="input_'.$value->Field.'" placeholder="'.$value->Field.'" class="form-control"  aria-describedby="emailHelp" >
+                <input type="text" v-model="input_'.$value->Field.'" placeholder="'.$value->Field.'" class="form-control"  :class="{ '.$p.'is-invalid'.$p.':this.validacion.'.$value->Field.', '.$p.'is-valid'.$p.':!this.validacion.'.$value->Field.' && is_enviar  }" >
                 <div class="invalid-feedback" style ="display:block" v-for="data in validacion.'.$value->Field.'" v-bind:key="data.'.$value->Field.'" >
                     <b>{{data}}</b>
                 </div>
@@ -396,7 +395,7 @@ $vue_componete_form=$vue_componete_form.'<template>
   </div>
 </div>
 </div>
-</div>
+
 
 
 
@@ -536,13 +535,14 @@ import Vue from "vue";
 export default {
   components: {
 
-    
+
  //   Select2
   },
   data() {
 
     return {
-      
+      is_enviar:false,
+
       validacion: [],
       editar_dato: false,
       data: [],
@@ -565,7 +565,7 @@ export default {
   },
   mounted() {
     //this.consulta();
-    //this.data_foraneo();
+    this.data_foraneo();
     if(this.$route.params.id>0){
         this.show_registro(this.$route.params.id);
     }else{
@@ -582,7 +582,15 @@ export default {
       this.limpiar_form();
       this.mensaje_formulario="Añadir un nuevo registro"
     },
+
+
+    data_foraneo(){
+        axios.get(`/Api/Acero/create`).then(response => {
+        '.$data_foraneo.'
+        });
+    },
     formulario(){
+        this.is_enviar=true
 
       const data = {
         id: this.'.$input_id.',
@@ -592,7 +600,7 @@ export default {
       };
 
       if(this.editar_dato == true){
-        axios.put('.$tilde_grave.'/'.$nombrecoNtrol.'/'.$peso.'{this.'.$input_id.'}'.$tilde_grave.', data)
+        axios.put(/Api/'.$tilde_grave.'/'.$nombrecoNtrol.'/'.$peso.'{this.'.$input_id.'}'.$tilde_grave.', data)
         .then(response => {
 
             const datos = response.data;
@@ -618,7 +626,7 @@ export default {
 
       }else{
 
-        axios.post(`/'.$nombrecoNtrol.'`, data).then(response => {
+        axios.post(`/Api/'.$nombrecoNtrol.'`, data).then(response => {
             const datos = response.data;
             if(response.data.errors){
               this.$toastr.warning("Verifique los datos", "Verifique los datos");
@@ -657,7 +665,7 @@ export default {
       this.mensaje_formulario="Editar un registro"
 
 
-      axios.get(`/'.$nombrecoNtrol.'/'.$peso.'{data_id}`).then(response => {
+      axios.get(`/Api/'.$nombrecoNtrol.'/'.$peso.'{data_id}`).then(response => {
             const data = response.data;
             if(!response.data){
               this.$toastr.warning("Operacio no exitosa", "Regitro no obtenido");
@@ -703,7 +711,7 @@ import Vue from "vue";
 
 export default {
   components: {
-    
+
   //  Select2
   },
   data() {
@@ -746,7 +754,7 @@ export default {
 
       this.page=page;
       //axios.get("'.$nombrecoNtrol.'/consulta?page=" +page+"&consulta_data="+this.input_consulta_data)
-      axios.get(`'.$nombrecoNtrol.'/consulta?page=${page}&consulta_data=${this.input_consulta_data}`)
+      axios.get(`/Api/'.$nombrecoNtrol.'?page=${page}&consulta_data=${this.input_consulta_data}`)
       .then(response => {
         this.consulta_datos = response.data;
         const parsed = JSON.stringify(response.data);
@@ -762,7 +770,7 @@ export default {
     },
     eliminar_registro_delete(){
       var data_id=this.'.$input_id.';
-      axios.delete('.$tilde_grave.''.$nombrecoNtrol.'/'.$peso.'{this.'.$input_id.'}'.$tilde_grave.').then(response => {
+      axios.delete('.$tilde_grave.'/Api/'.$nombrecoNtrol.'/'.$peso.'{this.'.$input_id.'}'.$tilde_grave.').then(response => {
         const data = response.data;
         if(response.data.id){
           this.validacion="";

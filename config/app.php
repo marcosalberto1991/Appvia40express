@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -177,6 +177,7 @@ return [
         //instalacion de paquetes
         OwenIt\Auditing\AuditingServiceProvider::class,
 
+        //'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 
