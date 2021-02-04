@@ -94,9 +94,9 @@ const router = new VueRouter({
         { path: url+'/Appvia40express/EstadoTramite/:id/edit', component: EstadoTramiteForm, name: 'estadotramiteform' },
         { path: url+'/Appvia40express/EstadoTramite/create', component: EstadoTramiteForm, name: 'estadotramiteformadd' },
         //concreto
-        { path: url+'/Appvia40express/Concreto', component: Concreto, name: 'concreto' },
-        { path: url+'/Appvia40express/Concreto/:id/edit', component: ConcretoForm, name: 'concretoform' },
-        { path: url+'/Appvia40express/Concreto/create', component: ConcretoForm, name: 'concretoformadd'},
+        { path: url+'Appvia40express/Concreto', component: Concreto, name: 'concreto' },
+        { path: url+'Appvia40express/Concreto/:id/edit', component: ConcretoForm, name: 'concretoform' },
+        { path: url+'Appvia40express/Concreto/create', component: ConcretoForm, name: 'concretoformadd'},
 
         //ConcretoDetalles
         { path: url+'/Appvia40express/ConcretoDetalles', component: ConcretoDetalles, name: 'concretodetalles' },
