@@ -49,7 +49,7 @@
                     {{ data.observaciones }}
                   </td>
                   <td class="minimo">
-                    <img height="60px" :src="'/Concreto/'+data.registro_fotografico" alt="">
+                    <img height="60px" :src="'/Appvia40express/Concreto/'+data.registro_fotografico" alt="">
 
                   </td>
                   <td class="text-center">
@@ -273,7 +273,7 @@
             ></b-form-group>
           </div>
           <div class="col-md-6 col-sm-12">
-          <img width="100%" :src="'/Concreto/'+this.input_registro_fotografico" alt="">
+          <img width="100%" :src="'/Appvia40express/Concreto/'+this.input_registro_fotografico" alt="">
 
           </div>
         </div>
