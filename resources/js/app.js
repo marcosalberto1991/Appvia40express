@@ -78,7 +78,7 @@ import FresadoForm from './components/FresadoForm-vue.vue';
 //{ path: '/FresadoDetalle/create', component: FresadoDetalleForm, name: 'fresadodetalleformadd' },
 Vue.prototype.$url = ''
 //var url='';
-var url='/Appvia40express';
+var url='';
 const router = new VueRouter({
     mode:'history',
     routes:[
@@ -86,30 +86,30 @@ const router = new VueRouter({
 
         {path:'home',component:home,name:'home' },
         //Unidad funcional
-        { path: url+'/UnidadFuncional', component: UnidadFuncional, name: 'unidadfuncional' },
-        { path: url+'/UnidadFuncional/:id/edit', component: UnidadFuncionalForm, name: 'unidadfuncionalform' },
-        { path: url+'/UnidadFuncional/create', component: UnidadFuncionalForm, name: 'unidadfuncionalformadd' },
+        { path: url+'/Appvia40express/UnidadFuncional', component: UnidadFuncional, name: 'unidadfuncional' },
+        { path: url+'/Appvia40express/UnidadFuncional/:id/edit', component: UnidadFuncionalForm, name: 'unidadfuncionalform' },
+        { path: url+'/Appvia40express/UnidadFuncional/create', component: UnidadFuncionalForm, name: 'unidadfuncionalformadd' },
         //EstadoTramite
-        { path: url+'/EstadoTramite', component: EstadoTramite, name: 'estadotramite' },
-        { path: url+'/EstadoTramite/:id/edit', component: EstadoTramiteForm, name: 'estadotramiteform' },
-        { path: url+'/EstadoTramite/create', component: EstadoTramiteForm, name: 'estadotramiteformadd' },
+        { path: url+'/Appvia40express/EstadoTramite', component: EstadoTramite, name: 'estadotramite' },
+        { path: url+'/Appvia40express/EstadoTramite/:id/edit', component: EstadoTramiteForm, name: 'estadotramiteform' },
+        { path: url+'/Appvia40express/EstadoTramite/create', component: EstadoTramiteForm, name: 'estadotramiteformadd' },
         //concreto
-        { path: url+'/Concreto', component: Concreto, name: 'concreto' },
-        { path: url+'/Concreto/:id/edit', component: ConcretoForm, name: 'concretoform' },
-        { path: url+'/Concreto/create', component: ConcretoForm, name: 'concretoformadd'},
+        { path: url+'/Appvia40express/Concreto', component: Concreto, name: 'concreto' },
+        { path: url+'/Appvia40express/Concreto/:id/edit', component: ConcretoForm, name: 'concretoform' },
+        { path: url+'/Appvia40express/Concreto/create', component: ConcretoForm, name: 'concretoformadd'},
 
         //ConcretoDetalles
-        { path: url+'/ConcretoDetalles', component: ConcretoDetalles, name: 'concretodetalles' },
-        { path: url+'/ConcretoDetalles/:id/edit', component: ConcretoDetallesForm, name: 'concretodetallesform' },
-        { path: url+'/ConcretoDetalles/create', component: ConcretoDetallesForm, name: 'concretodetallesformadd' },
+        { path: url+'/Appvia40express/ConcretoDetalles', component: ConcretoDetalles, name: 'concretodetalles' },
+        { path: url+'/Appvia40express/ConcretoDetalles/:id/edit', component: ConcretoDetallesForm, name: 'concretodetallesform' },
+        { path: url+'/Appvia40express/ConcretoDetalles/create', component: ConcretoDetallesForm, name: 'concretodetallesformadd' },
         //acero
-        { path: url+'/Acero', component: Acero, name: 'acero' },
-        { path: url+'/Acero/:id/edit', component: AceroForm, name: 'aceroform' },
-        { path: url+'/Acero/create', component: AceroForm, name: 'aceroformadd' },
+        { path: url+'/Appvia40express/Acero', component: Acero, name: 'acero' },
+        { path: url+'/Appvia40express/Acero/:id/edit', component: AceroForm, name: 'aceroform' },
+        { path: url+'/Appvia40express/Acero/create', component: AceroForm, name: 'aceroformadd' },
         //
-        { path: url+'/Fresado', component: Fresado, name: 'fresado' },
-        { path: url+'/Fresado/:id/edit', component: FresadoForm, name: 'fresadoform' },
-        { path: url+'/Fresado/create', component: FresadoForm, name: 'fresadoformadd' },
+        { path: url+'/Appvia40express/Fresado', component: Fresado, name: 'fresado' },
+        { path: url+'/Appvia40express/Fresado/:id/edit', component: FresadoForm, name: 'fresadoform' },
+        { path: url+'/Appvia40express/Fresado/create', component: FresadoForm, name: 'fresadoformadd' },
 
     ] // short for `routes: routes`
   })
