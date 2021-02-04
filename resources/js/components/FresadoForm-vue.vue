@@ -242,7 +242,7 @@ export default {
       };
 
       if(this.editar_dato == true){
-        axios.put(`/Api//Fresado/${this.input_Fresado_id}`, data)
+        axios.put(`/Api/Fresado/${this.input_Fresado_id}`, data)
         .then(response => {
 
             const datos = response.data;
