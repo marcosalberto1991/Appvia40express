@@ -49,12 +49,15 @@ Route::get('Api/ConcretoDetalles/{concreto_id}/consulta_data', 'ConcretoDetalles
 Route::post('Api/ConcretoDetalles_update/{id}', 'ConcretoDetallesController@update');
 Route::get('Concreto/{concreto_id}/pdfConcreto', 'ConcretoController@pdfConcreto');
 Route::get('Appvia40express/Concreto_file/{file}', function ($file) {
-    $data =Storage::disk('Concreto')->response("$file");
+    return Storage::disk('Concreto')->response("$file");
+
+    /*
     if($data){
         return $data;
     }else{
         return 'null.png';
     }
+    */
 
 });
 
