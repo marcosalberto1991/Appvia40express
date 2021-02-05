@@ -54,9 +54,9 @@
             <b-button v-if="$can('Concreto Eliminar')"  v-b-modal.moda-eliminar @click='eliminar_registro(data.item.id)'
                 type='button' class='btn-sm btn btn-danger mr-1' size='sm' data-toggle='button' aria-pressed='false' style='margin-bottom: 5px; margin: 5px;'>Eliminar
             </b-button>
-            <!--
-            <a v-bind:href=" data.item.id+'/Sucursale'"  class='btn-sm btn btn-success mr-1' size='sm'  style='margin-bottom: 5px; margin: 5px;'>Surcusales </a>
-            -->
+
+            <a v-bind:href="'${this.$url}/Concreto'+ data.item.id+'/pdfConcreto'"  class='btn-sm btn btn-success mr-1' size='sm'  style='margin-bottom: 5px; margin: 5px;'>Surcusales </a>
+
           </b-button-group>
 
 
