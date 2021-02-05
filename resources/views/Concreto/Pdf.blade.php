@@ -194,7 +194,7 @@
                 <td>{{ $datas['observaciones'] }}</td>
                 <td>
 
-                    <img style="margin: 1px" align="center" src="/Concreto/<?php echo $datas['registro_fotografico']?>"  width="90px" height="90px"/>
+                    <img style="margin: 1px" align="center" src="http://172.20.3.249/Appvia40express/Appvia40express/Concreto_file/<?php echo $datas['registro_fotografico']?>"  width="90px" height="90px"/>
                 </td>
 
             </tr>
