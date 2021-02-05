@@ -112,7 +112,7 @@ export default {
   data() {
 
     return {
-        url: this.$url,
+      url: '',
       validacion: [],
       editar_dato: false,
       data: [],
@@ -150,6 +150,7 @@ export default {
     this.consulta();
     this.data_foraneo();
     //alert(this.$url);
+    this.url=this.$url;
   },
   methods: {
 
