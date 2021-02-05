@@ -9,7 +9,7 @@
                 margin-top: 130px;
                 margin-left: 30px;
                 margin-right: 30px;
-                margin-bottom: 150px;
+                margin-bottom: 160px;
                 _font-family: cen
             }
             header img {
@@ -89,10 +89,10 @@
 
     <header>
 
-        <img style="margin-left: 5px;margin-top: 10px" align="center"
+        <img style="margin-left: 5px;margin-top: 0px" align="center"
         src="http://172.20.3.249/Appvia40express/pdf/formato_concreto.png"
 
-        width="90%" height="30%">
+        width="95%" height="40%">
         <?php
         //dd(asset('formato_concreto.png'));
       //  exit();

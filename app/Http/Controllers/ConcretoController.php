@@ -39,9 +39,10 @@ class ConcretoController extends Controller
     {
         $consulta_data = $request->get("consulta_data");
         if ($consulta_data == "") {
-            $data = ConcretoModel::with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
+
+            $data = ConcretoModel:: where('users_id',Auth::user()->id)->with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
         } else {
-            $data = ConcretoModel::with('users_id')
+            $data = ConcretoModel::where('users_id',Auth::user()->id)->with('users_id')
                 ->orwhere("id", "like", "%" . $consulta_data . "%")
                 ->orwhere("users_id", "like", "%" . $consulta_data . "%")
                 ->orwhere("unidad_funcional_id", "like", "%" . $consulta_data . "%")
@@ -155,7 +156,7 @@ class ConcretoController extends Controller
         $pdf->output();
         $dom_pdf = $pdf->getDomPDF();
         $canvas = $dom_pdf ->get_canvas();
-            //$canvas->page_text(170, 119, $data['codigo_2'] .''. $data['codigo_3'], null, 11, array(0, 0, 0));
+            $canvas->page_text(350, 20, 'CONTROL DE FUNDIDA DE CONCRETO', null, 11, array(255, 255, 255));
             //$canvas->page_text(350, 119, intval($fecha[2]).'/'.$mes[intval($fecha[1])].'/'.$fecha[0], null, 11, array(0, 0, 0));
             //$canvas->page_text(480, 125, "Pagina {PAGE_NUM} de {PAGE_COUNT}", null, 15, array(0, 0, 0));
             //$canvas->page_text(250, 805, "Pagina {PAGE_NUM} de {PAGE_COUNT}", null, 11, array(0, 0, 0));
