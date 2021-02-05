@@ -49,7 +49,7 @@
                     {{ data.observaciones }}
                   </td>
                   <td class="minimo">
-                    <img height="60px" :src="'/Appvia40express/Appvia40express/Concreto_file/'+data.registro_fotografico" alt="">
+                    <img height="60px" :src="'Appvia40express/Appvia40express/Concreto_file/'+data.registro_fotografico" alt="">
 
                   </td>
                   <td class="text-center">
@@ -363,6 +363,8 @@ export default {
   mounted() {
     this.consulta();
     this.data_foraneo();
+
+      //  alert(env.HTTP_VUE)
   },
   methods: {
     consulta(page = 1) {
@@ -377,7 +379,7 @@ export default {
       this.page = page;
       //axios.get("ConcretoDetalles/consulta?page=" +page+"&consulta_data="+this.input_consulta_data)
       axios
-        .get(`/Appvia40express/Api/ConcretoDetalles/${this.input_Concreto_id}/consulta_data`)
+        .get(`${this.$url}/Api/ConcretoDetalles/${this.input_Concreto_id}/consulta_data`)
         .then((response) => {
           this.consulta_datos = response.data;
           const parsed = JSON.stringify(response.data);
@@ -413,7 +415,7 @@ export default {
 
 
 
-        axios.post(`/Appvia40express/Api/ConcretoDetalles_update/${this.input_ConcretoDetalles_id}`, formData,{ headers:{'Content-Type':'multipart/form-data'}})
+        axios.post(`/${this.$url}/Api/ConcretoDetalles_update/${this.input_ConcretoDetalles_id}`, formData,{ headers:{'Content-Type':'multipart/form-data'}})
         //axios.put(`/ConcretoDetalles/${this.input_ConcretoDetalles_id}`, data)
         .then(
           (response) => {
@@ -453,7 +455,7 @@ export default {
     eliminar_registro_delete() {
       var data_id = this.input_ConcretoDetalles_id;
       axios
-        .delete(`/Appvia40express/Api/ConcretoDetalles/${this.input_ConcretoDetalles_id}`)
+        .delete(`${this.$url}/Api/ConcretoDetalles/${this.input_ConcretoDetalles_id}`)
         .then((response) => {
           const data = response.data;
           if (response.data.id) {

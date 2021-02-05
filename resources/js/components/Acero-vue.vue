@@ -158,7 +158,7 @@ export default {
 
       this.page=page;
       //axios.get("Acero/consulta?page=" +page+"&consulta_data="+this.input_consulta_data)
-      axios.get(`/Appvia40express/Api/Acero?page=${page}&consulta_data=${this.input_consulta_data}`)
+      axios.get(`${this.$url}/Api/Acero?page=${page}&consulta_data=${this.input_consulta_data}`)
       .then(response => {
         this.consulta_datos = response.data;
         const parsed = JSON.stringify(response.data);
@@ -175,7 +175,7 @@ export default {
     },
     eliminar_registro_delete(){
       var data_id=this.input_Acero_id;
-      axios.delete(`/Appvia40express/Api/Acero/${this.input_Acero_id}`).then(response => {
+      axios.delete(`${this.$url}/Api/Acero/${this.input_Acero_id}`).then(response => {
         const data = response.data;
         if(response.data.id){
           this.validacion="";

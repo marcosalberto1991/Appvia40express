@@ -182,7 +182,7 @@ export default {
 
 
     data_foraneo(){
-        axios.get(`/Appvia40express/Api/Acero/create`).then(response => {
+        axios.get(`${this.$url}/Api/Acero/create`).then(response => {
         this.data_foraneo_acero_id= response.data.acero_id
 
         });
@@ -205,7 +205,7 @@ export default {
       };
 
       if(this.editar_dato == true){
-        axios.put(`/Appvia40express/Api/AceroDetalle/${this.input_AceroDetalle_id}`, data)
+        axios.put(`${this.$url}/Api/AceroDetalle/${this.input_AceroDetalle_id}`, data)
         .then(response => {
 
             const datos = response.data;
@@ -231,7 +231,7 @@ export default {
 
       }else{
 
-        axios.post(`/Appvia40express/Api/AceroDetalle`, data).then(response => {
+        axios.post(`${this.$url}/Api/AceroDetalle`, data).then(response => {
             const datos = response.data;
             if(response.data.errors){
               this.$toastr.warning("Verifique los datos", "Verifique los datos");
@@ -270,7 +270,7 @@ export default {
       this.mensaje_formulario="Editar un registro"
 
 
-      axios.get(`/Appvia40express/Api/AceroDetalle/${data_id}`).then(response => {
+      axios.get(`${this.$url}/Api/AceroDetalle/${data_id}`).then(response => {
             const data = response.data;
             if(!response.data){
               this.$toastr.warning("Operacio no exitosa", "Regitro no obtenido");
