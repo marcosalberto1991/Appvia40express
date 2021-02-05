@@ -305,7 +305,7 @@ $data="";
         ";
       $input_clear = $input_clear."this.input_$value->Field = '';
       ";
-      $input_fields = $input_fields."{ key: '$value->Field', sortable:true},
+      $input_fields = $input_fields."{ key: '$value->Field', sortable:true,class:'one-lineas'},
       ";
       //{ key: 'primer_nombre', sortable: true },
 
@@ -451,14 +451,40 @@ $vue_componete_form=$vue_componete_form.'<template>
             -->
             <router-link :to=$pp{ name: '$controlador_minuscula"."form', params: { id: data.item.id }}$pp>
                 <a v-bind:href=$pp'/".$nombrecoNtrol."/'+data.item.id+'/edit'$pp class='btn-sm btn btn-success mr-1' size='sm' style='margin-bottom: 5px; margin: 5px;'>
+                <div class='d-block d-sm-block d-md-none'>
+                <b-icon icon='pencil-fill'></b-icon>
+            </div>
+            <div class='one-linea d-none d-sm-none d-md-block'>
+                <span>
+                <!--
+                    <b-icon icon='pencil-fill' ></b-icon>
+                -->
+                </span>
+                <span>
                     Editar
+                </span>
+            </div>
                 </a>
             </router-link>
 
 
 
-            <b-button v-if=$can('$nombrecoNtrol Eliminar')$pp  v-b-modal.moda-eliminar @click='eliminar_registro(data.item.id)'
-                type='button' class='btn-sm btn btn-danger mr-1' size='sm' data-toggle='button' aria-pressed='false' style='margin-bottom: 5px; margin: 5px;'>Eliminar
+            <b-button v-if=$can('$nombrecoNtrol Eliminar')$pp  v-b-modal.moda-eliminar @click='eliminar_registro(data.item.id)' type='button' class='btn-sm btn btn-danger mr-1' size='sm' data-toggle='button' aria-pressed='false' style='margin-bottom: 5px; margin: 5px;'>
+
+            <div class='d-block d-sm-block d-md-none'>
+                <b-icon icon='trash'></b-icon>
+            </div>
+            <div class='one-linea d-none d-sm-none d-md-block'>
+                <span>
+                        <!--
+                        <b-icon icon='trash' ></b-icon>
+                        -->
+                </span>
+                <span>
+                        Eliminar
+                </span>
+            </div>
+
             </b-button>
             <!--
             <a v-bind:href=$pp data.item.id+'/Sucursale'$pp  class='btn-sm btn btn-success mr-1' size='sm'  style='margin-bottom: 5px; margin: 5px;'>Surcusales </a>

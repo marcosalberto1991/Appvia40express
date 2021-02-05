@@ -34,25 +34,46 @@
       </div><br><br>
     </div>
 
-      <b-table :items='consulta_datos.data' :fields='fields'
-      responsive='sm' :sticky-header='stickyHeader' :no-border-collapse='noCollapse'>
+      <b-table sticky-header stacked-sm small  responsive :items='consulta_datos.data' :fields='fields'
+       :no-border-collapse='noCollapse'>
+
       <template v-slot:cell(Acciones)='data'>
 
           <b-button-group>
-          <!--
-          <b-button v-if="$can('Concreto Editar')" size='sm' variant='warning'  type='button' class='btn-sm btn btn-wangir mr-1' data-toggle='button' aria-pressed='false' style='margin-bottom: 5px; margin: 5px;'>Editar
-            </b-button>
-            -->
+
             <router-link :to="{ name: 'concretoform', params: { id: data.item.id }}">
                 <a v-bind:href="'/Concreto/'+data.item.id+'/edit'" class='btn-sm btn btn-success mr-1' size='sm' style='margin-bottom: 5px; margin: 5px;'>
-                    Editar
+                     <div class="d-block d-sm-block d-md-none">
+                        <b-icon icon="pencil-fill"></b-icon>
+                    </div>
+                    <div class="one-linea d-none d-sm-none d-md-block">
+                        <span>
+                        <!--
+                            <b-icon icon="pencil-fill" ></b-icon>
+                        -->
+                        </span>
+                        <span>
+                            Editar
+                        </span>
+                    </div>
                 </a>
             </router-link>
 
 
 
-            <b-button v-if="$can('Concreto Eliminar')"  v-b-modal.moda-eliminar @click='eliminar_registro(data.item.id)'
-                type='button' class='btn-sm btn btn-danger mr-1' size='sm' data-toggle='button' aria-pressed='false' style='margin-bottom: 5px; margin: 5px;'>Eliminar
+            <b-button v-if="$can('Concreto Eliminar')"  v-b-modal.moda-eliminar @click='eliminar_registro(data.item.id)' type='button' class='btn-sm btn btn-danger mr-1' size='sm' data-toggle='button' aria-pressed='false' style='margin-bottom: 5px; margin: 5px;'> <div class="d-block d-sm-block d-md-none">
+                    <b-icon icon="trash"></b-icon>
+                </div>
+                <div class="one-linea d-none d-sm-none d-md-block">
+                    <span>
+                        <!--
+                        <b-icon icon="trash" ></b-icon>
+                        -->
+                    </span>
+                    <span>
+                        Eliminar
+                    </span>
+                </div>
             </b-button>
 
             <a v-bind:href="''+url+''+url+'/Concreto/'+ data.item.id+'/pdfConcreto'" target='_blank' class='btn-sm btn btn-success mr-1' size='sm'  style='margin-bottom: 5px; margin: 5px;'>PDF </a>
@@ -123,15 +144,15 @@ export default {
       fields: [
       { key: "Acciones",stickyColumn: true, label:"Acciones" ,sortable: false },
       //{ key: 'id', sortable:true},
-      { key: 'users_id.name', sortable:true,label:'Usuario'},
-      { key: 'unidad_funcional_id.nombre', sortable:true,label:'Unidad Funcional'},
-      { key: 'calzada', sortable:true,label:'Calzada'},
-      { key: 'estrutura', sortable:true,label:'Estrutura'},
-      { key: 'elemento', sortable:true,label:'Elemento'},
-      { key: 'plano_codigo', sortable:true,label:'Cod. Plano'},
-      { key: 'version', sortable:true,label:'Version'},
-      { key: 'resistencia_concreto', sortable:true,label:'Resi. Concreto'},
-      { key: 'estado_tramite_id.nombre', sortable:true,label:'Tramite'},
+      { key: 'users_id.name', sortable:true,class:'one-lineas',label:'Usuario'},
+      { key: 'unidad_funcional_id.nombre', sortable:true,class:'one-lineas',label:'Unidad Funcional'},
+      { key: 'calzada', sortable:true,class:'one-lineas',label:'Calzada'},
+      { key: 'estrutura', sortable:true,class:'one-lineas',label:'Estrutura'},
+      { key: 'elemento', sortable:true,class:'one-lineas',label:'Elemento'},
+      { key: 'plano_codigo', sortable:true,class:'one-lineas',label:'Cod. Plano'},
+      { key: 'version', sortable:true,class:'one-lineas',label:'Version'},
+      { key: 'resistencia_concreto', sortable:true,class:'one-lineas',label:'Resi. Concreto'},
+      { key: 'estado_tramite_id.nombre', sortable:true,class:'one-lineas',label:'Tramite'},
 
       ],
 

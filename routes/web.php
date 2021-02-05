@@ -82,8 +82,27 @@ Route::resource('Api/FresadoDetalle','FresadoDetalleController');
 Route::get('Api/FresadoDetalle/{id}/consulta_data', 'FresadoDetalleController@consulta_data');
 Route::post('Api/FresadoDetalles_update/{id}', 'FresadoDetalleController@update');
 
+//mezclas
+//Route::get('Api/Mezclas/consulta', 'MezclasController@consulta');
+Route::resource('Api/Mezclas','MezclasController');
+Route::get("Mezclas/create", function(){return View::make("home");});
+Route::get("Mezclas", function(){return View::make("home");});
+Route::get("Mezclas/{id}/edit", function(){return View::make("home");});
 
 
+
+
+//
+//           configuraciones Roles y aplicativo
+//
+Route::resource('users', 'UserController');
+Route::resource('roles', 'RoleController');
+Route::resource('permissions', 'PermissionController');
+Route::get('/permission/{permissionName}', 'PermissionController@check');
+
+Route::post('Api/Auditoria_SAM/consulta', 'Auditoria_SAMController@consulta');
+Route::resource('Api/Auditoria_SAM','Auditoria_SAMController');
+Route::get("Auditoria", function(){return View::make("home");});
 
 
 Route::get('/clear', function() {

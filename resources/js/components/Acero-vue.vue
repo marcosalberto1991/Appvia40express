@@ -36,29 +36,19 @@
       </div><br><br>
     </div>
 
-      <b-table :items='consulta_datos.data' :fields='fields'
-      responsive='sm' :sticky-header='stickyHeader' :no-border-collapse='noCollapse'>
+      <b-table sticky-header stacked-sm small  responsive :items='consulta_datos.data' :fields='fields'
+       :no-border-collapse='noCollapse'>
       <template v-slot:cell(Acciones)='data'>
 
           <b-button-group>
-          <!--
-          <b-button v-if="$can('Acero Editar')" size='sm' variant='warning'  type='button' class='btn-sm btn btn-wangir mr-1' data-toggle='button' aria-pressed='false' style='margin-bottom: 5px; margin: 5px;'>Editar
-            </b-button>
-            -->
             <router-link :to="{ name: 'aceroform', params: { id: data.item.id }}">
                 <a v-bind:href="'/Acero/'+data.item.id+'/edit'" class='btn-sm btn btn-success mr-1' size='sm' style='margin-bottom: 5px; margin: 5px;'>
                     Editar
                 </a>
             </router-link>
-
-
-
             <b-button v-if="$can('Acero Eliminar')"  v-b-modal.moda-eliminar @click='eliminar_registro(data.item.id)'
                 type='button' class='btn-sm btn btn-danger mr-1' size='sm' data-toggle='button' aria-pressed='false' style='margin-bottom: 5px; margin: 5px;'>Eliminar
             </b-button>
-            <!--
-            <a v-bind:href=" data.item.id+'/Sucursale'"  class='btn-sm btn btn-success mr-1' size='sm'  style='margin-bottom: 5px; margin: 5px;'>Surcusales </a>
-            -->
           </b-button-group>
 
 
@@ -121,15 +111,15 @@ export default {
       noCollapse: false,
       fields: [
       { key: "Acciones",stickyColumn: true, label:"Acciones" ,sortable: false },
-      { key: 'id', sortable:true},
-      { key: 'users_id', sortable:true},
-      { key: 'estrutura', sortable:true},
-      { key: 'plano', sortable:true},
-      { key: 'calzada', sortable:true},
-      { key: 'elemento', sortable:true},
-      { key: 'version', sortable:true},
-      { key: 'estado_tramite_id', sortable:true},
-      { key: 'unidad_funcional_id', sortable:true},
+      //{ key: 'id', sortable:true},
+      { key: 'users_id',label:'Usuario', class:'one-lineas', sortable:true},
+      { key: 'estrutura',label:'Estrutura', class:'one-lineas', sortable:true},
+      { key: 'plano',label:'Plano', class:'one-lineas', sortable:true},
+      { key: 'calzada',label:'Calzada', class:'one-lineas', sortable:true},
+      { key: 'elemento',label:'Elemento', class:'one-lineas', sortable:true},
+      { key: 'version',label:'Versión', class:'one-lineas', sortable:true},
+      { key: 'estado_tramite_id',label:'Estado de tramite', class:'one-lineas', sortable:true},
+      { key: 'unidad_funcional_id',label:'Unidad Funcional', class:'one-lineas', sortable:true},
 
       ],
 

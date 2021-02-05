@@ -36,25 +36,46 @@
       </div><br><br>
     </div>
 
-      <b-table :items='consulta_datos.data' :fields='fields'
-      responsive='sm' :sticky-header='stickyHeader' :no-border-collapse='noCollapse'>
-      <template v-slot:cell(Acciones)='data'>
+      <b-table sticky-header stacked-sm small  responsive  :items='consulta_datos.data' :fields='fields' class="boton-small"
+       :no-border-collapse='noCollapse'>
+      <template v-slot:cell(Acciones)='data' class="small">
 
           <b-button-group>
-          <!--
-          <b-button v-if="$can('Fresado Editar')" size='sm' variant='warning'  type='button' class='btn-sm btn btn-wangir mr-1' data-toggle='button' aria-pressed='false' style='margin-bottom: 5px; margin: 5px;'>Editar
-            </b-button>
-            -->
             <router-link :to="{ name: 'fresadoform', params: { id: data.item.id }}">
-                <a v-bind:href="'/Fresado/'+data.item.id+'/edit'" class='btn-sm btn btn-success mr-1' size='sm' style='margin-bottom: 5px; margin: 5px;'>
-                    Editar
+                <a v-bind:href="'/Fresado/'+data.item.id+'/edit'" class='btn-sm btn btn-success mr-1 boton-small' size='sm' style='margin-bottom: 5px; margin: 5px;'>
+                    <div class="d-block d-sm-block d-md-none">
+                        <b-icon icon="pencil-fill"></b-icon>
+                    </div>
+                    <div class="one-linea d-none d-sm-none d-md-block">
+                        <span>
+                        <!--
+                            <b-icon icon="pencil-fill" ></b-icon>
+                        -->
+                        </span>
+                        <span>
+                            Editar
+                        </span>
+                    </div>
+
                 </a>
             </router-link>
 
 
 
-            <b-button v-if="$can('Fresado Eliminar')"  v-b-modal.moda-eliminar @click='eliminar_registro(data.item.id)'
-                type='button' class='btn-sm btn btn-danger mr-1' size='sm' data-toggle='button' aria-pressed='false' style='margin-bottom: 5px; margin: 5px;'>Eliminar
+            <b-button v-if="$can('Fresado Eliminar')"  v-b-modal.moda-eliminar @click='eliminar_registro(data.item.id)'  class='btn-sm btn btn-danger  ' size='sm' data-toggle='button' aria-pressed='false' style='margin-bottom: 5px; margin: 5px;'>
+                <div class="d-block d-sm-block d-md-none">
+                    <b-icon icon="trash"></b-icon>
+                </div>
+                <div class="one-linea d-none d-sm-none d-md-block">
+                    <span>
+                        <!--
+                        <b-icon icon="trash" ></b-icon>
+                        -->
+                    </span>
+                    <span>
+                        Eliminar
+                    </span>
+                </div>
             </b-button>
             <!--
             <a v-bind:href=" data.item.id+'/Sucursale'"  class='btn-sm btn btn-success mr-1' size='sm'  style='margin-bottom: 5px; margin: 5px;'>Surcusales </a>
@@ -65,9 +86,7 @@
 
 
         </template>
-        <template v-slot:head(Acciones)='scope'>
-          <div class='text-nowrap'>Acciones</div>
-        </template>
+
       </b-table>
 
 </div>
@@ -120,18 +139,18 @@ export default {
       stickyHeader: true,
       noCollapse: false,
       fields: [
-      { key: "Acciones",stickyColumn: true, label:"Acciones" ,sortable: false },
-      { key: 'id', sortable:true},
-      { key: 'unidad_funcional_id', sortable:true},
-      { key: 'calzada', sortable:true},
-      { key: 'longitud', sortable:true},
-      { key: 'plano_codigo', sortable:true},
-      { key: 'version', sortable:true},
-      { key: 'ancho_uno', sortable:true},
-      { key: 'ancho_dos', sortable:true},
-      { key: 'espesor_uno', sortable:true},
-      { key: 'espesor_dos', sortable:true},
-      { key: 'estado_tramite_id', sortable:true},
+      { key: "Acciones",stickyColumn: true, label:"Acciones" ,sortable: false,class:'' },
+      //{ key: 'id', sortable:true},
+      { key: 'unidad_funcional_id',label:"Unidad Funcional", sortable:true,class:'one-lineas'},
+      { key: 'calzada', sortable:true,class:'one-lineas'},
+      { key: 'longitud', sortable:true,class:'one-lineas'},
+      { key: 'plano_codigo',label:"Plano Codigo", sortable:true,class:'one-lineas'},
+      { key: 'version',label:"Versión", sortable:true,class:'one-lineas'},
+      { key: 'ancho_uno',label:"Ancho 1", sortable:true,class:'one-lineas'},
+      { key: 'ancho_dos',label:"Ancho 2", sortable:true,class:'one-lineas'},
+      { key: 'espesor_uno',label:"Espesor 1", sortable:true,class:'one-lineas'},
+      { key: 'espesor_dos',label:"Espesor 2", sortable:true,class:'one-lineas'},
+      { key: 'estado_tramite_id',label:"Acciones", sortable:true,class:'one-lineas'},
 
       ],
 

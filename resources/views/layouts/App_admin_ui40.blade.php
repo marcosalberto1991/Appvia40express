@@ -88,12 +88,22 @@
                                 Projects
                             </a>
                         </li>
+                        @if (Route::has('login'))
+                        @if (Auth::check())
                         <li class="dropdown nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="nav-link-icon fa fa-cog"></i>
-                                Settings
-                            </a>
+
+                            <a href="{{ route('logout') }}" class="nav-link "
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            <i class="nav-link-icon fa fa-cog"></i>
+                            <b >Cerra Sessión</b></a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                              {{ csrf_field() }}
+                            </form>
                         </li>
+                        @endif
+                        @endif
+
                     </ul>
                 </div>
                 <div class="app-header-right">
@@ -122,10 +132,15 @@
                                 </div>
                                 <div class="widget-content-left  ml-3 header-user-info">
                                     <div class="widget-heading">
-                                        Alina Mclourd
+                                        @if (Route::has('login'))
+                                        @if (Auth::check())
+                                            {{auth()->user()->name}}
+                                        @endif
+                                    @endif
+
                                     </div>
                                     <div class="widget-subheading">
-                                        VP People Manager
+
                                     </div>
                                 </div>
                                 <div class="widget-content-right header-user-info ml-3">
@@ -564,6 +579,12 @@
                                     <i class="metismenu-icon pe-7s-rocket"></i>
                                     Fresado
                                 </router-link>
+                                <router-link :to="{ name: 'Auditoria'}">
+                                    <i class="metismenu-icon pe-7s-rocket"></i>
+                                    Auditoria
+                                </router-link>
+
+
 
                             </li>
                             <li class="app-sidebar__heading">Datos Foraneos</li>
@@ -1027,6 +1048,13 @@
             </div>
         </div>
     </div>
+    <script>
+        @auth
+          //window.Permissions = {!! json_encode(Auth::user()->allPermissions, true) !!};
+        @else
+          window.Permissions = [];
+        @endauth
+      </script>
     <script type="text/javascript" src="{{ asset('Architectui/assets/scripts/main.js') }}"></script>
     <script type="text/javascript" src="{{asset('js/app.js')}}">
     </script>
@@ -1035,6 +1063,25 @@
         color: brown;
         font-size: 20px;
     }
+    .one-lineas {
+        white-space: pre
+     }
+     .thAttr{
+        white-space: pre
+
+     }
+     .small_{
+        padding-top: 0px;
+        padding-bottom: 0px;
+     }
+     .boton-small_{
+        padding-top: 0px;
+        padding-bottom: 0px;
+
+
+
+     }
+
 </style>
 
 
