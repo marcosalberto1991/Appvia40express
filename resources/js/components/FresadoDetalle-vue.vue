@@ -49,7 +49,7 @@
                     {{ data.observaciones }}
                   </td>
                   <td class="minimo">
-                    <img height="60px" :src="'/Appvia40express/Appvia40express/Concreto/'+data.registro_fotografico" alt="">
+                    <img height="60px" :src="'/Appvia40express/Appvia40express/Concreto_file/'+data.registro_fotografico" alt="">
 
                   </td>
                   <td class="text-center">
