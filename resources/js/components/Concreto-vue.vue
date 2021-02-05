@@ -55,7 +55,7 @@
                 type='button' class='btn-sm btn btn-danger mr-1' size='sm' data-toggle='button' aria-pressed='false' style='margin-bottom: 5px; margin: 5px;'>Eliminar
             </b-button>
 
-            <a v-bind:href="''+this.$url+'/Concreto/'+ data.item.id+'/pdfConcreto'"  class='btn-sm btn btn-success mr-1' size='sm'  style='margin-bottom: 5px; margin: 5px;'>PDF </a>
+            <a v-bind:href="''+this.url+'/Concreto/'+ data.item.id+'/pdfConcreto'"  class='btn-sm btn btn-success mr-1' size='sm'  style='margin-bottom: 5px; margin: 5px;'>PDF </a>
 
           </b-button-group>
 
