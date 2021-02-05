@@ -90,7 +90,7 @@
     <header>
 
         <img style="margin-left: 5px;margin-top: 10px" align="center"
-        src="{{ url('/formato_concreto.png') }}"
+        src="http://172.20.3.249/Appvia40express/img/aaa.jpg"
 
         width="90%" height="30%">
         <?php
