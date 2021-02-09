@@ -93,8 +93,8 @@ var url='/Appvia40express';
 //
 //      TEST
 //
-Vue.prototype.$url = ''
-var url='';
+//Vue.prototype.$url = ''
+//var url='';
 
 const router = new VueRouter({
     mode:'history',
@@ -129,12 +129,12 @@ const router = new VueRouter({
         { path: url+'/Fresado/:id/edit', component: FresadoForm, name: 'fresadoform' },
         { path: url+'/Fresado/create', component: FresadoForm, name: 'fresadoformadd' },
         //mezclas
-        { path: '/Mezclas', component: Mezclas, name: 'mezclas' },
-        { path: '/Mezclas/:id/edit', component: MezclasForm, name: 'mezclasform' },
-        { path: '/Mezclas/create', component: MezclasForm, name: 'mezclasformadd' },
+        { path: url+'/Mezclas', component: Mezclas, name: 'mezclas' },
+        { path: url+'/Mezclas/:id/edit', component: MezclasForm, name: 'mezclasform' },
+        { path: url+'/Mezclas/create', component: MezclasForm, name: 'mezclasformadd' },
         //{ path: '/MezclasDetalle', component: MezclasDetalle, name: 'mezclasdetalle' },
-        { path: '/MezclasDetalle/:id/edit', component: MezclasDetalleForm, name: 'mezclasdetalleform' },
-        { path: '/MezclasDetalle/create', component: MezclasDetalleForm, name: 'mezclasdetalleformadd' },
+        { path: url+'/MezclasDetalle/:id/edit', component: MezclasDetalleForm, name: 'mezclasdetalleform' },
+        { path: url+'/MezclasDetalle/create', component: MezclasDetalleForm, name: 'mezclasdetalleformadd' },
 
 
 
