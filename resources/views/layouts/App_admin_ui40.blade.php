@@ -1057,7 +1057,7 @@
         @endauth
       </script>
     <script type="text/javascript" src="{{ asset('Architectui/assets/scripts/main.js') }}"></script>
-    <script type="text/javascript" src="{{asset('js/app.js')}}">
+    <script type="text/javascript" src="{{asset('js/app2.js')}}">
     </script>
 <style>
     .tx-danger{

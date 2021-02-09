@@ -83,7 +83,6 @@
 
                                     </div>
 
-
                                     <div class="form-group col-md-3 col-sm-12">
                                         <label for="exampleInputEmail1">Latitud<span class="tx-danger">*</span> </label>
 
@@ -100,22 +99,22 @@
 
                                     <div class="form-group col-md-3 col-sm-12">
                                         <label for="exampleInputEmail1">Longitud<span class="tx-danger">*</span> </label>
-                                        <input type="text" v-model="input_longitud" placeholder="Longitud" class="form-control" :class="{ 'is-invalid':this.validacion.version, 'is-valid':!this.validacion.version && is_enviar  }">
+                                        <input type="text" v-model="input_longitud" placeholder="Longitud" class="form-control" :class="{ 'is-invalid':this.validacion.longitud, 'is-valid':!this.validacion.longitud && is_enviar  }">
                                         <div class="invalid-feedback" style="display:block" v-for="data in validacion.resistencia_concreto" v-bind:key="data.resistencia_concreto">
                                             <b>{{data}}</b>
                                         </div>
                                     </div>
                                     <div class="form-group col-md-2 col-sm-12">
                                         <label for="exampleInputEmail1">Eje<span class="tx-danger">*</span> </label>
-                                        <input type="text" v-model="input_eje" placeholder="Longitud" class="form-control" :class="{ 'is-invalid':this.validacion.version, 'is-valid':!this.validacion.version && is_enviar  }">
-                                        <div class="invalid-feedback" style="display:block" v-for="data in validacion.resistencia_concreto" v-bind:key="data.resistencia_concreto">
+                                        <input type="text" v-model="input_eje" placeholder="Eje" class="form-control" :class="{ 'is-invalid':this.validacion.eje, 'is-valid':!this.validacion.eje && is_enviar  }">
+                                        <div class="invalid-feedback" style="display:block" v-for="data in validacion.eje" v-bind:key="data.eje">
                                             <b>{{data}}</b>
                                         </div>
                                     </div>
                                     <div class="form-group col-md-12 col-sm-12 text-center">
-                                          <button type="submit" @click="formulario(0)" class="btn btn-primary">Guardar </button>
+                                        <button type="submit" @click="formulario(0)" class="btn btn-primary">Guardar </button>
 
-            </div>
+                                    </div>
 
                                     <!--
 
@@ -168,7 +167,7 @@ export default {
 
         return {
             is_enviar: false,
-            boton_disable:false,
+            boton_disable: false,
             validacion: [],
             editar_dato: false,
             data: [],
@@ -241,6 +240,7 @@ export default {
                 estado_tramite_id: this.input_estado_tramite_id,
                 latitud: this.input_latitud,
                 longitud: this.input_longitud,
+                eje: this.input_eje,
 
             };
 
@@ -335,11 +335,11 @@ export default {
                     this.input_estado_tramite_id = data.estado_tramite_id;
                     this.input_latitud = data.latitud;
                     this.input_longitud = data.longitud;
+                    this.input_eje = data.eje;
 
-                    if(input_estado_tramite_id==2){
+                    if (input_estado_tramite_id == 2) {
                         //this.boton_disable=true;
                     }
-
 
                 }
             });
@@ -360,8 +360,8 @@ export default {
             this.validacion = "";
 
         },
-        actualiza_gps(){
-            if(confirm("Desea Actualizar las coodenadas")){
+        actualiza_gps() {
+            if (confirm("Desea Actualizar las coodenadas")) {
                 this.buscar_coodenadas()
             }
         },

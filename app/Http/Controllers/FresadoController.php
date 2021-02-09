@@ -31,6 +31,9 @@ class FresadoController extends Controller
         'espesor_uno' => 'required|min:2|max:255',
         'espesor_dos' => 'required|min:2|max:255',
         'estado_tramite_id' => 'required|min:1|max:255',
+        'eje' => 'required|min:1|max:45',
+        'latitud' => 'required|min:1|max:45',
+        'longitud' => 'required|min:1|max:45',
 
     ];
 
@@ -107,6 +110,9 @@ class FresadoController extends Controller
             $Fresado->espesor_uno = $request->espesor_uno;
             $Fresado->espesor_dos = $request->espesor_dos;
             $Fresado->estado_tramite_id = $request->estado_tramite_id;
+            $Fresado->latitud = $request->latitud;
+            $Fresado->longitud_x = $request->longitud_x;
+            $Fresado->eje = $request->eje;
 
             $Fresado->save();
             return response()->json($Fresado);
@@ -141,6 +147,10 @@ class FresadoController extends Controller
             $Fresado->espesor_uno = $request->espesor_uno;
             $Fresado->espesor_dos = $request->espesor_dos;
             $Fresado->estado_tramite_id = $request->estado_tramite_id;
+            $Fresado->latitud = $request->latitud;
+            $Fresado->longitud_x = $request->longitud_x;
+            $Fresado->eje = $request->eje;
+
 
 
             $Fresado->save();

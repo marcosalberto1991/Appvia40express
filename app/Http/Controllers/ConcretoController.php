@@ -32,6 +32,8 @@ class ConcretoController extends Controller
         'plano_codigo' => 'required|min:2|max:255',
         'version' => 'required|min:2|max:255',
         'resistencia_concreto' => 'required|min:2|max:255',
+        'eje' => 'required|min:1|max:45',
+
         //'estado_tramite_id' => 'min:1|max:255',
 
     ];
@@ -42,9 +44,18 @@ class ConcretoController extends Controller
         if ($consulta_data == "") {
             if(Auth::user()->hasRole('Operado')){
                 $data = ConcretoModel::where('estado_tramite_id',1)->where('users_id',Auth::user()->id)->with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
-            }else{
-                $data = ConcretoModel:: where('users_id',Auth::user()->id)->with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
             }
+            if(Auth::user()->hasRole('Tecnico')){
+                $data = ConcretoModel::with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
+            }
+            if(Auth::user()->hasRole('Gerente')){
+                $data = ConcretoModel::with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
+            }
+            if(Auth::user()->hasRole('Administrador')){
+                $data = ConcretoModel::with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
+            }
+
+
 
 
 
@@ -71,9 +82,9 @@ class ConcretoController extends Controller
                 ->orwhere("plano_codigo", "like", "%" . $consulta_data . "%")
                 ->orwhere("version", "like", "%" . $consulta_data . "%")
                 ->orwhere("resistencia_concreto", "like", "%" . $consulta_data . "%")
-                ->orwhere("estado_tramite_id", "like", "%" . $consulta_data . "%");
-
-                $data->where('estado_tramite_id',1)->paginate(20);
+                ->orwhere("estado_tramite_id", "like", "%" . $consulta_data . "%")
+                ->paginate(20);
+                //$data->where('estado_tramite_id',1)->paginate(20);
 
             }
         }
@@ -111,6 +122,7 @@ class ConcretoController extends Controller
             $Concreto->estado_tramite_id = 1;
             $Concreto->latitud = $request->latitud;
             $Concreto->longitud = $request->longitud;
+            $Concreto->eje = $request->eje;
 
             $Concreto->save();
             return response()->json($Concreto);
@@ -146,6 +158,8 @@ class ConcretoController extends Controller
             $Concreto->estado_tramite_id = $request->estado_tramite_id;
             $Concreto->latitud = $request->latitud;
             $Concreto->longitud = $request->longitud;
+            $Concreto->eje = $request->eje;
+
 
 
             $Concreto->save();

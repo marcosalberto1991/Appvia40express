@@ -31,6 +31,8 @@ class AceroController extends Controller
         'version' => 'required|min:2|max:255',
         'estado_tramite_id' => 'min:1|max:255',
         'unidad_funcional_id' => 'required|min:1|max:255',
+        'eje' => 'required|min:1|max:45',
+
 
     ];
 
@@ -44,9 +46,10 @@ class AceroController extends Controller
             if(Auth::user()->hasRole('Operado')){
                 $data = AceroModel::where('estado_tramite_id',1)->where('users_id',Auth::user()->id)->with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
             }else{
-                $data = AceroModel:: where('users_id',Auth::user()->id)->with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
+                $data = AceroModel::with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
             }
         } else {
+
             $data = AceroModel::with('users_id','estado_tramite_id')
                 ->orwhere("users_id", "like", "%" . $consulta_data . "%")
                 ->orwhere("estrutura", "like", "%" . $consulta_data . "%")
@@ -55,9 +58,16 @@ class AceroController extends Controller
                 ->orwhere("elemento", "like", "%" . $consulta_data . "%")
                 ->orwhere("version", "like", "%" . $consulta_data . "%")
                 ->orwhere("estado_tramite_id", "like", "%" . $consulta_data . "%")
-                ->orwhere("unidad_funcional_id", "like", "%" . $consulta_data . "%")
+                ->orwhere("unidad_funcional_id", "like", "%" . $consulta_data . "%")->paginate(20);
+                if(Auth::user()->hasRole('Operado')){
+                    $data->where('estado_tramite_id',1)->where('users_id',Auth::user()->id)->paginate(20);
+                }else{
+                    $data->paginate(20);
 
-                ->paginate(20);
+                }
+
+
+
         }
 
         return response()->json($data);
@@ -91,6 +101,9 @@ class AceroController extends Controller
             $Acero->version = $request->version;
             $Acero->estado_tramite_id = $request->estado_tramite_id;
             $Acero->unidad_funcional_id = $request->unidad_funcional_id;
+            $Acero->latitud = $request->latitud;
+            $Acero->longitud = $request->longitud;
+            $Acero->eje = $request->eje;
 
             $Acero->save();
             return response()->json($Acero);
@@ -123,6 +136,9 @@ class AceroController extends Controller
             $Acero->version = $request->version;
             $Acero->estado_tramite_id = $request->estado_tramite_id;
             $Acero->unidad_funcional_id = $request->unidad_funcional_id;
+            $Acero->latitud = $request->latitud;
+            $Acero->longitud = $request->longitud;
+            $Acero->eje = $request->eje;
 
 
             $Acero->save();
