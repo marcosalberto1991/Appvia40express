@@ -1,22 +1,18 @@
 <template>
   <div class="">
-    <div class="row">
-      <div class="col-lg-12">
+    <div class="row" v-if="show_reporte_final==false">
+      <div class="col-lg-12" id="my_link">
         <div class="main-card mb-12 card">
           <div class="card-header">
             ACERO DE REFUERZO
             <div class="btn-actions-pane-right">
               <div role="group" class="btn-group-sm btn-group">
-                <!--
-                <button class="active btn btn-focus">Last Week</button>
-                <button class="btn btn-focus">All Month</button>
-                -->
+
               </div>
             </div>
           </div>
           <div class="table-responsive">
-            <table
-              class="align-middle mb-0 table table-borderless table-striped table-hover"
+            <table class="align-middle mb-0 table table-borderless table-striped table-hover"
             >
               <thead>
                 <tr>
@@ -26,228 +22,191 @@
                   <th>Fecha</th>
                   <th>Observaciones</th>
                   <th>Registro Fotografico</th>
+                  <th>Registro Fotografico</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="data in consulta_datos" v-bind:key="data.id">
-                  <td class="text-left minimo" v-html="data.actividad.substr(0, 50)"></td>
-                  <td>
-                    <div v-if="data.si_aplica == '0'"><div class="badge badge-warning">No</div></div>
-                    <div v-if="data.si_aplica == '1'"><div class="badge badge-success">Si</div></div>
-                    <div v-if="data.si_aplica == '3'"><div class="badge badge-gray">Indefinido</div></div>
-                  </td>
-                  <td>
-                    <div v-if="data.si_cumple == '0'"><div class="badge badge-warning">No</div></div>
-                    <div v-if="data.si_cumple == '1'"><div class="badge badge-success">Si </div></div>
-                    <div v-if="data.si_cumple == '3'"><div class="badge badge-gray">Indefinido</div></div>
-                  </td>
+               <tr v-for="(data,index) in consulta_datos" v-bind:key="data.id">
+                                <td class="text-left minimo" v-html="data.actividad.substr(0, 50)"></td>
+                                <td style="min-width: 150px;" v-on:change="formulario_guarda(consulta_datos[index])">
+                                    <div v-if="data.si_aplica == '0'">
+                                        <div class="badge badge-warning">No</div>
+                                    </div>
+                                    <div v-if="data.si_aplica == '1'">
+                                        <div class="badge badge-success">Si</div>
+                                    </div>
+                                    <div v-if="data.si_aplica == '3'">
+                                        <div class="badge badge-info">Indefinido</div>
+                                    </div>
 
-                  <td class="text-center">
-                    {{ data.fecha }}
-                  </td>
-                  <td>
-                    {{ data.observaciones }}
-                  </td>
-                  <td class="minimo">
-                    <img height="60px" :src="'/Appvia40express/Appvia40express/Concreto/'+data.registro_fotografico" alt="">
+                                    <b-form-group :value="consulta_datos[index].si_aplica" label="" label-for="input-1" description="Si Aplica">
+                                        <b-form-radio-group :id="'radio-group'+consulta_datos[index]" v-model="consulta_datos[index].si_aplica" name="radio-sub-component_si">
+                                            <b-form-radio value="1">Si</b-form-radio>
+                                            <b-form-radio value="0">No</b-form-radio>
+                                        </b-form-radio-group>
+                                    </b-form-group>
 
-                  </td>
-                  <td class="text-center">
+                                </td>
+                                <td style="min-width: 150px;" v-on:change="formulario_guarda(consulta_datos[index])">
+                                    <div v-if="data.si_cumple == '0'">
+                                        <div class="badge badge-warning">No</div>
+                                    </div>
+                                    <div v-if="data.si_cumple == '1'">
+                                        <div class="badge badge-success">Si</div>
+                                    </div>
+                                    <div v-if="data.si_cumple == '3'">
+                                        <div class="badge badge-info">Indefinido</div>
+                                    </div>
 
-                    <button
-                      @click="show_registro(data)"
-                      type="button"
-                      id="PopoverCustomT-1"
-                      class="btn btn-success btn-sm"
-                    >
-                      Editar
-                    </button>
-                  </td>
-                </tr>
+                                    <b-form-group :value="consulta_datos[index].si_cumple" label="" label-for="input-1" description="Si Aplica">
+                                        <b-form-radio-group :id="'radio-group'+consulta_datos[index]  " v-model="consulta_datos[index].si_cumple" name="radio-sub-component_si">
+                                            <b-form-radio value="1">Si</b-form-radio>
+                                            <b-form-radio value="0">No</b-form-radio>
+                                        </b-form-radio-group>
+                                    </b-form-group>
+
+                                </td>
+
+                                <td class="text-center" style="min-width: 350px;" v-on:change="formulario_guarda(consulta_datos[index])">
+                                    <b-form-datepicker placeholder="Choose a date" v-model="consulta_datos[index].fecha">
+                                    </b-form-datepicker>
+
+                                </td>
+                                <td v-on:change="formulario_guarda(consulta_datos[index])">
+                                    <b-form-textarea id="textarea" v-model="consulta_datos[index].observaciones" placeholder="Observaciones" rows="3" max-rows="6"></b-form-textarea>
+
+                                </td>
+                                <td class="minimo" v-on:change="subir_imagen(consulta_datos[index])">
+                                    <b-form-file type="file" ref="files" accept=".jpg, .png, .gif" v-model="consulta_datos[index].registro_fotografico" size="sm"></b-form-file>
+                                    <!--
+                                    <a class="btn btn-info" @click="subir_imagen(consulta_datos[index])" >subir </a>
+                                -->
+                                </td>
+                                <td>
+
+                                    <span v-for="imagen in data.aceroregistrofotografico_all" v-bind:key="imagen.id">
+                                        <div class="  card" style="width: 20rem; margin-bottom: 10px;">
+                                            <img :src="$url+'/Appvia40express/Concreto_file/'+imagen.nombre" alt="">
+                                            <a v-on:click="imagenes_eliminar(imagen.id)" href="#" class="btn  btn-danger btn-sm">Eliminar </a>
+
+                                        </div>
+                                    </span>
+
+                                </td>
+                            </tr>
               </tbody>
             </table>
           </div>
           <div class="d-block text-center card-footer">
-            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger">
-              <i class="pe-7s-trash btn-icon-wrapper"> </i>
-            </button>
-            <button class="btn-wide btn btn-success">Save</button>
+                <button @click="show_reporte_final_(true)" class="btn-wide btn btn-success">Ver reporte final</button>
           </div>
         </div>
         <br />
 
         <div class="main-card mb-3 card">
           <div class="card-body">
-            <h5 class="">Actividades</h5>
-
+            <h5 class="">Recomendaciones y mejoras</h5>
             <div class="col-12">
+        Si desea una mejorar o si presenta una falla favor enviar un mensaje al 316 464 7944
 
               <br /><br />
             </div>
-            <!--
-            <b-table
-              :items="consulta_datos.data"
-              :fields="fields"
-              responsive="sm"
-              :sticky-header="stickyHeader"
-              :no-border-collapse="noCollapse"
-            >
-              <template v-slot:cell(Acciones)="data">
-                <b-button-group>
 
-                  <router-link
-                    :to="{
-                      name: 'concretodetallesform',
-                      params: { id: data.item.id },
-                    }"
-                  >
-                    <a
-                      v-bind:href="'/ConcretoDetalles/' + data.item.id + '/edit'"
-                      class="btn-sm btn btn-success mr-1"
-                      size="sm"
-                      style="margin-bottom: 5px; margin: 5px"
-                    >
-                      Editar
-                    </a>
-                  </router-link>
-
-                  <b-button
-                    v-if="$can('ConcretoDetalles Eliminar')"
-                    v-b-modal.moda-eliminar
-                    @click="eliminar_registro(data.item.id)"
-                    type="button"
-                    class="btn-sm btn btn-danger mr-1"
-                    size="sm"
-                    data-toggle="button"
-                    aria-pressed="false"
-                    style="margin-bottom: 5px; margin: 5px"
-                    >Eliminar
-                  </b-button>
-
-                </b-button-group>
-              </template>
-              <template v-slot:head(Acciones)="scope">
-                <div class="text-nowrap">Acciones</div>
-              </template>
-            </b-table>
-            -->
           </div>
         </div>
       </div>
+    </div>
+     <div v-if="show_reporte_final==true" class="row">
+        <div class="col-lg-12" id="my_link">
+            <div class="main-card mb-12 card">
+                <div class="card-header">
+                    Reporte final
+                    <div class="btn-actions-pane-right">
+                        <div role="group" class="btn-group-sm btn-group">
+                            <!--
+                <button class="active btn btn-focus">Last Week</button>
+                <button class="btn btn-focus">All Month</button>
+                -->
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-left">Actividad</th>
+                                <th>Aplica</th>
+                                <th>Cumplimiento</th>
+                                <th>Fecha</th>
+                                <th>Observaciones</th>
+                                <th>Registro Fotografico</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(data,index) in consulta_datos" v-bind:key="data.id">
+                                <td class="text-left minimo" v-html="data.actividad.substr(0, 50)"></td>
+                                <td style="min-width: 150px;">
+                                    <div v-if="data.si_aplica == '0'">
+                                        <div class="badge badge-warning">No</div>
+                                    </div>
+                                    <div v-if="data.si_aplica == '1'">
+                                        <div class="badge badge-success">Si</div>
+                                    </div>
+                                    <div v-if="data.si_aplica == '3'">
+                                        <div class="badge badge-info">Indefinido</div>
+                                    </div>
+
+                                </td>
+                                <td style="min-width: 150px;">
+                                    <div v-if="data.si_cumple == '0'">
+                                        <div class="badge badge-warning">No</div>
+                                    </div>
+                                    <div v-if="data.si_cumple == '1'">
+                                        <div class="badge badge-success">Si</div>
+                                    </div>
+                                    <div v-if="data.si_cumple == '3'">
+                                        <div class="badge badge-info">Indefinido</div>
+                                    </div>
+
+                                </td>
+
+                                <td class="text-center">
+                                    {{ data.fecha}}
+                                </td>
+                                <td v-on:change="formulario_guarda(consulta_datos[index])">
+                                    {{ data.observaciones }}
+                                </td>
+
+                                <td style="overflow-x: auto">
+                                    <div style="float: right; overflow-x: auto;" v-for="imagen in data.aceroregistrofotografico_all" v-bind:key="imagen.id">
+                                        <img style="float: right;overflow-x: auto;" height="100px" :src="$url+'/Appvia40express/Concreto_file/'+imagen.nombre" alt="">
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-block text-center card-footer">
+
+                    <button @click="show_reporte_final_(false)" class="btn-wide btn btn-success">Volver</button>
+                    <button @click="enviar_reporte_final()" class="btn-wide btn btn-success">Enviar el Reporte final</button>
+
+                </div>
+            </div>
+            <br />
+
+        </div>
     </div>
 
     <b-modal id="moda-eliminar" ref="my-modal" size="xl" hide-footer>
       <template slot="modal-title">Eliminar un Registro </template>
       <div class="d-block text-center">
         <h3>¿Desea eliminar el registro permanente?</h3>
-        <b-button class="mt-3 btn btn-danger" @click="eliminar_registro_delete()"
-          >Eliminar</b-button
-        >
+        <b-button class="mt-3 btn btn-danger" @click="eliminar_registro_delete()">Eliminar</b-button>
       </div>
     </b-modal>
 
-    <b-modal ref="my-modal_show" size="xl" title="Concreto" hide-footer>
-      <b-form @submit="formulario()">
-        <div class="row">
-          <div class="col-md-3 col-sm-12">
-            <b-form-group
-              id="input-group-1"
-              label="Si Aplicar"
-              label-for="input-1"
-              description="Si Aplica"
-            >
-              <b-form-radio-group
-                id="radio-group"
-                v-model="input_si_aplica"
-                :aria-describedby="ariaDescribedby"
-                name="radio-sub-component_si"
-              >
-                <b-form-radio value="1">Si</b-form-radio>
-                <b-form-radio value="0">No</b-form-radio>
-              </b-form-radio-group>
-            </b-form-group>
-          </div>
-          <div class="col-md-3 col-sm-12">
-            <b-form-group id="input-group-2" label="Cumplimiento " label-for="input-2">
-              <b-form-radio-group
-                id="radio-group-4"
-                v-model="input_si_cumple"
-                :aria-describedby="ariaDescribedby"
-                name="radio-sub-component"
-              >
-                <b-form-radio value="1">Si</b-form-radio>
-                <b-form-radio value="0">No</b-form-radio>
-              </b-form-radio-group>
-            </b-form-group>
-          </div>
-          <div class="col-md-3 col-sm-12">
-            <b-form-group id="input-group-1" label="Fecha" label-for="input-1">
-              <b-form-datepicker
-                id="datepicker-placeholder"
-                placeholder="Choose a date"
-                v-model="input_fecha"
-              ></b-form-datepicker
-            ></b-form-group>
-          </div>
-
-          <div class="col-md-3 col-sm-12">
-            <b-form-group
-              id="input-group-1"
-              label="Registro Fotografico"
-              label-for="input-1"
-              description="Si Aplica"
-            >
-              <b-form-file
-                v-model="input_registro_fotografico"
-                id="file-small"
-                size="sm"
-              ></b-form-file
-            ></b-form-group>
-          </div>
-         <div class="col-md-4 col-sm-12">
-            <b-form-group
-              id="input-group-1"
-              label="Observaciones"
-              label-for="input-1"
-              description="En caso de ver una noveda o recomendaciones"
-            >
-              <b-form-textarea
-                id="textarea"
-                v-model="input_observaciones"
-                placeholder="Observaciones"
-                rows="3"
-                max-rows="6"
-              ></b-form-textarea
-            ></b-form-group>
-          </div>
-          <div class="col-md-6 col-sm-12">
-          <img width="100%" :src="'/Appvia40express/Appvia40express/Concreto/'+this.input_registro_fotografico" alt="">
-
-          </div>
-        </div>
-         <b-button
-            variant="success"
-            size="lg"
-            class="float-right"
-            @click="formulario()"
-          >
-            Guardar
-          </b-button>
-      </b-form>
-    <!--
-    <template #modal-footer="{  }">
-
-          <b-button
-            variant="success"
-            size="lg"
-            class="float-right"
-            @click="formulario()"
-          >
-            Guardar
-          </b-button>
-      </template>
-      -->
-    </b-modal>
   </div>
 </template>
 
@@ -264,6 +223,7 @@ export default {
     return {
       validacion: [],
       editar_dato: false,
+      show_reporte_final: false,
       data: [],
       datas: [],
       input_consulta_data: "",
@@ -275,6 +235,7 @@ export default {
       input_si_cumple: "",
       input_fecha: "",
       input_AceroDetalles_id: 0,
+      data_id_subir: 0,
 
       fields: [
         {
@@ -300,6 +261,11 @@ export default {
       errors: {},
       mensaje_formulario: "",
       page: 1,
+       files: [],
+            imagen: [],
+            items: {
+                si_cumple: []
+            }
     };
   },
   mounted() {
@@ -327,9 +293,118 @@ export default {
         });
     },
 
+
+
     eliminar_registro(data_id) {
       this.input_AceroDetalles_id = data_id;
     },
+    enviar_reporte_final() {
+            const data = {
+                id: this.input_Acero_id
+            }
+
+            axios.post(`${this.$url}/Api/Acero/reporte_final`, data)
+                .then(
+                    (response) => {
+                        const datos = response.data;
+                        if (response.data.errors) {
+                            this.$toastr.warning("Verifique los datos", "Verifique los datos");
+                            this.validacion = response.data.errors;
+                        }
+                        if (response.data.id) {
+                            this.validacion = "";
+                            this.$toastr.success("Operacio exitosa", "Datos modificados");
+                            //this.consulta();
+                            window.history.back();
+                        }
+                    },
+                    (err) => {
+                        console.log("Err", err);
+                        this.$toastr.warning(err, "Error en el servidor");
+                        this.$toastr.warning(err.message, "Error en el servidor");
+                    }
+                );
+
+        },
+
+        formulario_guarda(data) {
+            const formData = new FormData();
+            formData.append('id', data.id);
+            formData.append('si_aplica', data.si_aplica);
+            formData.append('si_cumple', data.si_cumple);
+            formData.append('fecha', data.fecha);
+            formData.append('observaciones', data.observaciones);
+            formData.append('registro_fotografico', data.registro_fotografico);
+
+            axios.post(`${this.$url}/Api/AceroDetalles_update/${data.id}`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then(
+                    (response) => {
+                        const datos = response.data;
+                        if (response.data.errors) {
+                            this.$toastr.warning("Verifique los datos", "Verifique los datos");
+                            this.validacion = response.data.errors;
+                        }
+                        if (response.data) {
+                            this.validacion = "";
+                            this.consulta_datos = response.data
+                            this.$toastr.success("Operacio exitosa", "Datos modificados");
+                            this.consulta();
+                            t
+
+                        }
+                    },
+                    (err) => {
+                        console.log("Err", err);
+                        this.$toastr.warning(err, "Error en el servidor");
+                        this.$toastr.warning(err.message, "Error en el servidor");
+                    }
+                );
+
+        },
+
+        subir_imagen(data) {
+
+            this.files = this.$refs.files.files;
+            console.info(this.files);
+
+            console.info(data)
+            let formData = new FormData();
+            formData.append('acero_detalle_id', data.id);
+            formData.append('nombre', data.registro_fotografico);
+
+            axios.post(`${this.$url}/Api/AceroRegistroFotografico`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then(
+                    (response) => {
+                        const datos = response.data;
+                        if (response.data.errors) {
+                            this.$toastr.warning("Verifique los datos", "Verifique los datos");
+                            this.validacion = response.data.errors;
+                        }
+                        if (response.data.id) {
+                            this.validacion = "";
+                            this.$toastr.success("Operacio exitosa", "Datos modificados");
+                            this.consulta();
+                            //  window.history.back();
+
+                        }
+                    },
+                    (err) => {
+                        console.log("Err", err);
+                        this.$toastr.warning(err, "Error en el servidor");
+                        this.$toastr.warning(err.message, "Error en el servidor");
+                    }
+                );
+
+        },
+
     formulario() {
 
       const formData = new FormData();
@@ -355,7 +430,6 @@ export default {
               this.validacion = "";
               this.$toastr.success("Operacio exitosa", "Datos modificados");
               this.consulta();
-            //  window.history.back();
 
             }
           },
@@ -382,7 +456,7 @@ export default {
     eliminar_registro_delete() {
       var data_id = this.input_AceroDetalles_id;
       axios
-        .delete(`${this.$url}/Api/ConcretoDetalles/${this.input_AceroDetalles_id}`)
+        .delete(`${this.$url}/Api/AceroDetalles/${this.input_AceroDetalles_id}`)
         .then((response) => {
           const data = response.data;
           if (response.data.id) {
@@ -399,6 +473,27 @@ export default {
 
 //      return Permissions.indexOf(permissionName) !== -1;
     },
+    show_reporte_final_(bool) {
+            this.show_reporte_final = bool
+            window.scrollTo(0, 500);
+        },
+         imagenes_eliminar(id) {
+            if (confirm("¿desea eliminar la imagen?")) {
+
+                axios
+                    .delete(`${this.$url}/Api/ConcretoRegistroFotografico/${id}`)
+                    .then((response) => {
+                        const data = response.data;
+                        if (response.data.id) {
+                            //this.validacion = "";
+                            this.$toastr.info("Operacio exitosa", "Datos Eliminados");
+                            this.consulta();
+                            //this.$refs["my-modal"].hide();
+                        }
+                    });
+            }
+
+        }
   },
 };
 </script>

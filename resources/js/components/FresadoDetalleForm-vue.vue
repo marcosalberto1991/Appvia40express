@@ -235,9 +235,6 @@ export default {
         updated_at :this.input_updated_at,
         fresado_id :this.input_fresado_id,
         estado_tramite_id :this.input_estado_tramite_id,
-
-        //name: this.input_name,
-        //email: this.input_email
       };
 
       if(this.editar_dato == true){

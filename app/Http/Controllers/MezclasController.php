@@ -22,14 +22,14 @@ class MezclasController extends Controller
     protected $rules =
     [
 
-        'sentido_via' => 'required|min:2|max:255',
-        'unidad_funcional_id' => 'required|min:2|max:255',
+        'sentido_via' => 'required|min:1|max:255',
+        'unidad_funcional_id' => 'required|min:1|max:255',
         'fecha' => 'required|min:2|max:255',
         'tipo_mezcla' => 'required|min:2|max:255',
         'ensayos_de_laboratorio' => 'required|min:2|max:255',
-        'is_horas_riego_imrpimacion' => 'required|min:2|max:255',
-        'is_horas_liga' => 'required|min:2|max:255',
-        'estado-_riego' => 'required|min:2|max:255',
+        'is_horas_riego_imrpimacion' => 'required|min:1|max:255',
+        'is_horas_liga' => 'required|min:1|max:255',
+        'estado_riego' => 'required|min:1|max:255',
         //'users_id' => 'required|min:2|max:255',
 
     ];
@@ -41,10 +41,9 @@ class MezclasController extends Controller
     {
         $consulta_data = $request->get("consulta_data");
         if ($consulta_data == "") {
-            $data = MezclasModel::paginate(20);
+            $data = MezclasModel::with('users_id')->paginate(20);
         } else {
-            $data = MezclasModel::where("id", 1)
-
+            $data = MezclasModel::with('users_id')
                 ->orwhere("sentido_via", "like", "%" . $consulta_data . "%")
                 ->orwhere("unidad_funcional_id", "like", "%" . $consulta_data . "%")
                 ->orwhere("fecha", "like", "%" . $consulta_data . "%")

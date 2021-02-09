@@ -40,6 +40,10 @@ Route::group(['prefix' => '*'], function () {
 });
 //Route::group(['middleware' => 'api'], function() {
 
+
+    //
+    //      concreto
+    //
 Route::get('Api/Concreto/consulta', 'ConcretoController@consulta');
 Route::resource('Api/Concreto','ConcretoController');
 Route::get('Api/ConcretoDetalles/consulta', 'ConcretoDetallesController@consulta');
@@ -48,6 +52,10 @@ Route::resource('Api/ConcretoDetalles','ConcretoDetallesController');
 Route::get('Api/ConcretoDetalles/{concreto_id}/consulta_data', 'ConcretoDetallesController@consulta_data');
 Route::post('Api/ConcretoDetalles_update/{id}', 'ConcretoDetallesController@update');
 Route::get('Appvia40express/Concreto/{concreto_id}/pdfConcreto', 'ConcretoController@pdfConcreto');
+Route::post('Api/Concreto/reporte_final', 'ConcretoController@reporte_final');
+Route::resource('Api/ConcretoRegistroFotografico','ConcretoRegistroFotograficoController');
+
+
 
 Route::get('Appvia40express/Concreto_file/{file}', function ($file) {
     return Storage::disk('Concreto')->response("$file");
@@ -61,7 +69,9 @@ Route::get('Appvia40express/Concreto_file/{file}', function ($file) {
     */
 
 });
-
+//
+//      Acero
+//
 Route::get('Api/Acero/consulta', 'AceroController@consulta');
 Route::resource('Api/Acero','AceroController');
 Route::get("Acero/create", function(){return View::make("home");});
@@ -69,7 +79,8 @@ Route::get("Acero", function(){return View::make("home");});
 Route::get("Acero/{id}/edit", function(){return View::make("home");});
 Route::get('Api/AceroDetalle/{id}/consulta_data', 'AceroDetalleController@consulta_data');
 Route::post('Api/AceroDetalles_update/{id}', 'AceroDetalleController@update');
-
+Route::resource('Api/AceroRegistroFotografico','AceroRegistroFotograficoController');
+Route::post('Api/Acero/reporte_final', 'AceroController@reporte_final');
 
 //Fresado
 Route::get('Api/Fresado/consulta', 'FresadoController@consulta');
@@ -81,6 +92,10 @@ Route::get('Api/FresadoDetalle/consulta', 'FresadoDetalleController@consulta');
 Route::resource('Api/FresadoDetalle','FresadoDetalleController');
 Route::get('Api/FresadoDetalle/{id}/consulta_data', 'FresadoDetalleController@consulta_data');
 Route::post('Api/FresadoDetalles_update/{id}', 'FresadoDetalleController@update');
+Route::resource('Api/FresadoRegistroFotografico','FresadoRegistroFotograficoController');
+Route::post('Api/Fresado/reporte_final', 'FresadoController@reporte_final');
+
+
 
 //mezclas
 //Route::get('Api/Mezclas/consulta', 'MezclasController@consulta');
@@ -88,6 +103,8 @@ Route::resource('Api/Mezclas','MezclasController');
 Route::get("Mezclas/create", function(){return View::make("home");});
 Route::get("Mezclas", function(){return View::make("home");});
 Route::get("Mezclas/{id}/edit", function(){return View::make("home");});
+Route::resource('Api/MezclasDetalle','MezclasDetalleController');
+Route::get('Api/MezclasDetalle/{id}/consulta_data', 'MezclasDetalleController@consulta_data');
 
 
 

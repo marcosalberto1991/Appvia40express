@@ -9,10 +9,11 @@
 		protected $table = 'mezclas';
     protected $fillable = [];
     //public $timestamps = false;
-    /*
-    public function tipo_factura_id_pk(){
-      return $this->belongsTo('App\Tipo_FacturaModel', 'tipo_factura_id');
+
+    public function users_id(){
+      return $this->belongsTo('App\User', 'users_id');
     }
+    /*
     public function cartera_lista_all(){
       return $this->HasMany('App\Cartera_ListaModel', 'cartera_sam_id');
     }

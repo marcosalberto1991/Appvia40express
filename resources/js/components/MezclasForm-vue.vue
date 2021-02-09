@@ -1,4 +1,5 @@
 <template>
+<div>
 <div class="row">
     <div class="col-lg-12 ">
         <div class="main-card mb-3 card formulario">
@@ -16,7 +17,7 @@
         <div class="row">
           <div class="col-md-12 row">
             <input type="hidden" v-model="input_Mezclas_id">
-            <div class="form-group col-md-3 col-sm-12">
+            <div class="form-group col-md-2 col-sm-12">
               <label for="exampleInputEmail1">Unidad Funcional<span class="tx-danger">*</span></label>
               <Select2 v-model="input_unidad_funcional_id" :options="data_foraneo_unidad_funcional_id" />
               <small id="emailHelp" class="form-text text-muted"></small>
@@ -24,7 +25,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-            <div class="form-group col-md-3 col-sm-12">
+            <div class="form-group col-md-2 col-sm-12">
               <label for="exampleInputEmail1">Sentido<span class="tx-danger">*</span></label>
               <Select2 v-model="input_sentido_via" :options="data_foraneo_sentido_via_id" />
               <small id="emailHelp" class="form-text text-muted"></small>
@@ -42,7 +43,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-            <div class="form-group col-md-4 col-sm-12">
+            <div class="form-group col-md-2 col-sm-12">
                 <label for="exampleInputEmail1">Tipo de Mezcla<span class="tx-danger">*</span> </label>
                 <input type="text" v-model="input_tipo_mezcla" placeholder="tipo_mezcla" class="form-control"  :class="{ 'is-invalid':this.validacion.tipo_mezcla, 'is-valid':!this.validacion.tipo_mezcla && is_enviar  }" >
                 <div class="invalid-feedback" style ="display:block" v-for="data in validacion.tipo_mezcla" v-bind:key="data.tipo_mezcla" >
@@ -51,7 +52,7 @@
             </div>
 
 
-            <div class="form-group col-md-4 col-sm-12">
+            <div class="form-group col-md-3 col-sm-12">
                 <label for="exampleInputEmail1">Ensayos de laboratorio<span class="tx-danger">*</span> </label>
                 <input type="text" v-model="input_ensayos_de_laboratorio" placeholder="ensayos_de_laboratorio" class="form-control"  :class="{ 'is-invalid':this.validacion.ensayos_de_laboratorio, 'is-valid':!this.validacion.ensayos_de_laboratorio && is_enviar  }" >
                 <div class="invalid-feedback" style ="display:block" v-for="data in validacion.ensayos_de_laboratorio" v-bind:key="data.ensayos_de_laboratorio" >
@@ -60,9 +61,9 @@
             </div>
 
 
-            <div class="form-group col-md-4 col-sm-12">
+            <div class="form-group col-md-3 col-sm-12">
                 <label for="exampleInputEmail1">24 horas de riego imrpimacion<span class="tx-danger">*</span> </label>
-                 <b-form-group label="Individual radios">
+                 <b-form-group>
                     <b-form-radio v-model="input_is_horas_riego_imrpimacion"  name="some-radios" value="1">SI</b-form-radio>
                     <b-form-radio v-model="input_is_horas_riego_imrpimacion"  name="some-radios" value="0">NO</b-form-radio>
                 </b-form-group>
@@ -72,7 +73,7 @@
             </div>
 
 
-            <div class="form-group col-md-4 col-sm-12">
+            <div class="form-group col-md-3 col-sm-12">
                 <label for="exampleInputEmail1">2 horas de liga<span class="tx-danger">*</span> </label>
                 <b-form-group label="">
                     <b-form-radio v-model="input_is_horas_liga"  name="input_is_horas_liga" value="1">SI</b-form-radio>
@@ -86,16 +87,7 @@
                 </div>
             </div>
 
-
-            <div class="form-group col-md-4 col-sm-12">
-                <label for="exampleInputEmail1">Estado riego<span class="tx-danger">*</span> </label>
-                <input type="text" v-model="input_estado_riego" placeholder="estado_riego" class="form-control"  :class="{ 'is-invalid':this.validacion.estado_riego, 'is-valid':!this.validacion.estado_riego && is_enviar  }" >
-                <div class="invalid-feedback" style ="display:block" v-for="data in validacion.estado_riego" v-bind:key="data.estado_riego" >
-                    <b>{{data}}</b>
-                </div>
-            </div>
-            >
-            <div class="form-group col-md-3 col-sm-12">
+            <div class="form-group col-md-2 col-sm-12">
               <label for="exampleInputEmail1">Estado riego<span class="tx-danger">*</span></label>
               <Select2 v-model="input_estado_riego" :options="data_foraneo_input_estado_riego_id" />
               <small id="emailHelp" class="form-text text-muted"></small>
@@ -112,6 +104,11 @@
 </div>
 </div>
 
+<div v-if="input_Mezclas_id>=1">
+        <mezclasdetalle-vue :input_Mezclas_id="input_Mezclas_id"></mezclasdetalle-vue>
+
+</div>
+</div>
 
 
 
@@ -142,7 +139,7 @@ export default {
 
 
 
-      input_Mezclas_id:[],
+      input_Mezclas_id:0,
       data_foraneo_unidad_funcional_id:[],
       data_foraneo_sentido_via_id:[
           {id:1, text:'GI - BO'},
@@ -194,7 +191,7 @@ export default {
 
 
     data_foraneo(){
-        axios.get(`/Api/Acero/create`).then(response => {
+        axios.get(`${this.$url}/Api/Acero/create`).then(response => {
         this.data_foraneo_unidad_funcional_id= response.data.unidad_funcional_id
 
         });
@@ -217,7 +214,8 @@ export default {
       };
 
       if(this.editar_dato == true){
-        axios.put(/Api/`/Mezclas/${this.input_Mezclas_id}`, data)
+          //this.input_Mezclas_id
+        axios.put(`${this.$url}/Api/Mezclas/${this.input_Mezclas_id}`, data)
         .then(response => {
 
             const datos = response.data;
@@ -243,18 +241,21 @@ export default {
 
       }else{
 
-        axios.post(`/Api/Mezclas`, data).then(response => {
+        axios.post(`${this.$url}/Api/Mezclas`, data).then(response => {
             const datos = response.data;
             if(response.data.errors){
               this.$toastr.warning("Verifique los datos", "Verifique los datos");
               this.validacion=response.data.errors;
             }
             if(response.data.id){
-              this.validacion="";
-              this.$toastr.success("Operacio exitosa", "Datos modificados");
-              //this.consulta(this.page);
-              this.limpiar_form();
-              window.history.back();
+                this.validacion="";
+                this.$toastr.success("Operacio exitosa", "Datos modificados");
+                //this.consulta(this.page);
+                this.input_Mezclas_id=response.data.id
+                this.input_id=response.data.id
+                this.editar_dato = true
+              //this.limpiar_form();
+              //window.history.back();
 
 
             }
@@ -275,14 +276,13 @@ export default {
     },
     $can(permissionName) {
         return true;
-        return Permissions.indexOf(permissionName) !== -1;
+        //return Permissions.indexOf(permissionName) !== -1;
     },
     show_registro(data_id){//show_registro
-      this.validacion="";
-      this.mensaje_formulario="Editar un registro"
+        this.validacion="";
+        this.mensaje_formulario="Editar un registro"
 
-
-      axios.get(`/Api/Mezclas/${data_id}`).then(response => {
+        axios.get(`${this.$url}/Api/Mezclas/${data_id}`).then(response => {
             const data = response.data;
             if(!response.data){
               this.$toastr.warning("Operacio no exitosa", "Regitro no obtenido");

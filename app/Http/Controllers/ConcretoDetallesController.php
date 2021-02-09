@@ -7,6 +7,7 @@ use Response;
 use App\ConcretoDetallesModel;
 //use Illuminate\Support\Facades\Request;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 use View;
 use App\User;
@@ -147,7 +148,7 @@ class ConcretoDetallesController extends Controller {
             $ConcretoDetalles->titulo=$value['titulo'];
             $ConcretoDetalles->si_aplica='3';
             $ConcretoDetalles->si_cumple='3';
-            $ConcretoDetalles->fecha='2020-01-05';
+            $ConcretoDetalles->fecha=Carbon::now()->toDateTimeString();
             $ConcretoDetalles->observaciones=' ';
             $ConcretoDetalles->registro_fotografico='sinfoto';
             $ConcretoDetalles->concreto_id=$concreto_id;
@@ -156,7 +157,7 @@ class ConcretoDetallesController extends Controller {
         }
 
       }
-      $data=ConcretoDetallesModel::where('concreto_id',$concreto_id)->get();
+      $data=ConcretoDetallesModel::where('concreto_id',$concreto_id)->with('concreto_registro_fotografico_all')->get();
 
       return response()->json($data);
 
@@ -196,6 +197,9 @@ class ConcretoDetallesController extends Controller {
 
 
 			$ConcretoDetalles->save();
+
+            //$data=ConcretoDetallesModel::where('concreto_id',$request->concreto_id)->with('concreto_registro_fotografico_all')->get();
+
 			return response()->json($ConcretoDetalles);
 		}
 	}

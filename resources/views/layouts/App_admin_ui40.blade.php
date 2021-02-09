@@ -1035,6 +1035,7 @@
                                     <li class="nav-item">
                                         <a href="javascript:void(0);" class="nav-link">
                                             <div class="badge badge-success mr-1 ml-0">
+
                                                 <small>NEW</small>
                                             </div>
                                             Footer Link 4
@@ -1050,7 +1051,7 @@
     </div>
     <script>
         @auth
-          //window.Permissions = {!! json_encode(Auth::user()->allPermissions, true) !!};
+          window.Permissions = {!! json_encode(Auth::user()->allPermissions, true) !!};
         @else
           window.Permissions = [];
         @endauth

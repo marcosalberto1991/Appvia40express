@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         //instalacion de paquetes
         OwenIt\Auditing\AuditingServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
         //'PDF' => Barryvdh\DomPDF\Facade::class,
 

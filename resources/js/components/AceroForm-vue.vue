@@ -72,26 +72,12 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-
-            <div class="form-group col-md-3 col-sm-12">
-              <label for="exampleInputEmail1">estado_tramite_id<span class="tx-danger">*</span></label>
-              <Select2 v-model="input_estado_tramite_id" :options="data_foraneo_estado_tramite_id" />
-              <small id="emailHelp" class="form-text text-muted"></small>
-
-
-                <div class="invalid-feedback" style ="display:block" v-for="data in validacion.estado_tramite_id" v-bind:key="data.estado_tramite_id" >
-                                            <b>{{data}}</b>
-                </div>
-                </div>
-
             <div class="form-group col-md-3 col-sm-12">
               <label for="exampleInputEmail1">unidad_funcional_id<span class="tx-danger">*</span></label>
               <Select2 v-model="input_unidad_funcional_id" :options="data_foraneo_unidad_funcional_id" />
               <small id="emailHelp" class="form-text text-muted"></small>
-
-
                 <div class="invalid-feedback" style ="display:block" v-for="data in validacion.unidad_funcional_id" v-bind:key="data.unidad_funcional_id" >
-                                            <b>{{data}}</b>
+                    <b>{{data}}</b>
                 </div>
                 </div>
 
@@ -150,7 +136,7 @@ export default {
       input_calzada:[],
       input_elemento:[],
       input_version:[],
-      input_estado_tramite_id:[],
+      input_estado_tramite_id:1,
       input_unidad_funcional_id:[],
 
       consulta_datos:[],
@@ -241,8 +227,9 @@ export default {
               this.validacion="";
               this.$toastr.success("Operacio exitosa", "Datos modificados");
               //this.consulta(this.page);
-              this.limpiar_form();
-              window.history.back();
+              //this.limpiar_form();
+              //window.history.back();
+              this.input_Acero_id=response.data.id
 
 
             }
@@ -300,7 +287,7 @@ export default {
       this.input_calzada = '';
       this.input_elemento = '';
       this.input_version = '';
-      this.input_estado_tramite_id = '';
+      this.input_estado_tramite_id = 1;
       this.input_unidad_funcional_id = '';
 
       this.validacion="";

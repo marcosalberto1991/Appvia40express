@@ -112,14 +112,14 @@ export default {
       fields: [
       { key: "Acciones",stickyColumn: true, label:"Acciones" ,sortable: false },
       //{ key: 'id', sortable:true},
-      { key: 'users_id',label:'Usuario', class:'one-lineas', sortable:true},
+      { key: 'users_id.name',label:'Usuario', class:'one-lineas', sortable:true},
+      { key: 'estado_tramite_id.nombre',label:'Estado de tramite', class:'one-lineas', sortable:true},
+      { key: 'unidad_funcional_id.nombre',label:'Unidad Funcional', class:'one-lineas', sortable:true},
       { key: 'estrutura',label:'Estrutura', class:'one-lineas', sortable:true},
       { key: 'plano',label:'Plano', class:'one-lineas', sortable:true},
       { key: 'calzada',label:'Calzada', class:'one-lineas', sortable:true},
       { key: 'elemento',label:'Elemento', class:'one-lineas', sortable:true},
       { key: 'version',label:'Versión', class:'one-lineas', sortable:true},
-      { key: 'estado_tramite_id',label:'Estado de tramite', class:'one-lineas', sortable:true},
-      { key: 'unidad_funcional_id',label:'Unidad Funcional', class:'one-lineas', sortable:true},
 
       ],
 
@@ -179,8 +179,6 @@ export default {
     },
 
     $can(permissionName) {
-        return true;
-
       return Permissions.indexOf(permissionName) !== -1;
     },
 

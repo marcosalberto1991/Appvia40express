@@ -13,8 +13,9 @@
     public function tipo_factura_id_pk(){
       return $this->belongsTo('App\Tipo_FacturaModel', 'tipo_factura_id');
     }
-    public function cartera_lista_all(){
-      return $this->HasMany('App\Cartera_ListaModel', 'cartera_sam_id');
-    }
     */
+    public function concreto_registro_fotografico_all(){
+      return $this->HasMany('App\ConcretoRegistroFotograficoModel', 'concreto_detalles_id');
+    }
+
 	}

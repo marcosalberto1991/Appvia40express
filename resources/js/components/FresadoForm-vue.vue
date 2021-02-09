@@ -105,16 +105,7 @@
                 </div>
             </div>
 
-            <div class="form-group col-md-3 col-sm-12">
-              <label for="exampleInputEmail1">estado_tramite_id<span class="tx-danger">*</span></label>
-              <Select2 v-model="input_estado_tramite_id" :options="data_foraneo_estado_tramite_id" />
-              <small id="emailHelp" class="form-text text-muted"></small>
 
-
-                <div class="invalid-feedback" style ="display:block" v-for="data in validacion.estado_tramite_id" v-bind:key="data.estado_tramite_id" >
-                                            <b>{{data}}</b>
-                </div>
-                </div>
 
             <div class="form-group col-md-12 col-sm-12 text-center">
               <button type="submit" class="btn btn-primary">Enviar</button>
@@ -342,7 +333,7 @@ export default {
       this.input_ancho_dos = '';
       this.input_espesor_uno = '';
       this.input_espesor_dos = '';
-      this.input_estado_tramite_id = '';
+      this.input_estado_tramite_id = 1;
 
       this.validacion="";
 

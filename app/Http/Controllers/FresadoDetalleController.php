@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use Validator;
 use Response;
+use Carbon\Carbon;
 
 use App\FresadoDetalleModel;
 use View;
@@ -184,14 +185,14 @@ class FresadoDetalleController extends Controller
                 $AceroDetalles->actividad = $value['titulo'];
                 $AceroDetalles->si_aplica = '3';
                 $AceroDetalles->si_cumple = '3';
-                $AceroDetalles->fecha = '2020-01-01';
+                $AceroDetalles->fecha = Carbon::now()->toDateTimeString();
                 $AceroDetalles->observaciones = ' ';
                 $AceroDetalles->registro_fotografico = 'sinfoto';
                 $AceroDetalles->fresado_id = $fresado_id;
                 $AceroDetalles->save();
             }
         }
-        $data = FresadoDetalleModel::where('fresado_id', $fresado_id)->get();
+        $data = FresadoDetalleModel::with('fresado_registro_fotografico_all')->where('fresado_id', $fresado_id)->get();
 
         return response()->json($data);
     }

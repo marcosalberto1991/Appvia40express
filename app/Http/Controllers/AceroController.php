@@ -29,7 +29,7 @@ class AceroController extends Controller
         'calzada' => 'required|min:2|max:255',
         'elemento' => 'required|min:2|max:255',
         'version' => 'required|min:2|max:255',
-        'estado_tramite_id' => 'required|min:1|max:255',
+        'estado_tramite_id' => 'min:1|max:255',
         'unidad_funcional_id' => 'required|min:1|max:255',
 
     ];
@@ -41,10 +41,13 @@ class AceroController extends Controller
     {
         $consulta_data = $request->get("consulta_data");
         if ($consulta_data == "") {
-            $data = AceroModel::paginate(20);
+            if(Auth::user()->hasRole('Operado')){
+                $data = AceroModel::where('estado_tramite_id',1)->where('users_id',Auth::user()->id)->with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
+            }else{
+                $data = AceroModel:: where('users_id',Auth::user()->id)->with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
+            }
         } else {
-            $data = AceroModel::where("id", 1)
-                ->orwhere("id", "like", "%" . $consulta_data . "%")
+            $data = AceroModel::with('users_id','estado_tramite_id')
                 ->orwhere("users_id", "like", "%" . $consulta_data . "%")
                 ->orwhere("estrutura", "like", "%" . $consulta_data . "%")
                 ->orwhere("plano", "like", "%" . $consulta_data . "%")
@@ -132,5 +135,12 @@ class AceroController extends Controller
         $Acero = AceroModel::findOrFail($id);
         $Acero->delete();
         return response()->json($Acero);
+    }
+    public function reporte_final(Request $request)
+    {
+        $Concreto = AceroModel::findOrFail($request->id);
+        $Concreto->estado_tramite_id=2;
+        $Concreto->save();
+        return response()->json($Concreto);
     }
 }

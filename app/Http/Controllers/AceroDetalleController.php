@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use Validator;
 use Response;
-
+use Carbon\Carbon;
 use App\AceroDetalleModel;
 use View;
 use App\User;
@@ -24,8 +24,8 @@ class AceroDetalleController extends Controller
         'si_aplica' => 'required|min:1|max:255',
         'si_cumple' => 'required|min:1|max:255',
         'fecha' => 'required|min:2|max:255',
-        'observaciones' => 'required|min:2|max:255',
-        'registro_fotografico' => 'required|min:2|max:2555',
+        'observaciones' => 'max:255',
+       // 'registro_fotografico' => 'max:2555',
         //'acero_id' => 'required|min:2|max:255',
 
     ];
@@ -46,7 +46,7 @@ class AceroDetalleController extends Controller
                 ->orwhere("si_cumple", "like", "%" . $consulta_data . "%")
                 ->orwhere("fecha", "like", "%" . $consulta_data . "%")
                 ->orwhere("observaciones", "like", "%" . $consulta_data . "%")
-                ->orwhere("registro_fotografico", "like", "%" . $consulta_data . "%")
+              //  ->orwhere("registro_fotografico", "like", "%" . $consulta_data . "%")
                 ->orwhere("acero_id", "like", "%" . $consulta_data . "%")
 
                 ->paginate(20);
@@ -58,7 +58,7 @@ class AceroDetalleController extends Controller
     public function create()
     {
         $data_foraneos = [
-            "acero_id" => AceroDetalleModel::select("id", "id as nombre", "id as text")->get(),
+            //"acero_id" => AceroDetalleModel::select("id", "id as nombre", "id as text")->get(),
 
             //"departamento_id" => DepartamentoModel::select("id_departamento as id","departamento as text")->get(),
         ];
@@ -89,7 +89,7 @@ class AceroDetalleController extends Controller
             $AceroDetalle->si_cumple = $request->si_cumple;
             $AceroDetalle->fecha = $request->fecha;
             $AceroDetalle->observaciones = $request->observaciones;
-            $AceroDetalle->registro_fotografico = $request->registro_fotografico;
+            //$AceroDetalle->registro_fotografico = $request->registro_fotografico;
             $AceroDetalle->acero_id = $request->acero_id;
 
             $AceroDetalle->save();
@@ -172,14 +172,14 @@ class AceroDetalleController extends Controller
                 $AceroDetalles->actividad = $value['titulo'];
                 $AceroDetalles->si_aplica = '3';
                 $AceroDetalles->si_cumple = '3';
-                $AceroDetalles->fecha = '2020-01-05';
+                $AceroDetalles->fecha = Carbon::now()->toDateTimeString();
                 $AceroDetalles->observaciones = ' ';
                 $AceroDetalles->registro_fotografico = 'sinfoto';
                 $AceroDetalles->acero_id = $acero_id;
                 $AceroDetalles->save();
             }
         }
-        $data = AceroDetalleModel::where('acero_id', $acero_id)->get();
+        $data = AceroDetalleModel::with('aceroregistrofotografico_all')->where('acero_id', $acero_id)->get();
 
         return response()->json($data);
     }

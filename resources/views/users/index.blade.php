@@ -1,4 +1,4 @@
-@extends('layouts.App_admin_ui')
+@extends('layouts.App_admin_ui40')
 
 @section('title', '| Users')
 

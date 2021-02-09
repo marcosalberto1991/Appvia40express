@@ -38,9 +38,7 @@
        :no-border-collapse='noCollapse'>
 
       <template v-slot:cell(Acciones)='data'>
-
           <b-button-group>
-
             <router-link :to="{ name: 'concretoform', params: { id: data.item.id }}">
                 <a v-bind:href="'/Concreto/'+data.item.id+'/edit'" class='btn-sm btn btn-success mr-1' size='sm' style='margin-bottom: 5px; margin: 5px;'>
                      <div class="d-block d-sm-block d-md-none">
@@ -75,22 +73,10 @@
                     </span>
                 </div>
             </b-button>
-
-            <a v-bind:href="''+url+''+url+'/Concreto/'+ data.item.id+'/pdfConcreto'" target='_blank' class='btn-sm btn btn-success mr-1' size='sm'  style='margin-bottom: 5px; margin: 5px;'>PDF </a>
-
+            <a v-if="$can('Concreto PDF')"  v-bind:href="''+url+''+url+'/Concreto/'+ data.item.id+'/pdfConcreto'" target='_blank' class='btn-sm btn btn-success mr-1' size='sm'  style='margin-bottom: 5px; margin: 5px;'>PDF </a>
           </b-button-group>
-
-
-
-
         </template>
-
-        <template v-slot:head(Acciones)="scope">
-          <div class='text-nowrap'>Acciones</div>
-        </template>
-
       </b-table>
-
 </div>
 </div>
 </div>
@@ -144,6 +130,7 @@ export default {
       fields: [
       { key: "Acciones",stickyColumn: true, label:"Acciones" ,sortable: false },
       //{ key: 'id', sortable:true},
+      { key: 'estado_tramite_id.nombre', sortable:true,class:'one-lineas',label:'Tramite'},
       { key: 'users_id.name', sortable:true,class:'one-lineas',label:'Usuario'},
       { key: 'unidad_funcional_id.nombre', sortable:true,class:'one-lineas',label:'Unidad Funcional'},
       { key: 'calzada', sortable:true,class:'one-lineas',label:'Calzada'},
@@ -152,14 +139,9 @@ export default {
       { key: 'plano_codigo', sortable:true,class:'one-lineas',label:'Cod. Plano'},
       { key: 'version', sortable:true,class:'one-lineas',label:'Version'},
       { key: 'resistencia_concreto', sortable:true,class:'one-lineas',label:'Resi. Concreto'},
-      { key: 'estado_tramite_id.nombre', sortable:true,class:'one-lineas',label:'Tramite'},
-
       ],
-
-
-      //input_Concreto_id:[],
-      data_foraneo_unidad_funcional_id:[],data_foraneo_estado_tramite_id:[],
-
+      data_foraneo_unidad_funcional_id:[],
+      data_foraneo_estado_tramite_id:[],
       consulta_datos:[],
       errors: {},
       mensaje_formulario: "",
@@ -212,8 +194,8 @@ export default {
 
     },
     $can(permissionName) {
-        return true;
-      //return Permissions.indexOf(permissionName) !== -1;
+        //return true;
+      return Permissions.indexOf(permissionName) !== -1;
     },
   }
 };

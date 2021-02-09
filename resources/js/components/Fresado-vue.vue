@@ -141,7 +141,8 @@ export default {
       fields: [
       { key: "Acciones",stickyColumn: true, label:"Acciones" ,sortable: false,class:'' },
       //{ key: 'id', sortable:true},
-      { key: 'unidad_funcional_id',label:"Unidad Funcional", sortable:true,class:'one-lineas'},
+      { key: 'unidad_funcional_id.nombre',label:"Unidad Funcional", sortable:true,class:'one-lineas'},
+      { key: 'estado_tramite_id.nombre',label:"estado Tramite", sortable:true,class:'one-lineas'},
       { key: 'calzada', sortable:true,class:'one-lineas'},
       { key: 'longitud', sortable:true,class:'one-lineas'},
       { key: 'plano_codigo',label:"Plano Codigo", sortable:true,class:'one-lineas'},
@@ -150,7 +151,6 @@ export default {
       { key: 'ancho_dos',label:"Ancho 2", sortable:true,class:'one-lineas'},
       { key: 'espesor_uno',label:"Espesor 1", sortable:true,class:'one-lineas'},
       { key: 'espesor_dos',label:"Espesor 2", sortable:true,class:'one-lineas'},
-      { key: 'estado_tramite_id',label:"Acciones", sortable:true,class:'one-lineas'},
 
       ],
 
@@ -209,7 +209,7 @@ export default {
     },
 
     $can(permissionName) {
-        return true;
+      //  return true;
 
       return Permissions.indexOf(permissionName) !== -1;
     },

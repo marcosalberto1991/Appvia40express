@@ -31,6 +31,8 @@ window.toastr = require("toastr");
 Vue.use(VueToastr2);
 
 
+import Multiselect from 'vue-multiselect' //https://vue-multiselect.js.org/
+Vue.component('multiselect', Multiselect)
 
 /**
  * The following block of code may be used to automatically register your
@@ -48,8 +50,8 @@ Vue.component('unidadfuncional-vue', require('./components/UnidadFuncional-vue.v
 Vue.component('pagination', require('laravel-vue-pagination')); //https://www.npmjs.com/package/laravel-vue-pagination
 Vue.component('concretodetalles-vue', require('./components/ConcretoDetalles-vue.vue').default);
 Vue.component('acerodetalle-vue', require('./components/acerodetalle-vue.vue').default);
-
 Vue.component('fresadodetalle-vue', require('./components/FresadoDetalle-vue.vue').default);
+Vue.component('mezclasdetalle-vue', require('./components/MezclasDetalle-vue.vue').default);
 
 import home from './components/ExampleComponent.vue';
 
@@ -69,18 +71,30 @@ import AceroForm from './components/AceroForm-vue.vue';
 import Fresado from './components/Fresado-vue.vue';
 import FresadoForm from './components/FresadoForm-vue.vue';
 
+import Auditoria from './components/vue-Auditoria_SAM.vue';
+
+import Mezclas from './components/Mezclas-vue.vue';
+import MezclasForm from './components/MezclasForm-vue.vue';
+
+//import MezclasDetalle from './components/MezclasDetalle-vue.vue';
+import MezclasDetalleForm from './components/MezclasDetalleForm-vue.vue';
+
+
 
 //import FresadoDetalle from './components/FresadoDetalle-vue.vue';
 //import FresadoDetalleForm from './components/FresadoDetalleForm-vue.vue';
 
-//{ path: '/FresadoDetalle', component: FresadoDetalle, name: 'fresadodetalle' },
-//{ path: '/FresadoDetalle/:id/edit', component: FresadoDetalleForm, name: 'fresadodetalleform' },
-//{ path: '/FresadoDetalle/create', component: FresadoDetalleForm, name: 'fresadodetalleformadd' },
-//$clave = $_ENV['HTTP_VUE'];
+//
+//      PRODUCCCIÓN
+//
 Vue.prototype.$url = '/Appvia40express'
-//var url='';
 var url='/Appvia40express';
-//var url='';
+
+//
+//      TEST
+//
+Vue.prototype.$url = ''
+var url='';
 
 const router = new VueRouter({
     mode:'history',
@@ -89,6 +103,7 @@ const router = new VueRouter({
 
         {path:'home',component:home,name:'home' },
         //Unidad funcional
+        { path: url+'/Auditoria', component: Auditoria, name: 'Auditoria' },
         { path: url+'/UnidadFuncional', component: UnidadFuncional, name: 'unidadfuncional' },
         { path: url+'/UnidadFuncional/:id/edit', component: UnidadFuncionalForm, name: 'unidadfuncionalform' },
         { path: url+'/UnidadFuncional/create', component: UnidadFuncionalForm, name: 'unidadfuncionalformadd' },
@@ -109,10 +124,19 @@ const router = new VueRouter({
         { path: url+'/Acero', component: Acero, name: 'acero' },
         { path: url+'/Acero/:id/edit', component: AceroForm, name: 'aceroform' },
         { path: url+'/Acero/create', component: AceroForm, name: 'aceroformadd' },
-        //
+        //fresado
         { path: url+'/Fresado', component: Fresado, name: 'fresado' },
         { path: url+'/Fresado/:id/edit', component: FresadoForm, name: 'fresadoform' },
         { path: url+'/Fresado/create', component: FresadoForm, name: 'fresadoformadd' },
+        //mezclas
+        { path: '/Mezclas', component: Mezclas, name: 'mezclas' },
+        { path: '/Mezclas/:id/edit', component: MezclasForm, name: 'mezclasform' },
+        { path: '/Mezclas/create', component: MezclasForm, name: 'mezclasformadd' },
+        //{ path: '/MezclasDetalle', component: MezclasDetalle, name: 'mezclasdetalle' },
+        { path: '/MezclasDetalle/:id/edit', component: MezclasDetalleForm, name: 'mezclasdetalleform' },
+        { path: '/MezclasDetalle/create', component: MezclasDetalleForm, name: 'mezclasdetalleformadd' },
+
+
 
     ] // short for `routes: routes`
   })

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use Validator;
 use Response;
-
+use Auth;
 use App\FresadoModel;
 use View;
 use App\User;
@@ -41,7 +41,12 @@ class FresadoController extends Controller
     {
         $consulta_data = $request->get("consulta_data");
         if ($consulta_data == "") {
-            $data = FresadoModel::paginate(20);
+            if(Auth::user()->hasRole('Operado')){
+                $data = FresadoModel::where('estado_tramite_id',1)->where('users_id',Auth::user()->id)->with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
+            }else{
+                $data = FresadoModel:: where('users_id',Auth::user()->id)->with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
+            }
+            //$data = FresadoModel::paginate(20);
         } else {
             $data = FresadoModel::where("id", 1)
                 ->orwhere("id", "like", "%" . $consulta_data . "%")
@@ -91,9 +96,9 @@ class FresadoController extends Controller
         */
 
             $Fresado = new FresadoModel();
-            $prueba_producto = $request->all();
             $Fresado->unidad_funcional_id = $request->unidad_funcional_id;
             $Fresado->calzada = $request->calzada;
+            $Fresado->users_id = Auth::user()->id;
             $Fresado->longitud = $request->longitud;
             $Fresado->plano_codigo = $request->plano_codigo;
             $Fresado->version = $request->version;
@@ -141,6 +146,14 @@ class FresadoController extends Controller
             $Fresado->save();
             return response()->json($Fresado);
         }
+    }
+    public function reporte_final(Request $request){
+        $Fresado = FresadoModel::findOrFail($request->id);
+        $Fresado->estado_tramite_id = 2;
+        $Fresado->save();
+
+        return response()->json($Fresado);
+
     }
 
     public function destroy($id)

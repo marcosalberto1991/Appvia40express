@@ -38,6 +38,24 @@
 
       <b-table :items='consulta_datos.data' :fields='fields'
       responsive='sm' :sticky-header='stickyHeader' :no-border-collapse='noCollapse'>
+      sentido_via
+      <template v-slot:cell(sentido_via)='data'>
+        <span v-if="data.item.sentido_via==1" >Gi -BO </span>
+        <span v-if="data.item.sentido_via==2" >BO -GI</span>
+      </template>
+      <template v-slot:cell(is_horas_riego_imrpimacion)='data'>
+        <span v-if="data.item.is_horas_riego_imrpimacion==0" >NO </span>
+        <span v-if="data.item.is_horas_riego_imrpimacion==1" >SI</span>
+      </template>
+      <template v-slot:cell(is_horas_liga)='data'>
+        <span v-if="data.item.is_horas_liga==0" >NO </span>
+        <span v-if="data.item.is_horas_liga==1" >SI</span>
+      </template>
+      <template v-slot:cell(estado_riego)='data'>
+        <span v-if="data.item.estado_riego==1" >BUENO </span>
+        <span v-if="data.item.estado_riego==2" >REGULAR</span>
+        <span v-if="data.item.estado_riego==3" >MALO</span>
+      </template>
       <template v-slot:cell(Acciones)='data'>
 
           <b-button-group>
@@ -119,7 +137,7 @@
 
 
 <script type="application/javascript">
-import Vue from "vue";
+//import Vue from "vue";
 
 //import Select2 from "v-select2-component";
 //https://www.npmjs.com/package/vue-toastr-2
@@ -145,27 +163,34 @@ export default {
       noCollapse: false,
       fields: [
       { key: "Acciones",stickyColumn: true, label:"Acciones" ,sortable: false },
-      { key: 'id', sortable:true,class:'one-lineas'},
-      { key: 'sentido_via', sortable:true,class:'one-lineas'},
-      { key: 'unidad_funcional_id', sortable:true,class:'one-lineas'},
-      { key: 'fecha', sortable:true,class:'one-lineas'},
-      { key: 'tipo_mezcla', sortable:true,class:'one-lineas'},
-      { key: 'ensayos_de_laboratorio', sortable:true,class:'one-lineas'},
-      { key: 'is_horas_riego_imrpimacion', sortable:true,class:'one-lineas'},
-      { key: 'is_horas_liga', sortable:true,class:'one-lineas'},
-      { key: 'estado-_riego', sortable:true,class:'one-lineas'},
-      { key: 'users_id', sortable:true,class:'one-lineas'},
+      //{ key: 'id', sortable:true,label:'',class:'one-lineas'},
+      { key: 'users_id.name',label:'Usuario', sortable:true,class:'one-lineas'},
+      { key: 'sentido_via',label:'Sentido via', sortable:true,class:'one-lineas'},
+      { key: 'unidad_funcional_id',label:'Unidad funcional', sortable:true,class:'one-lineas'},
+      { key: 'fecha',label:'fecha', sortable:true,class:'one-lineas'},
+      { key: 'tipo_mezcla',label:'Tipo mezcla', sortable:true,class:'one-lineas'},
+      { key: 'ensayos_de_laboratorio',label:'Ensayos de laboratorio', sortable:true,class:'one-lineas'},
+      { key: 'is_horas_riego_imrpimacion',label:'24 horas de riego imprimación', sortable:true,class:'one-lineas'},
+      { key: 'is_horas_liga',label:'2 horas liga', sortable:true,class:'one-lineas'},
+      { key: 'estado_riego',label:'Estado Riego', sortable:true,class:'one-lineas'},
 
       ],
-
-
-      //input_Mezclas_id:[],
       data_foraneo_unidad_funcional_id:[],
-
       consulta_datos:[],
       errors: {},
       mensaje_formulario: "",
       page:1,
+
+      data_foraneo_sentido_via_id:[
+          {id:1, text:'GI - BO'},
+          {id:2, text:'BO - GI'}
+      ],
+      data_foraneo_input_estado_riego_id:[
+          {id:1, text:'BUENO'},
+          {id:2, text:'REGULAR'},
+          {id:3, text:'MALO'},
+
+      ],
 
     };
   },
