@@ -71,10 +71,9 @@
 
                                 </td>
 
-                                <td class="text-center" style="min-width: 350px;" v-on:change="formulario_guarda(consulta_datos[index])">
-                                    <b-form-datepicker placeholder="Choose a date" v-model="consulta_datos[index].fecha">
+                                <td class="text-center" style="min-width: 350px;">
+                                    <b-form-datepicker @input="formulario_guarda(consulta_datos[index])"  v-model="data.fecha">
                                     </b-form-datepicker>
-
                                 </td>
                                 <td v-on:change="formulario_guarda(consulta_datos[index])">
                                     <b-form-textarea id="textarea" v-model="consulta_datos[index].observaciones" placeholder="Observaciones" rows="3" max-rows="6"></b-form-textarea>
@@ -193,8 +192,8 @@
                 </div>
                 <div class="d-block text-center card-footer">
 
-                    <button @click="show_reporte_final_(false)" class="btn-wide btn btn-success">Volver</button>
-                    <button @click="enviar_reporte_final()" class="btn-wide btn btn-success">Enviar el Reporte final</button>
+                    <button @click="show_reporte_final_(false)" v-if="$can('Fresado editar')" class="btn-wide btn btn-success">Volver</button>
+                    <button @click="enviar_reporte_final()" v-if="$can('Fresado editar')" class="btn-wide btn btn-success">Enviar el Reporte final</button>
 
                 </div>
             </div>
@@ -277,6 +276,9 @@ export default {
   mounted() {
     this.consulta();
     this.data_foraneo();
+    if(this.$can('fresado editar')==false){
+            this.show_reporte_final= true
+    }
   },
   methods: {
     consulta(page = 1) {
@@ -472,9 +474,7 @@ export default {
     },
 
     $can(permissionName) {
-      return true;
-
-//      return Permissions.indexOf(permissionName) !== -1;
+      return Permissions.indexOf(permissionName) !== -1;
     },
      show_reporte_final_(bool) {
             this.show_reporte_final = bool

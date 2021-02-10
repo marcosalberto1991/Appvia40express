@@ -45,11 +45,18 @@ class AceroController extends Controller
         if ($consulta_data == "") {
             if(Auth::user()->hasRole('Operado')){
                 $data = AceroModel::where('estado_tramite_id',1)->where('users_id',Auth::user()->id)->with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
-            }else{
-                $data = AceroModel::with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
+            }
+            if(Auth::user()->hasRole('Tecnico')){
+                $data = AceroModel::where('estado_tramite_id',1)->with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
+            }
+            if(Auth::user()->hasRole('Gerente')){
+                $data = AceroModel::where('estado_tramite_id',1)->with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
+            }
+            if(Auth::user()->hasRole('Administrador')){
+                $data = AceroModel::where('estado_tramite_id',1)->with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
             }
         } else {
-
+            if(!Auth::user()->hasRole('Operado')){
             $data = AceroModel::with('users_id','estado_tramite_id')
                 ->orwhere("users_id", "like", "%" . $consulta_data . "%")
                 ->orwhere("estrutura", "like", "%" . $consulta_data . "%")
@@ -59,12 +66,7 @@ class AceroController extends Controller
                 ->orwhere("version", "like", "%" . $consulta_data . "%")
                 ->orwhere("estado_tramite_id", "like", "%" . $consulta_data . "%")
                 ->orwhere("unidad_funcional_id", "like", "%" . $consulta_data . "%")->paginate(20);
-                if(Auth::user()->hasRole('Operado')){
-                    $data->where('estado_tramite_id',1)->where('users_id',Auth::user()->id)->paginate(20);
-                }else{
-                    $data->paginate(20);
-
-                }
+            }
 
 
 

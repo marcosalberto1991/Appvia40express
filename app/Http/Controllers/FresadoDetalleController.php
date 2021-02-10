@@ -185,7 +185,7 @@ class FresadoDetalleController extends Controller
                 $AceroDetalles->actividad = $value['titulo'];
                 $AceroDetalles->si_aplica = '3';
                 $AceroDetalles->si_cumple = '3';
-                $AceroDetalles->fecha = Carbon::now()->toDateTimeString();
+                $AceroDetalles->fecha = Carbon::now()->format('Y-m-d');
                 $AceroDetalles->observaciones = ' ';
                 $AceroDetalles->registro_fotografico = 'sinfoto';
                 $AceroDetalles->fresado_id = $fresado_id;

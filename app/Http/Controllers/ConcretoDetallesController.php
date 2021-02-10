@@ -148,8 +148,8 @@ class ConcretoDetallesController extends Controller {
             $ConcretoDetalles->titulo=$value['titulo'];
             $ConcretoDetalles->si_aplica='3';
             $ConcretoDetalles->si_cumple='3';
-            $ConcretoDetalles->fecha=Carbon::now()->toDateTimeString();
-            $ConcretoDetalles->observaciones=' ';
+            $ConcretoDetalles->fecha=Carbon::now()->format('Y-m-d');
+            //$ConcretoDetalles->observaciones='';
             $ConcretoDetalles->registro_fotografico='sinfoto';
             $ConcretoDetalles->concreto_id=$concreto_id;
             $ConcretoDetalles->save();

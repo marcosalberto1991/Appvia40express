@@ -10,7 +10,7 @@
 
                     <div class="col-md-6 row">
                         <div class="form-group col-md-12 col-sm-12" style="margin-bottom: 6px;">
-                            <button type="submit" @click="formulario()" class="btn btn-primary">Guardar </button>
+                            <button type="submit" @click="formulario()" v-if="$can('Acero editar')" class="btn btn-primary">Guardar </button>
                             <a class="btn btn-warning" @click="cancelar_registro()">Cancelar</a>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-12 col-sm-12 text-center">
-                                        <button type="submit" @click="formulario(0)" class="btn btn-primary">Guardar </button>
+                                        <button type="submit" @click="formulario(0)" v-if="$can('Acero editar')" class="btn btn-primary">Guardar </button>
 
                                     </div>
 
@@ -261,7 +261,6 @@ export default {
             window.history.back();
         },
         $can(permissionName) {
-            return true;
             return Permissions.indexOf(permissionName) !== -1;
         },
         show_registro(data_id) { //show_registro

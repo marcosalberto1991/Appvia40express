@@ -9,8 +9,8 @@
                     <h2>Formulario de Concreto </h2>
                     <div class="col-md-12 row">
                         <div class="form-group col-md-12 col-sm-12" style="margin-bottom: 6px;">
-                            <button type="submit" @click="formulario(0)" class="btn btn-primary">Guardar </button>
-                            <button type="submit" @click="formulario(1)" class="btn btn-primary">Guardar y volve </button>
+                            <button type="submit" v-if="$can('Concreto editar')" @click="formulario(0)" class="btn btn-primary">Guardar </button>
+                            <button type="submit" v-if="$can('Concreto editar')" @click="formulario(1)" class="btn btn-primary">Guardar y volve </button>
                             <a class="btn btn-warning" @click="cancelar_registro()">Cancelar</a>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
 
                                         <b-input-group>
                                             <b-input-group-prepend>
-                                                <a @click="actualiza_gps()" class="btn btn-info" variant="outline-info">Actualiza GPS</a>
+                                                <a @click="actualiza_gps()" v-if="$can('Concreto editar')" class="btn btn-info" variant="outline-info">Actualiza GPS</a>
                                             </b-input-group-prepend>
                                             <input type="text" v-model="input_latitud" placeholder="resistencia_concreto" class="form-control" :class="{ 'is-invalid':this.validacion.version, 'is-valid':!this.validacion.version && is_enviar  }">
                                         </b-input-group>
@@ -112,7 +112,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-12 col-sm-12 text-center">
-                                        <button type="submit" @click="formulario(0)" class="btn btn-primary">Guardar </button>
+                                        <button type="submit" v-if="$can('Concreto editar')" @click="formulario(0)" class="btn btn-primary">Guardar </button>
 
                                     </div>
 
@@ -284,6 +284,8 @@ export default {
                             //this.consulta(this.page);
                             //this.limpiar_form();
                             //window.history.back();
+                            this.input_Concreto_id = response.data.id
+
                             this.show_registro_proceso(response.data)
 
                         }
@@ -303,7 +305,6 @@ export default {
             window.history.back();
         },
         $can(permissionName) {
-            //return true;
             return Permissions.indexOf(permissionName) !== -1;
         },
         show_registro_proceso(data) {

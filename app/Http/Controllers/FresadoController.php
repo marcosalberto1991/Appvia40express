@@ -46,10 +46,16 @@ class FresadoController extends Controller
         if ($consulta_data == "") {
             if(Auth::user()->hasRole('Operado')){
                 $data = FresadoModel::where('estado_tramite_id',1)->where('users_id',Auth::user()->id)->with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
-            }else{
-                $data = FresadoModel:: where('users_id',Auth::user()->id)->with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
             }
-            //$data = FresadoModel::paginate(20);
+            if(Auth::user()->hasRole('Tecnico')){
+                $data = FresadoModel::with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
+            }
+            if(Auth::user()->hasRole('Gerente')){
+                $data = FresadoModel::with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
+            }
+            if(Auth::user()->hasRole('Administrador')){
+                $data = FresadoModel::with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
+            }
         } else {
             $data = FresadoModel::where("id", 1)
                 ->orwhere("id", "like", "%" . $consulta_data . "%")

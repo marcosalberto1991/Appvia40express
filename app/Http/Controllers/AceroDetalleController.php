@@ -83,7 +83,6 @@ class AceroDetalleController extends Controller
         */
 
             $AceroDetalle = new AceroDetalleModel();
-            $prueba_producto = $request->all();
             $AceroDetalle->actividad = $request->actividad;
             $AceroDetalle->si_aplica = $request->si_aplica;
             $AceroDetalle->si_cumple = $request->si_cumple;
@@ -172,7 +171,7 @@ class AceroDetalleController extends Controller
                 $AceroDetalles->actividad = $value['titulo'];
                 $AceroDetalles->si_aplica = '3';
                 $AceroDetalles->si_cumple = '3';
-                $AceroDetalles->fecha = Carbon::now()->toDateTimeString();
+                $AceroDetalles->fecha = Carbon::now()->format('Y-m-d');
                 $AceroDetalles->observaciones = ' ';
                 $AceroDetalles->registro_fotografico = 'sinfoto';
                 $AceroDetalles->acero_id = $acero_id;

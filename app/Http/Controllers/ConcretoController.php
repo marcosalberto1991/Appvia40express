@@ -69,8 +69,7 @@ class ConcretoController extends Controller
                 ->orwhere("plano_codigo", "like", "%" . $consulta_data . "%")
                 ->orwhere("version", "like", "%" . $consulta_data . "%")
                 ->orwhere("resistencia_concreto", "like", "%" . $consulta_data . "%")
-                ->orwhere("estado_tramite_id", "like", "%" . $consulta_data . "%")
-                ;
+                ->orwhere("estado_tramite_id", "like", "%" . $consulta_data . "%");
 
                 $data->where('estado_tramite_id',1)->paginate(20);
             }else{

@@ -8,7 +8,7 @@
                     <h2>Formulario</h2>
                     <div class="col-md-12 row">
                         <div class="form-group col-md-12 col-sm-12" style="margin-bottom: 6px">
-                            <button type="submit" @click="formulario()" class="btn btn-primary">
+                            <button type="submit" v-if="$can('Fresado editar')"  @click="formulario()" class="btn btn-primary">
                                 Guardar
                             </button>
                             <a class="btn btn-warning" @click="cancelar_registro()">Cancelar</a>
@@ -155,7 +155,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-12 col-sm-12 text-center">
-                                        <button type="submit" @click="formulario(0)" class="btn btn-primary">Guardar </button>
+                                        <button type="submit" @click="formulario(0)" v-if="$can('Fresado editar')" class="btn btn-primary">Guardar </button>
 
                                     </div>
                                 </div>
@@ -304,8 +304,10 @@ export default {
                             this.validacion = "";
                             this.$toastr.success("Operacio exitosa", "Datos modificados");
                             //this.consulta(this.page);
-                            this.limpiar_form();
-                            window.history.back();
+                            //this.limpiar_form();
+                            //window.history.back();
+                            this.input_Fresado_id = response.data.id
+
                         }
                     },
                     (err) => {
@@ -320,7 +322,6 @@ export default {
             window.history.back();
         },
         $can(permissionName) {
-            return true;
             return Permissions.indexOf(permissionName) !== -1;
         },
         show_registro(data_id) {

@@ -66,8 +66,8 @@
 
                                 </td>
 
-                                <td class="text-center" style="min-width: 350px;" v-on:change="formulario_guarda(consulta_datos[index])">
-                                    <b-form-datepicker placeholder="Choose a date" v-model="consulta_datos[index].fecha">
+                                <td class="text-center" style="min-width: 350px;">
+                                    <b-form-datepicker @input="formulario_guarda(consulta_datos[index])"  v-model="data.fecha">
                                     </b-form-datepicker>
 
                                 </td>
@@ -86,7 +86,7 @@
                                     <span v-for="imagen in data.concreto_registro_fotografico_all" v-bind:key="imagen.id">
                                         <div class="  card" style="width: 20rem; margin-bottom: 10px;">
                                             <img :src="$url+'/Appvia40express/Concreto_file/'+imagen.nombre" alt="">
-                                            <a v-on:click="imagenes_eliminar(imagen.id)" href="#" class="btn  btn-danger btn-sm">Eliminar </a>
+                                            <a v-on:click="imagenes_eliminar(imagen.id)" v-if="$can('Concreto editar')" href="#" class="btn  btn-danger btn-sm">Eliminar </a>
 
                                         </div>
                                     </span>
@@ -188,8 +188,8 @@
                 </div>
                 <div class="d-block text-center card-footer">
 
-                    <button @click="show_reporte_final_(false)" class="btn-wide btn btn-success">Volver</button>
-                    <button @click="enviar_reporte_final()" class="btn-wide btn btn-success">Enviar el Reporte final</button>
+                    <button @click="show_reporte_final_(false)" v-if="$can('Concreto editar')" class="btn-wide btn btn-success">Volver</button>
+                    <button @click="enviar_reporte_final()" v-if="$can('Concreto editar')" class="btn-wide btn btn-success">Enviar el Reporte final</button>
 
                 </div>
             </div>
@@ -294,6 +294,10 @@ export default {
     mounted() {
         this.consulta();
         this.data_foraneo();
+        if(this.$can('Concreto editar')==false){
+            this.show_reporte_final= true
+        }
+
     },
     methods: {
         consulta(page = 1) {
@@ -304,6 +308,9 @@ export default {
                     localStorage.removeItem("ConcretoDetalles");
                 }
             }
+
+
+
 
             this.page = page;
             //axios.get("ConcretoDetalles/consulta?page=" +page+"&consulta_data="+this.input_consulta_data)
@@ -490,9 +497,8 @@ export default {
         },
 
         $can(permissionName) {
-            return true;
-
-            //            return Permissions.indexOf(permissionName) !== -1;
+            //return true;
+            return Permissions.indexOf(permissionName) !== -1;
         },
         show_reporte_final_(bool) {
             this.show_reporte_final = bool
