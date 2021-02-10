@@ -191,10 +191,8 @@
                     </table>
                 </div>
                 <div class="d-block text-center card-footer">
-
                     <button @click="show_reporte_final_(false)" v-if="$can('Fresado editar')" class="btn-wide btn btn-success">Volver</button>
                     <button @click="enviar_reporte_final()" v-if="$can('Fresado editar')" class="btn-wide btn btn-success">Enviar el Reporte final</button>
-
                 </div>
             </div>
             <br />
