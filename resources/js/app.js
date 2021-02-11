@@ -100,8 +100,8 @@ var url='/Appvia40express';
 //
 //      TEST
 //
-Vue.prototype.$url = ''
-var url='';
+//Vue.prototype.$url = ''
+//var url='';
 
 const router = new VueRouter({
     mode:'history',
