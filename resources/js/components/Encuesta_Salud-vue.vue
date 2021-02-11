@@ -145,7 +145,7 @@ export default {
             let registros = this.lista_preguntas;
             this.validacion_respuesta=true;
             registros.forEach(registro => {
-                if (registro.respuesta == null || registro.titulo != 1  ) {
+                if (registro.respuesta == null || registro.respuesta == ''  ) {
                     this.$toastr.warning("Favor vefirica bien las respuesta", "Falta algunas respuesta");
                     permitir = false;
                     //break;
