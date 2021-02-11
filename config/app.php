@@ -177,6 +177,7 @@ return [
         //instalacion de paquetes
         OwenIt\Auditing\AuditingServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         //'PDF' => Barryvdh\DomPDF\Facade::class,
 
@@ -236,6 +237,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
 
 
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
 
     ],

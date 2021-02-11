@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('Encuesta_Salud_Formulario', function () {return view('Encuesta_Salud');});
+Route::get('Api/Encuesta_Salud/obtener_preguntas','Encuesta_SaludController@obtener_preguntas');
+Route::resource('Api/Encuesta_Salud','Encuesta_SaludController');
+Route::post('Api/Encuesta_Salud/buscar_cedula','Encuesta_SaludController@buscar_cedula');
+Route::post('Api/Encuesta_Salud/enviar_respuesta','Encuesta_SaludController@enviar_respuesta');
+Route::get('Encuesta_Salud/Exporta_Excel','Encuesta_SaludController@Exporta_Excel');
+
 
 
 Auth::routes();
