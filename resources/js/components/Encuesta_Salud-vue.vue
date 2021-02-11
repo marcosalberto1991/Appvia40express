@@ -131,7 +131,7 @@ export default {
 
             this.page = page;
             //axios.get("Encuesta_Salud/consulta?page=" +page+"&consulta_data="+this.input_consulta_data)
-            axios.get(`/Api/Encuesta_Salud/obtener_preguntas`)
+            axios.get(`${this.$url}/Api/Encuesta_Salud/obtener_preguntas`)
                 .then(response => {
                     this.lista_preguntas = response.data;
                 });
@@ -162,7 +162,7 @@ export default {
                 cedula: this.perfil_usuario,
                 lista_preguntas: this.lista_preguntas
             }
-            axios.post(`/Api/Encuesta_Salud/enviar_respuesta`, data)
+            axios.post(`${this.$url}/Api/Encuesta_Salud/enviar_respuesta`, data)
                 .then(response => {
                     if (response.data) {
                         this.validacion_cedula=false;
@@ -183,7 +183,7 @@ export default {
             const data = {
                 cedula: this.input_cedula
             }
-            axios.post(`/Api/Encuesta_Salud/buscar_cedula`, data)
+            axios.post(`${this.$url}/Api/Encuesta_Salud/buscar_cedula`, data)
                 .then(response => {
                     if (response.data.id) {
                         this.perfil_usuario = response.data;
@@ -204,7 +204,7 @@ export default {
             const data = {
                 cedula: this.input_cedula
             }
-            axios.post(`/Api/Encuesta_Salud/buscar_cedula`, data)
+            axios.post(`${this.$url}/Api/Encuesta_Salud/buscar_cedula`, data)
                 .then(response => {
                     if (response.data.id) {
                         this.perfil_usuario = response.data;
