@@ -166,6 +166,7 @@ export default {
                 .then(response => {
                     if (response.data) {
                         this.validacion_cedula=false;
+                        this.respuesta_enviada = true
                         //this.perfil_usuario = response.data;
                         //this.validacion_cedula = true
                         this.$toastr.success("Operacio exitosa", "Datos modificados");
@@ -188,7 +189,6 @@ export default {
                     if (response.data.id) {
                         this.perfil_usuario = response.data;
                         this.validacion_cedula = true
-                        this.respuesta_enviada = true
                         this.$toastr.success("Operacio exitosa", "Datos modificados");
                     } else {
                         this.$toastr.warning("Favor vefirica bien la cedula", "Datos no encontrado");
