@@ -43,14 +43,14 @@
                         <div class="col-md-7 col-sm-11">
                             <p class="lista-preguntas">{{ data.nombre }}</p>
                         </div>
-                        <span v-if="data.is_titulo!=1">
+
 
                         <div class="col-md-2 col-sm-2 lista-preguntas">
                             <b-form-radio-group v-model="lista_preguntas[index].respuesta" :options="options" required size="lg" buttons name="radio-validation">
                             </b-form-radio-group>
                         </div>
                         <div class="col-md-2 col-sm-2 lista-preguntas">Respuesta: {{ data.respuesta }}</div>
-                    </span>
+
                     </b-row>
                 </div>
                 </span>
