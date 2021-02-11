@@ -154,8 +154,7 @@ export default {
         if(permitir==true){
          this.enviar_encuesta();
         }
-        //for(this.lista_preguntas)
-            //alert(JSON.stringify(this.form))
+
         },
         enviar_encuesta(){
             const data = {
@@ -167,8 +166,7 @@ export default {
                     if (response.data) {
                         this.validacion_cedula=false;
                         this.respuesta_enviada = true
-                        //this.perfil_usuario = response.data;
-                        //this.validacion_cedula = true
+                        consulta();
                         this.$toastr.success("Operacio exitosa", "Datos modificados");
                     } else {
                         this.$toastr.warning("Favor vefirica", "");
