@@ -33,6 +33,8 @@
         </div>
         <div class="col-md-12" v-if="validacion_cedula==true">
                 <div class="card contenido ">
+
+                    <div class="perfil"><h4> Bienvenido: </h4> </div>
                     <div class="perfil"><b> Nombre: </b> {{ perfil_usuario.nombre }}</div>
                     <div class="perfil"><b> Apellido: </b> {{ perfil_usuario.apellido  }}</div>
                 </div>
@@ -48,7 +50,8 @@
 
 
                         <div class="col-md-2 col-sm-2 lista-preguntas">
-                            <b-form-radio-group v-model="lista_preguntas[index].respuesta" :options="options" required size="lg" buttons name="radio-validation">
+                            <b-form-radio-group v-model="lista_preguntas[index].respuesta" :options="options" :class="options.class"         button-variant="outline-primary"
+ required size="lg" buttons name="radio-validation">
                             </b-form-radio-group>
                         </div>
                         <div class="col-md-2 col-sm-2 lista-preguntas">Respuesta: {{ data.respuesta }}</div>
@@ -79,7 +82,7 @@ De acuerdo con la Ley 1581 de 2012 y sus decretos reglamentarios, con la firma d
 Entiendo que mis derechos como titular de la información serán aquellos establecidos en el artículo 8 de la Ley 1581 de 2012, y podrán ser ejercidos a través de los medios o canales dispuestos por VÍA 40 EXPRESS que pueden ser consultados en la página web www.via40express.com. Manifiesto que la presente autorización me fue solicitada y puesta de presente antes de entregar mis datos y que la suscribo de forma libre y voluntaria una vez leída en su totalidad.
 </p>
 <p class="text-center" >
-<img src="this.$url/img/logo.png" alt="">
+<img :src=" this.$url+'/img/logo.png'" alt="">
 </p>
 
     </div>
@@ -116,11 +119,13 @@ export default {
 
             options: [{
                     text: 'SI',
-                    value: 'SI'
+                    value: 'SI',
+                    class:'success'
                 },
                 {
                     text: 'NO',
-                    value: 'NO'
+                    value: 'NO',
+                    class:'info'
                 },
             ],
 
