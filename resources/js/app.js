@@ -146,9 +146,9 @@ const router = new VueRouter({
         { path: url+'/MezclasDetalle/create', component: MezclasDetalleForm, name: 'mezclasdetalleformadd' },
 
         //perfil salud
-        { path: '/PerfilSalud', component: PerfilSalud, name: 'perfilsalud' },
-        { path: '/PerfilSalud/:id/edit', component: PerfilSaludForm, name: 'perfilsaludform' },
-        { path: '/PerfilSalud/create', component: PerfilSaludForm, name: 'perfilsaludformadd' },
+        { path: url+'/PerfilSalud', component: PerfilSalud, name: 'perfilsalud' },
+        { path: url+'/PerfilSalud/:id/edit', component: PerfilSaludForm, name: 'perfilsaludform' },
+        { path: url+'/PerfilSalud/create', component: PerfilSaludForm, name: 'perfilsaludformadd' },
 
     ] // short for `routes: routes`
   })
