@@ -46,7 +46,7 @@ Route::get("Concreto/{id}/edit", function(){return View::make("home");});
 
 
 Route::group(['prefix' => '*'], function () {
-    return View::make("home");
+    //return View::make("home");
 });
 //Route::group(['middleware' => 'api'], function() {
 

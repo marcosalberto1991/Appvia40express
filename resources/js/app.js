@@ -96,8 +96,8 @@ import PerfilSaludForm from './components/PerfilSaludForm-vue.vue';
 //
 //      PRODUCCCIÓN
 //
-Vue.prototype.$url = '/Appvia40express'
-var url='/Appvia40express';
+Vue.prototype.$url = '/via40online'
+var url='/via40online';
 
 //
 //      TEST
