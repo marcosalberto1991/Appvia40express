@@ -15,6 +15,7 @@ use DB;
 use App\User;
 use App\Exports\UsersExport;
 use App\Exports\InvoicesExport;
+use App\Exports\InvoicesExportList;
 //Use Arr;
 
 use Maatwebsite\Excel\Facades\Excel;
@@ -165,12 +166,11 @@ class Encuesta_SaludController extends Controller
         $data = true;
         return response()->json($data);
     }
-    public function Exporta_Excel()
-    {
-
-        //$users = DB::table('Users')->select('id','name', 'email')->get();
-        //var_dump($users);
+    public function Exporta_Excel(){
+        return Excel::download(new InvoicesExport, 'Lista por fecha.xlsx');
+    }
         //        return Excel::download(new UsersExport, 'users.xlsx');
-        return Excel::download(new InvoicesExport, 'invoices.xlsx');
+    public function Exporta_Excel_lista(){
+        return Excel::download(new InvoicesExportList, 'Lista por fecha.xlsx');
     }
 }

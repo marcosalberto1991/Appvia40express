@@ -22,6 +22,8 @@ Route::resource('Api/Encuesta_Salud','Encuesta_SaludController');
 Route::post('Api/Encuesta_Salud/buscar_cedula','Encuesta_SaludController@buscar_cedula');
 Route::post('Api/Encuesta_Salud/enviar_respuesta','Encuesta_SaludController@enviar_respuesta');
 Route::get('Encuesta_Salud/Exporta_Excel','Encuesta_SaludController@Exporta_Excel');
+Route::get('Encuesta_Salud/Exporta_Excel_lista','Encuesta_SaludController@Exporta_Excel_lista');
+
 
 
 
@@ -115,6 +117,10 @@ Route::resource('Api/MezclasDetalle','MezclasDetalleController');
 Route::get('Api/MezclasDetalle/{id}/consulta_data', 'MezclasDetalleController@consulta_data');
 
 
+Route::resource('Api/PerfilSalud','PerfilSaludController');
+Route::get("PerfilSalud/create", function(){return View::make("home");});
+Route::get("PerfilSalud", function(){return View::make("home");});
+Route::get("PerfilSalud/{id}/edit", function(){return View::make("home");});
 
 
 //

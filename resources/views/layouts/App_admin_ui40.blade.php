@@ -567,22 +567,34 @@
                                     <i class="metismenu-icon pe-7s-rocket"></i>
                                     Inicio
                                 </router-link>
+                                @can('menu concreto')
                                 <router-link :to="{ name: 'concreto'}">
                                     <i class="metismenu-icon pe-7s-rocket"></i>
                                     Concreto
                                 </router-link>
+                                @endcan
+                                @can('menu acero')
                                 <router-link :to="{ name: 'acero'}">
                                     <i class="metismenu-icon pe-7s-rocket"></i>
                                     Acero
                                 </router-link>
+                                @endcan
+                                @can('menu fresado')
                                 <router-link :to="{ name: 'fresado'}">
                                     <i class="metismenu-icon pe-7s-rocket"></i>
                                     Fresado
                                 </router-link>
+                                @endcan
                                 <router-link :to="{ name: 'Auditoria'}">
                                     <i class="metismenu-icon pe-7s-rocket"></i>
                                     Auditoria
                                 </router-link>
+                                @can('menu salud')
+                                <router-link :to="{ name: 'perfilsalud'}">
+                                    <i class="metismenu-icon pe-7s-rocket"></i>
+                                    Salud
+                                </router-link>
+                                @endcan
 
 
 
@@ -1057,8 +1069,13 @@
         @endauth
       </script>
     <script type="text/javascript" src="{{ asset('Architectui/assets/scripts/main.js') }}"></script>
-    <script type="text/javascript" src="{{asset('js/app.js')}}">
-    </script>
+    <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+      
+      <script type="text/javascript" src="{{asset('/public/js/app.js')}}"></script>
+   <!--
+            /Appvia40express/public/js/app.js
+    -->
+   
 <style>
     .tx-danger{
         color: brown;

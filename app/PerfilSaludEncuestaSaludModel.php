@@ -12,4 +12,9 @@
     public $timestamps = false;
 
 
+    public function perfil_salud(){
+        return $this->belongsTo('App\Perfil_SaludModel', 'perfil_salud_id');
+      }
+
+
 	}

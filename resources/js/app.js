@@ -86,6 +86,8 @@ import MezclasForm from './components/MezclasForm-vue.vue';
 //import MezclasDetalle from './components/MezclasDetalle-vue.vue';
 import MezclasDetalleForm from './components/MezclasDetalleForm-vue.vue';
 
+import PerfilSalud from './components/PerfilSalud-vue.vue';
+import PerfilSaludForm from './components/PerfilSaludForm-vue.vue';
 
 
 //import FresadoDetalle from './components/FresadoDetalle-vue.vue';
@@ -143,7 +145,10 @@ const router = new VueRouter({
         { path: url+'/MezclasDetalle/:id/edit', component: MezclasDetalleForm, name: 'mezclasdetalleform' },
         { path: url+'/MezclasDetalle/create', component: MezclasDetalleForm, name: 'mezclasdetalleformadd' },
 
-
+        //perfil salud
+        { path: '/PerfilSalud', component: PerfilSalud, name: 'perfilsalud' },
+        { path: '/PerfilSalud/:id/edit', component: PerfilSaludForm, name: 'perfilsaludform' },
+        { path: '/PerfilSalud/create', component: PerfilSaludForm, name: 'perfilsaludformadd' },
 
     ] // short for `routes: routes`
   })
