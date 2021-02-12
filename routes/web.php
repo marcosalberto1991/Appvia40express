@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Encuesta_Salud');
 });
 Route::get('Encuesta_Salud_Formulario', function () {return view('Encuesta_Salud');});
 Route::get('Api/Encuesta_Salud/obtener_preguntas','Encuesta_SaludController@obtener_preguntas');

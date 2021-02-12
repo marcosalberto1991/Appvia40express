@@ -4,19 +4,21 @@
     <div class="row">
 
 
-        <div v-if="respuesta_enviada==true">
+        <div class="col-md-12"  v-if="respuesta_enviada==true">
         <b-alert show variant="success">
         <h1 class="alert-heading">Gracias Por llenar la encuesta de salud</h1>
         </b-alert>
         </div>
-        <div v-if="validacion_cedula==false" class='card col-md-offset-3 col-md-12 col-sm-12'>
+        <div class="col-md-3" >
+        </div>
+        <div v-if="validacion_cedula==false" class='card  col-md-offset-3 col-md-6 col-sm-12'>
 
-            <div class="col-md-3"></div>
-            <div class=" col-md-6">
+            <div class="">
 
-            <h1 class=''> Encuesta de Salud </h1>
+            <h1 class=''>  </h1>
             <b-form v-on:submit.prevent="buscar_cedula()">
-                <b-form-group id="input-group-1" label="Cedula:" label-for="input-1" description="Ingrese tu cedula">
+            <br>
+                <b-form-group id="input-group-1" label="" label-for="input-1" description="Ingrese su numero de identificación">
                     <b-form-input id="input-1" v-model="input_cedula" type="number" required>
                     </b-form-input>
                 </b-form-group>
@@ -64,7 +66,24 @@
     </div>
 
     <div class='row'>
+    <br>
+    <div class="card">
+    <h3 class="perfil"> Habeas Data
+</h3>
+<p class="perfil">
+De acuerdo con la Ley 1581 de 2012 y sus decretos reglamentarios, con la firma de este documento, autorizo expresamente a VÍA 40 EXPRESS S.A.S. para conservar los datos personales solicitados en el presente documento. La información será utilizada para  el cumplimiento de las obligaciones derivadas del Contrato de Concesión, entre las cuales, se encuentran la de remitir información a la entidad contratante, interventoría, autoridades de vigilancia y control, efectuar encuestas de satisfacción a través de medios telefónicos, para evaluar los servicios ofrecidos por VÍA 40 EXPRESS, entre otras; así como realizar las demás actividades de mercadeo, estadística y administración que requiera VÍA 40 EXPRESS S.A.S.
 
+ </p>
+ <p class="perfil">
+
+Entiendo que mis derechos como titular de la información serán aquellos establecidos en el artículo 8 de la Ley 1581 de 2012, y podrán ser ejercidos a través de los medios o canales dispuestos por VÍA 40 EXPRESS que pueden ser consultados en la página web www.via40express.com. Manifiesto que la presente autorización me fue solicitada y puesta de presente antes de entregar mis datos y que la suscribo de forma libre y voluntaria una vez leída en su totalidad.
+</p>
+<p class="text-center" >
+<img src="/img/logo.png" alt="">
+</p>
+
+    </div>
+    <br>
     </div>
 
 </div>
@@ -165,7 +184,7 @@ export default {
                 .then(response => {
                     if (response.data) {
                         this.validacion_cedula=false;
-                        this.respuesta_enviada = true
+                        this.respuesta_enviada = true;
                         consulta();
                         this.$toastr.success("Operacio exitosa", "Datos modificados");
                     } else {
@@ -184,13 +203,18 @@ export default {
             }
             axios.post(`${this.$url}/Api/Encuesta_Salud/buscar_cedula`, data)
                 .then(response => {
-                    if (response.data.id) {
+                    if (response.data.perfil) {
                         this.perfil_usuario = response.data;
                         this.validacion_cedula = true
                         this.$toastr.success("Operacio exitosa", "Datos modificados");
                     } else {
                         this.$toastr.warning("Favor vefirica bien la cedula", "Datos no encontrado");
                     }
+                    if(response.data.perfil==null ||response.data.perfil==''){
+                        this.$toastr.warning("Favor vefirica bien la cedula", "Datos no encontrado");
+
+                    }
+
                 }, (err) => {
                     console.log("Err", err);
                     this.$toastr.warning(err, "Error en el servidor");
@@ -204,12 +228,16 @@ export default {
             }
             axios.post(`${this.$url}/Api/Encuesta_Salud/buscar_cedula`, data)
                 .then(response => {
-                    if (response.data.id) {
-                        this.perfil_usuario = response.data;
+                    if (response.data.perfil.id) {
+                        this.perfil_usuario = response.data.perfil;
+                        this.lista_preguntas = response.data.preguntas;
                         this.validacion_cedula = true
                         this.$toastr.success("Operacio exitosa", "Datos modificados");
                     } else {
-                        this.$toastr.warning("Favor vefirica bien la cedula", "Datos no encontrado");
+                        this.$toastr.warning("Tu numero de documento no esta registrado en la base de datos de Via 40 Express", "");
+                    }
+                    if(response.data.perfil.length==0){
+                        this.$toastr.warning("Tu numero de documento no esta registrado en la base de datos de Via 40 Express", "");
                     }
                 }, (err) => {
                     console.log("Err", err);

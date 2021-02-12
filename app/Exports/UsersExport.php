@@ -1,43 +1,17 @@
 <?php
 
 namespace App\Exports;
+
 use App\Perfil_SaludModel;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 
-use App\User;
-use DB;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-
-class UsersExport implements FromCollection,WithHeadings
+class UsersExport implements FromView
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function headings(): array
+    public function view(): View
     {
-        return [
-            'Id',
-            'Nombre',
-            'Email',
-        ];
-    }
-    public function collection()
-    {
-        $data_excel=[];
-        $da=Perfil_SaludModel::all();
-
-        foreach ($da as $key => $va) {
-            array_push($data_excel, array(
-                'Cedula'=>$va['cedula'],
-                'nombre'=>$va['nombre'],
-                'nombre'=>$va['apellido'],
-                ));
-
-        }
-
-
-         //$users = DB::table('Users')->select('id','name', 'email')->get();
-         return $data_excel;
-
+        return view('exports.invoices', [
+            'invoices' => Invoice::all()
+        ]);
     }
 }

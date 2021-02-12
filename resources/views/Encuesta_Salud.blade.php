@@ -4,10 +4,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Encuesta de salud</title>
+
+        <link href="{{ asset('Architectui/assets/css/main.css') }}" rel="stylesheet">
+
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
+
 
         <!-- Styles -->
         <style>
@@ -21,7 +25,7 @@
             }
 
             .full-height {
-                height: 150px;
+                _height: 150px;
             }
 
             .flex-center {
@@ -70,17 +74,25 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ url('Encuesta_Salud') }}">Encuesta de salud </a>
+                    <!--
+                    <a href="{{ url('Encuesta_Salud') }}">Encuesta de salud </a>
+
                         <a href="{{ route('login') }}">Login</a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
                         @endif
+                        -->
                     @endauth
                 </div>
             @endif
 
 
+        </div>
+       <div class="container">
+
+        <div class="col-md-12 text-center">
+        <img src="img/logo_encuesta.png" class="img-fluid" >
         </div>
         <div id="app" class="container-fluid">
             <encuesta_salud-vue>
@@ -88,7 +100,7 @@
 
 
         </div>
-
+    </div>
         <script type="text/javascript" src="{{ asset('Architectui/assets/scripts/main.js') }}"></script>
         <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
     </body>
