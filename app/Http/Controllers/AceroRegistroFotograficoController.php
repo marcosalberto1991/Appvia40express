@@ -31,7 +31,7 @@ class AceroRegistroFotograficoController extends Controller
         } else {
 
             $AceroRegistroFotografico = new AceroRegistroFotograficoModel();
-            $file2 = $request->hasFile('nombre');// Input::file('registro_fotografico');
+            $file2 = $request->file('nombre');// Input::file('registro_fotografico');
             if (isset($file2)) {
                 $file_id=$request->acero_detalle_id;
                 $codigo='ser';
