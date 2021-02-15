@@ -1069,9 +1069,10 @@
         @endauth
       </script>
     <script type="text/javascript" src="{{ asset('Architectui/assets/scripts/main.js') }}"></script>
-    <script type="text/javascript" src="{{asset('js/appv15.js')}}"></script>
 
-      <script type="text/javascript" src="{{asset('/public/js/appv15.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+
+      <script type="text/javascript" src="{{asset('/public/js/app.js')}}"></script>
    <!--
             /Appvia40express/public/js/app.js
     -->
