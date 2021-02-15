@@ -25,6 +25,9 @@ Route::group([
     Route::group([
       'middleware' => 'auth:api'
     ], function() {
+        //Resource::get('logout', 'AuthController@logout');
+
+
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
     });
@@ -34,3 +37,9 @@ Route::group([
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resource('Api/Concreto','ConcretoController');
+Route::get('Api/Concreto/consulta','ConcretoController@consulta');
+
+
+

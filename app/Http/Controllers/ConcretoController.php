@@ -20,7 +20,7 @@ class ConcretoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     protected $rules =
@@ -37,6 +37,17 @@ class ConcretoController extends Controller
         //'estado_tramite_id' => 'min:1|max:255',
 
     ];
+    public function consulta(Request $request){
+        $data = ConcretoModel::all();
+        //where('estado_tramite_id',1)
+        //->where('users_id',Auth::user()->id)
+        //->with('users_id_pk','estado_tramite_id_pk','unidad_funcional_id_pk')
+        //->get();
+
+        return response()->json($data);
+
+    }
+
     public function index(Request $request)
     {
 
