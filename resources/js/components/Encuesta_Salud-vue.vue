@@ -196,6 +196,8 @@ export default {
 
                     } else {
                         this.$toastr.warning("Favor vefirica", "");
+
+
                     }
                 }, (err) => {
                     console.log("Err", err);
