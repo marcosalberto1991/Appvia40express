@@ -192,6 +192,8 @@ export default {
                         this.respuesta_enviada = true;
                         consulta();
                         this.$toastr.success("Operacio exitosa", "Datos modificados");
+                        window.scrollTo( 0, 0 );
+
                     } else {
                         this.$toastr.warning("Favor vefirica", "");
                     }
