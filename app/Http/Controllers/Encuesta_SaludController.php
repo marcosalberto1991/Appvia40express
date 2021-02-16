@@ -73,7 +73,6 @@ class Encuesta_SaludController extends Controller
 
 
             $Encuesta_Salud = new Encuesta_SaludModel();
-            $prueba_producto = $request->all();
             $Encuesta_Salud->nombre = $request->nombre;
 
             $Encuesta_Salud->save();
@@ -115,6 +114,7 @@ class Encuesta_SaludController extends Controller
     }
     public function buscar_cedula(Request $request)
     {
+        $encuesta='';
         $preguntas=null;
         $perfil = Perfil_SaludModel::where('cedula', $request->cedula)->first();
         if ($perfil) {
@@ -128,6 +128,7 @@ class Encuesta_SaludController extends Controller
                     $preguntas[$key]['respuesta'] = $respuesta;
                 }
             }
+            $encuesta =PerfilSaludEncuestaSaludModel::where('fecha',Carbon::now()->format('Y-m-d'))->where('perfil_salud_id',$perfil->id)->get()->count();
         }
         if($preguntas==null){
             $preguntas= Encuesta_SaludModel::where('is_titulo', 0)->where('is_activo', 1)->get();
@@ -135,9 +136,17 @@ class Encuesta_SaludController extends Controller
         if($perfil==null || $perfil==''){
             $perfil='0';
         }
+        $encuesta_dia=false;
+        if($encuesta!=0){
+            $perfil='1';
+            $encuesta_dia=true;
+        }
+
+
         $data = [
             "perfil" => $perfil,
             "preguntas" => $preguntas,
+            "encuesta_dia"=>$encuesta_dia
         ];
         return response()->json($data);
     }

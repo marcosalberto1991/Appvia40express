@@ -216,7 +216,7 @@ export default {
                             }
                             if (response.data.id) {
                                 this.validacion = "";
-                                this.$toastr.success("Operacio exitosa", "Datos modificados");
+                                this.$toastr.success("operación exitosa", "Datos modificados");
                                 //this.consulta(this.page);
                                 window.history.back();
 
@@ -238,7 +238,7 @@ export default {
                         }
                         if (response.data.id) {
                             this.validacion = "";
-                            this.$toastr.success("Operacio exitosa", "Datos modificados");
+                            this.$toastr.success("operación exitosa", "Datos modificados");
                             //this.consulta(this.page);
                             //this.limpiar_form();
                             //window.history.back();
@@ -270,9 +270,9 @@ export default {
             axios.get(`${this.$url}/Api/Acero/${data_id}`).then(response => {
                 const data = response.data;
                 if (!response.data) {
-                    this.$toastr.warning("Operacio no exitosa", "Regitro no obtenido");
+                    this.$toastr.warning("operación no exitosa", "Regitro no obtenido");
                 } else {
-                    this.$toastr.success("Operacio exitosa", "Regitro obtenido");
+                    this.$toastr.success("operación exitosa", "Regitro obtenido");
                     this.editar_dato = true;
                     this.input_Acero_id = data.id
                     this.input_id = data.id;

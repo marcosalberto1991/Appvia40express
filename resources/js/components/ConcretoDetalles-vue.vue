@@ -340,7 +340,7 @@ export default {
                         }
                         if (response.data.id) {
                             this.validacion = "";
-                            this.$toastr.success("Operacio exitosa", "Datos modificados");
+                            this.$toastr.success("operación exitosa", "Datos modificados");
                             //this.consulta();
                             window.history.back();
                         }
@@ -378,7 +378,7 @@ export default {
                         if (response.data) {
                             this.validacion = "";
                             this.consulta_datos = response.data
-                            this.$toastr.success("Operacio exitosa", "Datos modificados");
+                            this.$toastr.success("operación exitosa", "Datos modificados");
                             this.consulta();
                             t
 
@@ -417,7 +417,7 @@ export default {
                         }
                         if (response.data.id) {
                             this.validacion = "";
-                            this.$toastr.success("Operacio exitosa", "Datos modificados");
+                            this.$toastr.success("operación exitosa", "Datos modificados");
                             this.consulta();
                             //  window.history.back();
 
@@ -456,7 +456,7 @@ export default {
                         }
                         if (response.data.id) {
                             this.validacion = "";
-                            this.$toastr.success("Operacio exitosa", "Datos modificados");
+                            this.$toastr.success("operación exitosa", "Datos modificados");
                             this.consulta();
 
                         }
@@ -489,7 +489,7 @@ export default {
                     const data = response.data;
                     if (response.data.id) {
                         this.validacion = "";
-                        this.$toastr.info("Operacio exitosa", "Datos Eliminados");
+                        this.$toastr.info("operación exitosa", "Datos Eliminados");
                         this.consulta(this.page);
                         this.$refs["my-modal"].hide();
                     }
@@ -513,7 +513,7 @@ export default {
                         const data = response.data;
                         if (response.data.id) {
                             //this.validacion = "";
-                            this.$toastr.info("Operacio exitosa", "Datos Eliminados");
+                            this.$toastr.info("operación exitosa", "Datos Eliminados");
                             this.consulta();
                             //this.$refs["my-modal"].hide();
                         }

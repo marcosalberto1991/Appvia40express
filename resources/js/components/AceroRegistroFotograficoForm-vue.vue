@@ -16,7 +16,7 @@
         <div class="row">
           <div class="col-md-12 row">
             <input type="hidden" v-model="input_AceroRegistroFotografico_id">
-  
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">id<span class="tx-danger">*</span> </label>
@@ -25,7 +25,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">nombre<span class="tx-danger">*</span> </label>
@@ -34,7 +34,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
             <div class="form-group col-md-3 col-sm-12">
               <label for="exampleInputEmail1">acero_detalle_id<span class="tx-danger">*</span></label>
               <Select2 v-model="input_acero_detalle_id" :options="data_foraneo_acero_detalle_id" />
@@ -45,7 +45,7 @@
                                             <b>{{data}}</b>
                 </div>
                 </div>
-          
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">created_at<span class="tx-danger">*</span> </label>
@@ -54,7 +54,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">updated_at<span class="tx-danger">*</span> </label>
@@ -63,7 +63,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
             <div class="form-group col-md-12 col-sm-12 text-center">
               <button type="submit" class="btn btn-primary">Enviar</button>
             </div>
@@ -121,7 +121,7 @@ export default {
       input_acero_detalle_id:[],
       input_created_at:[],
       input_updated_at:[],
-      
+
       consulta_datos:[],
       errors: {},
       mensaje_formulario: "",
@@ -153,7 +153,7 @@ export default {
     data_foraneo(){
         axios.get(`/Api/Acero/create`).then(response => {
         this.data_foraneo_acero_detalle_id= response.data.acero_detalle_id
-        
+
         });
     },
     formulario(){
@@ -166,7 +166,7 @@ export default {
         acero_detalle_id :this.input_acero_detalle_id,
         created_at :this.input_created_at,
         updated_at :this.input_updated_at,
-        
+
         //name: this.input_name,
         //email: this.input_email
       };
@@ -182,7 +182,7 @@ export default {
             }
             if(response.data.id){
               this.validacion="";
-              this.$toastr.success("Operacio exitosa", "Datos modificados");
+              this.$toastr.success("operación exitosa", "Datos modificados");
               //this.consulta(this.page);
               window.history.back();
 
@@ -206,7 +206,7 @@ export default {
             }
             if(response.data.id){
               this.validacion="";
-              this.$toastr.success("Operacio exitosa", "Datos modificados");
+              this.$toastr.success("operación exitosa", "Datos modificados");
               //this.consulta(this.page);
               this.limpiar_form();
               window.history.back();
@@ -240,9 +240,9 @@ export default {
       axios.get(`/Api/AceroRegistroFotografico/${data_id}`).then(response => {
             const data = response.data;
             if(!response.data){
-              this.$toastr.warning("Operacio no exitosa", "Regitro no obtenido");
+              this.$toastr.warning("operación no exitosa", "Regitro no obtenido");
             }else{
-              this.$toastr.success("Operacio exitosa", "Regitro obtenido");
+              this.$toastr.success("operación exitosa", "Regitro obtenido");
               this.editar_dato = true;
               this.input_AceroRegistroFotografico_id = data.id
               this.input_id = data.id;
@@ -250,7 +250,7 @@ export default {
               this.input_acero_detalle_id = data.acero_detalle_id;
               this.input_created_at = data.created_at;
               this.input_updated_at = data.updated_at;
-              
+
 
             }
         });
@@ -261,7 +261,7 @@ export default {
       this.input_acero_detalle_id = '';
       this.input_created_at = '';
       this.input_updated_at = '';
-      
+
       this.validacion="";
 
     },

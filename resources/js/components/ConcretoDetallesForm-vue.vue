@@ -16,7 +16,7 @@
         <div class="row">
           <div class="col-md-12 row">
             <input type="hidden" v-model="input_ConcretoDetalles_id">
-  
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">id<span class="tx-danger">*</span> </label>
@@ -25,7 +25,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">titulo<span class="tx-danger">*</span> </label>
@@ -34,7 +34,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">si_aplica<span class="tx-danger">*</span> </label>
@@ -43,7 +43,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">si_cumple<span class="tx-danger">*</span> </label>
@@ -52,7 +52,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">fecha<span class="tx-danger">*</span> </label>
@@ -61,7 +61,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">observaciones<span class="tx-danger">*</span> </label>
@@ -70,7 +70,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">registro_fotografico<span class="tx-danger">*</span> </label>
@@ -79,7 +79,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
             <div class="form-group col-md-3 col-sm-12">
               <label for="exampleInputEmail1">concreto_id<span class="tx-danger">*</span></label>
               <Select2 v-model="input_concreto_id" :options="data_foraneo_concreto_id" />
@@ -92,7 +92,7 @@
                                             <b>{{data}}</b>
                 </div>
                 </div>
-          
+
             <div class="form-group col-md-12 col-sm-12 text-center">
               <button type="submit" class="btn btn-primary">Enviar</button>
             </div>
@@ -104,7 +104,7 @@
   </div>
 </div>
 </div>
-</div>
+
 
 
 
@@ -125,13 +125,13 @@ import Vue from "vue";
 export default {
   components: {
 
-    
+
  //   Select2
   },
   data() {
 
     return {
-      
+
       validacion: [],
       editar_dato: false,
       data: [],
@@ -152,7 +152,7 @@ export default {
       input_observaciones:[],
       input_registro_fotografico:[],
       input_concreto_id:[],
-      
+
       consulta_datos:[],
       errors: {},
       mensaje_formulario: "",
@@ -191,7 +191,7 @@ export default {
         observaciones :this.input_observaciones,
         registro_fotografico :this.input_registro_fotografico,
         concreto_id :this.input_concreto_id,
-        
+
         //name: this.input_name,
         //email: this.input_email
       };
@@ -207,7 +207,7 @@ export default {
             }
             if(response.data.id){
               this.validacion="";
-              this.$toastr.success("Operacio exitosa", "Datos modificados");
+              this.$toastr.success("operación exitosa", "Datos modificados");
               //this.consulta(this.page);
               window.history.back();
 
@@ -231,7 +231,7 @@ export default {
             }
             if(response.data.id){
               this.validacion="";
-              this.$toastr.success("Operacio exitosa", "Datos modificados");
+              this.$toastr.success("operación exitosa", "Datos modificados");
               //this.consulta(this.page);
               this.limpiar_form();
               window.history.back();
@@ -265,9 +265,9 @@ export default {
       axios.get(`/ConcretoDetalles/${data_id}`).then(response => {
             const data = response.data;
             if(!response.data){
-              this.$toastr.warning("Operacio no exitosa", "Regitro no obtenido");
+              this.$toastr.warning("operación no exitosa", "Regitro no obtenido");
             }else{
-              this.$toastr.success("Operacio exitosa", "Regitro obtenido");
+              this.$toastr.success("operación exitosa", "Regitro obtenido");
               this.editar_dato = true;
               this.input_ConcretoDetalles_id = data.id
               this.input_id = data.id;
@@ -278,7 +278,7 @@ export default {
               this.input_observaciones = data.observaciones;
               this.input_registro_fotografico = data.registro_fotografico;
               this.input_concreto_id = data.concreto_id;
-              
+
 
             }
         });
@@ -292,7 +292,7 @@ export default {
       this.input_observaciones = '';
       this.input_registro_fotografico = '';
       this.input_concreto_id = '';
-      
+
       this.validacion="";
 
     },

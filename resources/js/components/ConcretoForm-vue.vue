@@ -255,7 +255,7 @@ export default {
                             }
                             if (response.data.id) {
                                 this.validacion = "";
-                                this.$toastr.success("Operacio exitosa", "Datos modificados");
+                                this.$toastr.success("operación exitosa", "Datos modificados");
                                 //this.consulta(this.page);
                                 if (is_volve == 1) {
                                     window.history.back();
@@ -279,7 +279,7 @@ export default {
                         }
                         if (response.data.id) {
                             this.validacion = "";
-                            this.$toastr.success("Operacio exitosa", "Datos modificados");
+                            this.$toastr.success("operación exitosa", "Datos modificados");
 
                             //this.consulta(this.page);
                             //this.limpiar_form();
@@ -319,9 +319,9 @@ export default {
             axios.get(`${this.$url}/Api/Concreto/${data_id}`).then(response => {
                 const data = response.data;
                 if (!response.data) {
-                    this.$toastr.warning("Operacio no exitosa", "Regitro no obtenido");
+                    this.$toastr.warning("operación no exitosa", "Regitro no obtenido");
                 } else {
-                    this.$toastr.success("Operacio exitosa", "Regitro obtenido");
+                    this.$toastr.success("operación exitosa", "Regitro obtenido");
                     this.editar_dato = true;
                     this.input_Concreto_id = data.id
                     this.input_id = data.id;

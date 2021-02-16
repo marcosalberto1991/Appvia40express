@@ -16,7 +16,7 @@
         <div class="row">
           <div class="col-md-12 row">
             <input type="hidden" v-model="input_Encuesta_Salud_id">
-  
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">id<span class="tx-danger">*</span> </label>
@@ -25,7 +25,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">nombre<span class="tx-danger">*</span> </label>
@@ -34,7 +34,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
             <div class="form-group col-md-12 col-sm-12 text-center">
               <button type="submit" class="btn btn-primary">Enviar</button>
             </div>
@@ -86,10 +86,10 @@ export default {
 
 
       input_Encuesta_Salud_id:[],
-      
+
       input_id:[],
       input_nombre:[],
-      
+
       consulta_datos:[],
       errors: {},
       mensaje_formulario: "",
@@ -120,7 +120,7 @@ export default {
 
     data_foraneo(){
         axios.get(`/Api/Acero/create`).then(response => {
-        
+
         });
     },
     formulario(){
@@ -130,7 +130,7 @@ export default {
         id: this.input_Encuesta_Salud_id,
         id :this.input_id,
         nombre :this.input_nombre,
-        
+
         //name: this.input_name,
         //email: this.input_email
       };
@@ -146,7 +146,7 @@ export default {
             }
             if(response.data.id){
               this.validacion="";
-              this.$toastr.success("Operacio exitosa", "Datos modificados");
+              this.$toastr.success("operación exitosa", "Datos modificados");
               //this.consulta(this.page);
               window.history.back();
 
@@ -170,7 +170,7 @@ export default {
             }
             if(response.data.id){
               this.validacion="";
-              this.$toastr.success("Operacio exitosa", "Datos modificados");
+              this.$toastr.success("operación exitosa", "Datos modificados");
               //this.consulta(this.page);
               this.limpiar_form();
               window.history.back();
@@ -204,14 +204,14 @@ export default {
       axios.get(`/Api/Encuesta_Salud/${data_id}`).then(response => {
             const data = response.data;
             if(!response.data){
-              this.$toastr.warning("Operacio no exitosa", "Regitro no obtenido");
+              this.$toastr.warning("operación no exitosa", "Regitro no obtenido");
             }else{
-              this.$toastr.success("Operacio exitosa", "Regitro obtenido");
+              this.$toastr.success("operación exitosa", "Regitro obtenido");
               this.editar_dato = true;
               this.input_Encuesta_Salud_id = data.id
               this.input_id = data.id;
               this.input_nombre = data.nombre;
-              
+
 
             }
         });
@@ -219,7 +219,7 @@ export default {
     limpiar_form(){
       this.input_id = '';
       this.input_nombre = '';
-      
+
       this.validacion="";
 
     },

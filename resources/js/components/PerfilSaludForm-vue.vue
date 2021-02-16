@@ -18,7 +18,7 @@
             <input type="hidden" v-model="input_PerfilSalud_id">
 
 
-       
+
 
             <div class="form-group col-md-4 col-sm-12">
               <label for="exampleInputEmail1">tipo_documento_id<span class="tx-danger">*</span></label>
@@ -223,7 +223,7 @@ export default {
             }
             if(response.data.id){
               this.validacion="";
-              this.$toastr.success("Operacio exitosa", "Datos modificados");
+              this.$toastr.success("operación exitosa", "Datos modificados");
               //this.consulta(this.page);
               window.history.back();
 
@@ -247,7 +247,7 @@ export default {
             }
             if(response.data.id){
               this.validacion="";
-              this.$toastr.success("Operacio exitosa", "Datos modificados");
+              this.$toastr.success("operación exitosa", "Datos modificados");
               //this.consulta(this.page);
               this.limpiar_form();
               window.history.back();
@@ -281,9 +281,9 @@ export default {
       axios.get(`${this.$url}/Api/PerfilSalud/${data_id}`).then(response => {
             const data = response.data;
             if(!response.data){
-              this.$toastr.warning("Operacio no exitosa", "Regitro no obtenido");
+              this.$toastr.warning("operación no exitosa", "Regitro no obtenido");
             }else{
-              this.$toastr.success("Operacio exitosa", "Regitro obtenido");
+              this.$toastr.success("operación exitosa", "Regitro obtenido");
               this.editar_dato = true;
               this.input_PerfilSalud_id = data.id
               this.input_id = data.id;

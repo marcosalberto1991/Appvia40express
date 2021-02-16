@@ -191,13 +191,10 @@ export default {
                         this.validacion_cedula=false;
                         this.respuesta_enviada = true;
                         consulta();
-                        this.$toastr.success("Operacio exitosa", "Datos modificados");
-                        window.scrollTo( 0, 0 );
-
+                        this.$toastr.success("operación exitosa", "Datos modificados");
+                        scroll(0, 0);
                     } else {
                         this.$toastr.warning("Favor vefirica", "");
-
-
                     }
                 }, (err) => {
                     console.log("Err", err);
@@ -215,7 +212,7 @@ export default {
                     if (response.data.perfil) {
                         this.perfil_usuario = response.data;
                         this.validacion_cedula = true
-                        this.$toastr.success("Operacio exitosa", "Datos modificados");
+                        this.$toastr.success("operación exitosa", "Datos modificados");
                     } else {
                         this.$toastr.warning("Favor vefirica bien la cedula", "Datos no encontrado");
                     }
@@ -241,13 +238,19 @@ export default {
                         this.perfil_usuario = response.data.perfil;
                         this.lista_preguntas = response.data.preguntas;
                         this.validacion_cedula = true
-                        this.$toastr.success("Operacio exitosa", "Datos modificados");
+                        this.$toastr.success("operación exitosa", "Datos modificados");
                     } else {
+                        if(response.data.encuesta_dia==false){
+                        this.$toastr.warning("Tu numero de documento no esta registrado en la base de datos de Via 40 Express", "");
+                        }
+                    }
+                    if(response.data.perfil.length==0 && response.data.encuesta_dia==false){
                         this.$toastr.warning("Tu numero de documento no esta registrado en la base de datos de Via 40 Express", "");
                     }
-                    if(response.data.perfil.length==0){
-                        this.$toastr.warning("Tu numero de documento no esta registrado en la base de datos de Via 40 Express", "");
+                    if(response.data.encuesta_dia){
+                        this.$toastr.info("Tu encuesta ya fue llenada en día de hoy ", "");
                     }
+
                 }, (err) => {
                     console.log("Err", err);
                     this.$toastr.warning(err, "Error en el servidor");

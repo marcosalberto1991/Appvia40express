@@ -16,7 +16,7 @@
         <div class="row">
           <div class="col-md-12 row">
             <input type="hidden" v-model="input_UnidadFuncional_id">
-  
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">id<span class="tx-danger">*</span> </label>
@@ -25,7 +25,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">nombre<span class="tx-danger">*</span> </label>
@@ -34,7 +34,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">class<span class="tx-danger">*</span> </label>
@@ -43,7 +43,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
             <div class="form-group col-md-12 col-sm-12 text-center">
               <button type="submit" class="btn btn-primary">Enviar</button>
             </div>
@@ -76,13 +76,13 @@ import Vue from "vue";
 export default {
   components: {
 
-    
+
  //   Select2
   },
   data() {
 
     return {
-      
+
       validacion: [],
       editar_dato: false,
       data: [],
@@ -94,11 +94,11 @@ export default {
 
 
       input_UnidadFuncional_id:[],
-      
+
       input_id:[],
       input_nombre:[],
       input_class:[],
-      
+
       consulta_datos:[],
       errors: {},
       mensaje_formulario: "",
@@ -132,7 +132,7 @@ export default {
         id :this.input_id,
         nombre :this.input_nombre,
         class :this.input_class,
-        
+
         //name: this.input_name,
         //email: this.input_email
       };
@@ -148,7 +148,7 @@ export default {
             }
             if(response.data.id){
               this.validacion="";
-              this.$toastr.success("Operacio exitosa", "Datos modificados");
+              this.$toastr.success("operación exitosa", "Datos modificados");
               //this.consulta(this.page);
               window.history.back();
 
@@ -172,7 +172,7 @@ export default {
             }
             if(response.data.id){
               this.validacion="";
-              this.$toastr.success("Operacio exitosa", "Datos modificados");
+              this.$toastr.success("operación exitosa", "Datos modificados");
               //this.consulta(this.page);
               this.limpiar_form();
               window.history.back();
@@ -206,15 +206,15 @@ export default {
       axios.get(`/UnidadFuncional/${data_id}`).then(response => {
             const data = response.data;
             if(!response.data){
-              this.$toastr.warning("Operacio no exitosa", "Regitro no obtenido");
+              this.$toastr.warning("operación no exitosa", "Regitro no obtenido");
             }else{
-              this.$toastr.success("Operacio exitosa", "Regitro obtenido");
+              this.$toastr.success("operación exitosa", "Regitro obtenido");
               this.editar_dato = true;
               this.input_UnidadFuncional_id = data.id
               this.input_id = data.id;
               this.input_nombre = data.nombre;
               this.input_class = data.class;
-              
+
 
             }
         });
@@ -223,7 +223,7 @@ export default {
       this.input_id = '';
       this.input_nombre = '';
       this.input_class = '';
-      
+
       this.validacion="";
 
     },

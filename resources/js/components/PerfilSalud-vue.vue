@@ -210,7 +210,7 @@ export default {
         const data = response.data;
         if(response.data.id){
           this.validacion="";
-          this.$toastr.info("Operacio exitosa", "Datos Eliminados");
+          this.$toastr.info("operación exitosa", "Datos Eliminados");
           this.consulta(this.page);
           this.$refs["my-modal"].hide()
 

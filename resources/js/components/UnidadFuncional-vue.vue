@@ -65,11 +65,9 @@
 
 
         </template>
-        <template v-slot:head(Acciones)='scope'>
-          <div class='text-nowrap'>Acciones</div>
-        </template>
+
       </b-table>
-            
+
 </div>
 </div>
 </div>
@@ -106,7 +104,7 @@ import Vue from "vue";
 
 export default {
   components: {
-    
+
   //  Select2
   },
   data() {
@@ -124,12 +122,12 @@ export default {
       { key: 'id', sortable:true},
       { key: 'nombre', sortable:true},
       { key: 'class', sortable:true},
-      
+
       ],
 
 
       //input_UnidadFuncional_id:[],
-      
+
 
       consulta_datos:[],
       errors: {},
@@ -172,7 +170,7 @@ export default {
         const data = response.data;
         if(response.data.id){
           this.validacion="";
-          this.$toastr.info("Operacio exitosa", "Datos Eliminados");
+          this.$toastr.info("operación exitosa", "Datos Eliminados");
           this.consulta(this.page);
           this.$refs["my-modal"].hide()
 

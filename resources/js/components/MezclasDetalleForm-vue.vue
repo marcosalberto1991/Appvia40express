@@ -16,7 +16,7 @@
         <div class="row">
           <div class="col-md-12 row">
             <input type="hidden" v-model="input_MezclasDetalle_id">
-  
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">id<span class="tx-danger">*</span> </label>
@@ -25,7 +25,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">recino_no<span class="tx-danger">*</span> </label>
@@ -34,7 +34,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">hora_llegada<span class="tx-danger">*</span> </label>
@@ -43,7 +43,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">tem_llegada<span class="tx-danger">*</span> </label>
@@ -52,7 +52,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">cantidad_ton<span class="tx-danger">*</span> </label>
@@ -61,7 +61,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">hora_extendida<span class="tx-danger">*</span> </label>
@@ -70,7 +70,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">temp_extendida<span class="tx-danger">*</span> </label>
@@ -79,7 +79,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">abcisas_inicio<span class="tx-danger">*</span> </label>
@@ -88,7 +88,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">abcisas_fin<span class="tx-danger">*</span> </label>
@@ -97,7 +97,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">abcisas_espersor<span class="tx-danger">*</span> </label>
@@ -106,7 +106,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">abscisas_carril<span class="tx-danger">*</span> </label>
@@ -115,7 +115,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">temp_compactacion<span class="tx-danger">*</span> </label>
@@ -124,7 +124,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">temp_apertu_trafico<span class="tx-danger">*</span> </label>
@@ -133,7 +133,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">observaciones<span class="tx-danger">*</span> </label>
@@ -142,7 +142,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">registro_fotografico<span class="tx-danger">*</span> </label>
@@ -151,7 +151,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">users_id1<span class="tx-danger">*</span> </label>
@@ -160,7 +160,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">mezclas_id<span class="tx-danger">*</span> </label>
@@ -169,7 +169,7 @@
                     <b>{{data}}</b>
                 </div>
             </div>
-                
+
             <div class="form-group col-md-12 col-sm-12 text-center">
               <button type="submit" class="btn btn-primary">Enviar</button>
             </div>
@@ -221,7 +221,7 @@ export default {
 
 
       input_MezclasDetalle_id:[],
-      
+
       input_id:[],
       input_recino_no:[],
       input_hora_llegada:[],
@@ -239,7 +239,7 @@ export default {
       input_registro_fotografico:[],
       input_users_id1:[],
       input_mezclas_id:[],
-      
+
       consulta_datos:[],
       errors: {},
       mensaje_formulario: "",
@@ -270,7 +270,7 @@ export default {
 
     data_foraneo(){
         axios.get(`/Api/Acero/create`).then(response => {
-        
+
         });
     },
     formulario(){
@@ -295,7 +295,7 @@ export default {
         registro_fotografico :this.input_registro_fotografico,
         users_id1 :this.input_users_id1,
         mezclas_id :this.input_mezclas_id,
-        
+
         //name: this.input_name,
         //email: this.input_email
       };
@@ -311,7 +311,7 @@ export default {
             }
             if(response.data.id){
               this.validacion="";
-              this.$toastr.success("Operacio exitosa", "Datos modificados");
+              this.$toastr.success("operación exitosa", "Datos modificados");
               //this.consulta(this.page);
               window.history.back();
 
@@ -335,7 +335,7 @@ export default {
             }
             if(response.data.id){
               this.validacion="";
-              this.$toastr.success("Operacio exitosa", "Datos modificados");
+              this.$toastr.success("operación exitosa", "Datos modificados");
               //this.consulta(this.page);
               this.limpiar_form();
               window.history.back();
@@ -369,9 +369,9 @@ export default {
       axios.get(`/Api/MezclasDetalle/${data_id}`).then(response => {
             const data = response.data;
             if(!response.data){
-              this.$toastr.warning("Operacio no exitosa", "Regitro no obtenido");
+              this.$toastr.warning("operación no exitosa", "Regitro no obtenido");
             }else{
-              this.$toastr.success("Operacio exitosa", "Regitro obtenido");
+              this.$toastr.success("operación exitosa", "Regitro obtenido");
               this.editar_dato = true;
               this.input_MezclasDetalle_id = data.id
               this.input_id = data.id;
@@ -391,7 +391,7 @@ export default {
               this.input_registro_fotografico = data.registro_fotografico;
               this.input_users_id1 = data.users_id1;
               this.input_mezclas_id = data.mezclas_id;
-              
+
 
             }
         });
@@ -414,7 +414,7 @@ export default {
       this.input_registro_fotografico = '';
       this.input_users_id1 = '';
       this.input_mezclas_id = '';
-      
+
       this.validacion="";
 
     },

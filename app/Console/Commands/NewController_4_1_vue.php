@@ -636,7 +636,7 @@ export default {
             }
             if(response.data.id){
               this.validacion="";
-              this.$toastr.success("Operacio exitosa", "Datos modificados");
+              this.$toastr.success("operaciónn exitosa", "Datos modificados");
               //this.consulta(this.page);
               window.history.back();
 
@@ -660,7 +660,7 @@ export default {
             }
             if(response.data.id){
               this.validacion="";
-              this.$toastr.success("Operacio exitosa", "Datos modificados");
+              this.$toastr.success("operaciónn exitosa", "Datos modificados");
               //this.consulta(this.page);
               this.limpiar_form();
               window.history.back();
@@ -694,9 +694,9 @@ export default {
       axios.get(`/Api/'.$nombrecoNtrol.'/'.$peso.'{data_id}`).then(response => {
             const data = response.data;
             if(!response.data){
-              this.$toastr.warning("Operacio no exitosa", "Regitro no obtenido");
+              this.$toastr.warning("operaciónn no exitosa", "Regitro no obtenido");
             }else{
-              this.$toastr.success("Operacio exitosa", "Regitro obtenido");
+              this.$toastr.success("operaciónn exitosa", "Regitro obtenido");
               this.editar_dato = true;
               this.input_'.$nombrecoNtrol.'_id = data.id
               '.$input_sutmib.'
@@ -800,7 +800,7 @@ export default {
         const data = response.data;
         if(response.data.id){
           this.validacion="";
-          this.$toastr.info("Operacio exitosa", "Datos Eliminados");
+          this.$toastr.info("operaciónn exitosa", "Datos Eliminados");
           this.consulta(this.page);
           this.$refs["my-modal"].hide()
 

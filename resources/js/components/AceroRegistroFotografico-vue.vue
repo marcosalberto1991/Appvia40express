@@ -95,7 +95,7 @@
           <div class='text-nowrap'>Acciones</div>
         </template>
       </b-table>
-            
+
 </div>
 </div>
 </div>
@@ -152,7 +152,7 @@ export default {
       { key: 'acero_detalle_id', sortable:true,class:'one-lineas'},
       { key: 'created_at', sortable:true,class:'one-lineas'},
       { key: 'updated_at', sortable:true,class:'one-lineas'},
-      
+
       ],
 
 
@@ -200,7 +200,7 @@ export default {
         const data = response.data;
         if(response.data.id){
           this.validacion="";
-          this.$toastr.info("Operacio exitosa", "Datos Eliminados");
+          this.$toastr.info("operación exitosa", "Datos Eliminados");
           this.consulta(this.page);
           this.$refs["my-modal"].hide()
 
