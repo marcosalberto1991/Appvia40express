@@ -9,8 +9,8 @@
                     <h2>Formulario de Concreto </h2>
                     <div class="col-md-12 row">
                         <div class="form-group col-md-12 col-sm-12" style="margin-bottom: 6px;">
-                            <button type="submit" v-if="$can('Concreto editar')" @click="formulario(0)" class="btn btn-primary">Guardar </button>
-                            <button type="submit" v-if="$can('Concreto editar')" @click="formulario(1)" class="btn btn-primary">Guardar y volve </button>
+                            <button  v-if="$can('Concreto editar')" @click="formulario(0)" class="btn btn-primary">Guardar </button>
+                            <button  v-if="$can('Concreto editar')" @click="formulario(1)" class="btn btn-primary">Guardar y volve </button>
                             <a class="btn btn-warning" @click="cancelar_registro()">Cancelar</a>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-12 col-sm-12 text-center">
-                                        <button type="submit" v-if="$can('Concreto editar')" @click="formulario(0)" class="btn btn-primary">Guardar </button>
+                                        <button type="submit" v-if="$can('Concreto editar')"  class="btn btn-primary">Guardar </button>
 
                                     </div>
 

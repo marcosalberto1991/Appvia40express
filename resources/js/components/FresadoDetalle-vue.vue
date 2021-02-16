@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <div class="row" v-if="show_reporte_final==false">
-      <div class="col-lg-12">
+      <div class="col-lg-12" id="my_link">
         <div class="main-card mb-12 card">
           <div class="card-header">
             ACERO DE REFUERZO

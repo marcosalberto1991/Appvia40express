@@ -8,7 +8,7 @@
                     <h2>Formulario</h2>
                     <div class="col-md-12 row">
                         <div class="form-group col-md-12 col-sm-12" style="margin-bottom: 6px">
-                            <button type="submit" v-if="$can('Fresado editar')"  @click="formulario()" class="btn btn-primary">
+                            <button  v-if="$can('Fresado editar')"  @click="formulario()" class="btn btn-primary">
                                 Guardar
                             </button>
                             <a class="btn btn-warning" @click="cancelar_registro()">Cancelar</a>
@@ -155,7 +155,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-12 col-sm-12 text-center">
-                                        <button type="submit" @click="formulario(0)" v-if="$can('Fresado editar')" class="btn btn-primary">Guardar </button>
+                                        <button @click="formulario(0)" v-if="$can('Fresado editar')" class="btn btn-primary">Guardar </button>
 
                                     </div>
                                 </div>

@@ -73,7 +73,7 @@
                     </span>
                 </div>
             </b-button>
-            <a v-if="$can('Concreto PDF')"  v-bind:href="''+url+''+url+'/Concreto/'+ data.item.id+'/pdfConcreto'" target='_blank' class='btn-sm btn btn-success mr-1' size='sm'  style='margin-bottom: 5px; margin: 5px;'>PDF </a>
+            <a v-if="$can('Concreto PDF')"  v-bind:href="''+url+'/'+url+'/Concreto/'+ data.item.id+'/pdfConcreto'" target='_blank' class='btn-sm btn btn-success mr-1' size='sm'  style='margin-bottom: 5px; margin: 5px;'>PDF </a>
           </b-button-group>
         </template>
       </b-table>
