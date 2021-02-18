@@ -201,6 +201,7 @@ export default {
                     this.$toastr.warning(err, "Error en el servidor");
                     this.$toastr.warning(err.message, "Error en el servidor");
                 });
+            scroll(0, 0);
 
         },
         formulario() {
@@ -248,7 +249,7 @@ export default {
                         this.$toastr.warning("Tu numero de documento no esta registrado en la base de datos de Via 40 Express", "");
                     }
                     if(response.data.encuesta_dia){
-                        this.$toastr.info("Tu encuesta ya fue llenada en día de hoy ", "");
+                        this.$toastr.info("Tu encuesta ya fue diligenciada el día de hoy. ", "¡Si presentas síntomas después de haber diligenciado la encuesta comunícate con el área SST!");
                     }
 
                 }, (err) => {

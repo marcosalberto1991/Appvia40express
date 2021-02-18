@@ -22,6 +22,10 @@ Route::group(['middleware' => ['api']], function () {
     Route::resource('ConcretoMo','ConcretoMoController');
 
 
+    Route::get('ConcretoDetallesMo/consulta_data/{concreto_id}','ConcretoDetallesMoController@consulta_data');//->middleware('auth:api');
+    Route::resource('ConcretoDetallesMo','ConcretoDetallesMoController');
+
+
 
 
 });
