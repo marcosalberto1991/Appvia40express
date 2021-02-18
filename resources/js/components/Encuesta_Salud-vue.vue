@@ -6,7 +6,7 @@
 
         <div class="col-md-12"  v-if="respuesta_enviada==true">
         <b-alert show variant="success">
-        <h1 class="alert-heading">Gracias Por llenar la encuesta de salud</h1>
+        <h1 class="alert-heading">Gracias por diligenciar la encuesta de salud</h1>
         </b-alert>
         </div>
         <div class="col-md-3" >
