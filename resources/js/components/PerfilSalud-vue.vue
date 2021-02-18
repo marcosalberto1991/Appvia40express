@@ -25,9 +25,11 @@
         </a>
 
       </router-link>
-       <a :href="this.$url+'/Encuesta_Salud/Exporta_Excel'" target="_blank" class='btn-sm btn btn-success mr-1' size='sm' style='margin-bottom: 5px; margin: 5px;'>
+        <!--
+        <a :href="this.$url+'/Encuesta_Salud/Exporta_Excel'" target="_blank" class='btn-sm btn btn-success mr-1' size='sm' style='margin-bottom: 5px; margin: 5px;'>
               Descargar en Excel
         </a>
+        -->
         <a :href="this.$url+'/Encuesta_Salud/Exporta_Excel_lista'" target="_blank" class='btn-sm btn btn-success mr-1' size='sm' style='margin-bottom: 5px; margin: 5px;'>
               Descargar en Excel por lista
         </a>
