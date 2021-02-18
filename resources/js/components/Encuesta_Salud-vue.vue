@@ -249,7 +249,7 @@ export default {
                         this.$toastr.warning("Tu numero de documento no esta registrado en la base de datos de Via 40 Express", "");
                     }
                     if(response.data.encuesta_dia){
-                        this.$toastr.info("Tu encuesta ya fue diligenciada el día de hoy. ", "¡Si presentas síntomas después de haber diligenciado la encuesta comunícate con el área SST!");
+                        this.$toastr.info( "¡Si presentas síntomas después de haber diligenciado la encuesta comunícate con el área SST!","Tu encuesta ya fue diligenciada el día de hoy. ");
                     }
 
                 }, (err) => {
