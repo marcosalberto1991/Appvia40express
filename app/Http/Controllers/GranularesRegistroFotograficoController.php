@@ -75,8 +75,13 @@ class GranularesRegistroFotograficoController extends Controller
                 $nombre_original=$file2->getClientOriginalName();
                 $nombres = $granulares_id.'-'.$granulares_detalle_id.$nombre_original. '.' . $file2->getClientOriginalExtension();
                 \Storage::disk('Concreto')->put($nombres, \File::get($file2));
+
+             //   $base64=base64_encode($request->file('foto'));
+
             }
             $GranularesRegistroFotografico->fotografia = $nombres;
+            //$GranularesRegistroFotografico->file = $base64;
+
             $GranularesRegistroFotografico->granulares_detalle_id = $request->granulares_detalle_id;
 
             $GranularesRegistroFotografico->save();

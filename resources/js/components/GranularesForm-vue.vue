@@ -8,7 +8,7 @@
                     <h2> Formulario de granulares </h2>
                     <div class="col-md-12 row">
                         <div class="form-group col-md-12 col-sm-12" style="margin-bottom: 6px;">
-                            <button type="submit" @click="formulario()" class="btn btn-primary">Guardar </button>
+                            <button  @click="formulario()" class="btn btn-primary">Guardar </button>
                             <button v-if="$can('Concreto editar')" @click="formulario(1)" class="btn btn-primary">Guardar y volve </button>
 
                             <a class="btn btn-warning" @click="cancelar_registro()">Cancelar</a>
@@ -31,6 +31,7 @@
 
                                     <div class="form-group col-md-3 col-sm-12">
                                         <label for="exampleInputEmail1">Plano Informe<span class="tx-danger">*</span> </label>
+
                                         <input type="text" v-model="input_plano_informe" placeholder="plano_informe" class="form-control" :class="{ 'is-invalid':this.validacion.plano_informe, 'is-valid':!this.validacion.plano_informe && is_enviar  }">
                                         <div class="invalid-feedback" style="display:block" v-for="data in validacion.plano_informe" v-bind:key="data.plano_informe">
                                             <b>{{data}}</b>
@@ -47,7 +48,10 @@
 
                                     <div class="form-group col-md-3 col-sm-12">
                                         <label for="exampleInputEmail1">Calzada<span class="tx-danger">*</span> </label>
+                                        <b-form-select v-model="input_calzada" :options="opcion_calzada"></b-form-select>
+                                        <!--
                                         <input type="text" v-model="input_calzada" placeholder="calzada" class="form-control" :class="{ 'is-invalid':this.validacion.calzada, 'is-valid':!this.validacion.calzada && is_enviar  }">
+                                        -->
                                         <div class="invalid-feedback" style="display:block" v-for="data in validacion.calzada" v-bind:key="data.calzada">
                                             <b>{{data}}</b>
                                         </div>
@@ -110,7 +114,7 @@
                                             <b>{{data}}</b>
                                         </div>
                                     </div>
-
+                                    <!--
                                     <div class="form-group col-md-3 col-sm-12">
                                         <label for="exampleInputEmail1">Latitud<span class="tx-danger">*</span> </label>
                                         <input type="text" v-model="input_latitud" placeholder="latitud" class="form-control" :class="{ 'is-invalid':this.validacion.latitud, 'is-valid':!this.validacion.latitud && is_enviar  }">
@@ -123,6 +127,28 @@
                                         <label for="exampleInputEmail1">Longitud<span class="tx-danger">*</span> </label>
                                         <input type="text" v-model="input_longitud" placeholder="longitud" class="form-control" :class="{ 'is-invalid':this.validacion.longitud, 'is-valid':!this.validacion.longitud && is_enviar  }">
                                         <div class="invalid-feedback" style="display:block" v-for="data in validacion.longitud" v-bind:key="data.longitud">
+                                            <b>{{data}}</b>
+                                        </div>
+                                    </div>
+                                    -->
+                                      <div class="form-group col-md-3 col-sm-12">
+                                        <label for="exampleInputEmail1">Latitud<span class="tx-danger">*</span> </label>
+
+                                        <b-input-group>
+                                            <b-input-group-prepend>
+                                                <a @click="actualiza_gps()" v-if="$can('Concreto editar')" class="btn btn-info" variant="outline-info">Actualiza GPS</a>
+                                            </b-input-group-prepend>
+                                            <input type="text" v-model="input_latitud" placeholder="resistencia_concreto" class="form-control" :class="{ 'is-invalid':this.validacion.version, 'is-valid':!this.validacion.version && is_enviar  }">
+                                        </b-input-group>
+                                        <div class="invalid-feedback" style="display:block" v-for="data in validacion.resistencia_concreto" v-bind:key="data.resistencia_concreto">
+                                            <b>{{data}}</b>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-3 col-sm-12">
+                                        <label for="exampleInputEmail1">Longitud<span class="tx-danger">*</span> </label>
+                                        <input type="text" v-model="input_longitud" placeholder="Longitud" class="form-control" :class="{ 'is-invalid':this.validacion.longitud, 'is-valid':!this.validacion.longitud && is_enviar  }">
+                                        <div class="invalid-feedback" style="display:block" v-for="data in validacion.resistencia_concreto" v-bind:key="data.resistencia_concreto">
                                             <b>{{data}}</b>
                                         </div>
                                     </div>
@@ -165,7 +191,10 @@ export default {
             input_consulta_data: "",
             stickyHeader: true,
             noCollapse: false,
-
+            opcion_calzada:[
+                {value:'Derecha (G-B)',text:'Derecha (G-B)'},
+                {value:'Izquierda (B-G)',text:'Izquierda (B-G)'}
+            ],
             input_Granulares_id: [],
 
             input_id: [],
@@ -173,6 +202,7 @@ export default {
             input_plano_informe: [],
             input_version: [],
             input_calzada: [],
+
             input_actividad_pavimento: [],
             input_actividad_terraplen: [],
             input_actividad_relleno: [],
@@ -199,6 +229,8 @@ export default {
             this.show_registro(this.$route.params.id);
         } else {
             this.anadir_registro()
+            this.buscar_coodenadas()
+
         }
     },
     methods: {
@@ -352,6 +384,33 @@ export default {
 
             this.validacion = "";
 
+        },
+        actualiza_gps() {
+            if (confirm("Desea Actualizar las coodenadas")) {
+                this.buscar_coodenadas()
+            }
+        },
+        buscar_coodenadas() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    ubicacion => {
+                        let coordenadas = ubicacion.coords;
+                        this.input_latitud = coordenadas.latitude
+                        this.input_longitud = coordenadas.longitude
+                    },
+                    () => {
+                        this.$toastr.warning("operaciónn no exitosa", "No pudimos obtener tu ubicación. Intenta más tarde.");
+
+                        //alert("No pude obtener tu ubicación. Intenta más tarde.")
+                    }, {
+                        enableHighAccuracy: true,
+                    }
+                );
+            } else{
+                        this.$toastr.warning("operaciónn no exitosa", "Lo siento, tu navegador no tiene soporte para obtener tu ubicación.");
+
+                //alert("Lo siento, tu navegador no tiene soporte para obtener tu ubicación")
+            }
         },
 
     }

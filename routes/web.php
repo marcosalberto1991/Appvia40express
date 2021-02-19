@@ -122,7 +122,10 @@ Route::resource('Api/Granulares','GranularesController');
 Route::get('Api/GranularesDetalle/{id}/consulta_data', 'GranularesDetalleController@consulta_data');
 Route::get('Api/GranularesDetalle/{id}/nueva_capa', 'GranularesDetalleController@nueva_capa');
 
+Route::post('Api/Granulares/reporte_final', 'GranularesController@reporte_final');
+
 Route::post('Api/GranularesDetalles_update/{id}', 'GranularesDetalleController@update');
+Route::post('Api/TipoCapa/{id}', 'TipoCapaController@update');
 
 Route::get("Granulares/create", function(){return View::make("home");})->middleware('auth');
 Route::get("Granulares", function(){return View::make("home");})->middleware('auth');

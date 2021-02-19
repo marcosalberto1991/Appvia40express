@@ -864,8 +864,8 @@
       </script>
     <script type="text/javascript" src="{{ asset('Architectui/assets/scripts/main.js') }}"></script>
 
-    <script type="text/javascript" src="{{asset('/public/js/app.js?v=10.2.34')}}"></script>
-    <script type="text/javascript" src="{{asset('js/app.js?v=13.5.37')}}"></script>
+    <script type="text/javascript" src="{{asset('/public/js/app.js?v=14.2.34')}}"></script>
+    <script type="text/javascript" src="{{asset('js/app.js?v=14.5.37')}}"></script>
 
    <!--
             /Appvia40express/public/js/app.js

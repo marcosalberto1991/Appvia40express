@@ -12,37 +12,7 @@
                     </div>
                 </div>
                 <div class="table-responsive table-responsive-sm">
-                    <!--
-                    <table class="table  table-borderless table-striped table-hover" >
-                        <thead>
-                            <tr>
-                                <th class="text-left">Capa</th>
-                                <th>Item</th>
-                                <th>Aplica</th>
-                                <th>Abscisado Inicial</th>
-                                <th>Abscisado Final</th>
-                                <th>Supervisado</th>
-                                <th>fecha</th>
-                                <th>Observaciones</th>
-                                <th>Registro Fotografico</th>
-                            </tr>
-                        </thead>
-                        <tbody v-for="(inf,num) in consulta_datos" v-bind:key="inf.id">
 
-                            <tr v-for="(data,ns) in inf.granulares_detalle_all" v-bind:key="data.id" class="">
-                                <td>{{ (consulta_datos[num].capa_n) }}</td>
-                                <td v-html="consulta_datos[num].granulares_detalle_all[ns].item"></td>
-                                <td>{{ consulta_datos[num].granulares_detalle_all[ns].si_aplica }} </td>
-                                <td>{{ consulta_datos[num].granulares_detalle_all[ns].abcisado_inicial }} </td>
-                                <td>{{ consulta_datos[num].granulares_detalle_all[ns].abcisado_final }} </td>
-                                <td>{{ consulta_datos[num].granulares_detalle_all[ns].si_supervisado }} </td>
-                                <td>{{ consulta_datos[num].granulares_detalle_all[ns].fecha }} </td>
-                                <td>{{ consulta_datos[num].granulares_detalle_all[ns].observaciones }} </td>
-                                <td>Registro fotografico </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    -->
 
                     <table class="table table-borderless table-striped table-hover">
                         <thead>
@@ -59,11 +29,15 @@
                             </tr>
                         </thead>
                         <tbody class="" v-for="(inf,num) in consulta_datos" v-bind:key="inf.id">
-                            <tr class="capa_id">
-                                <td>{{ (consulta_datos[num].capa_n) }}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                            <tr  class="capa_id">
+                                <td>{{ (consulta_datos[num].nombre) }}</td>
+                                <td>
+                                    <input v-on:change="formulario_capa(consulta_datos[num])" v-if="consulta_datos[num].si_subrasante==0" type="text" class="form-control"  v-model="consulta_datos[num].capa_n">
+                                </td>
+                                <td v-if="consulta_datos[num].si_subrasante==0" >Material </td>
+                                <td>
+                                <b-form-select v-if="consulta_datos[num].si_subrasante==0"  v-model="consulta_datos[num].material" :options="opcion_material"></b-form-select>
+                                </td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -163,7 +137,24 @@
                             </tr>
                         </thead>
                         <tbody v-for="(inf,num) in consulta_datos" v-bind:key="inf.id">
+                            <tr  class="capa_id">
+                                <td><b>{{ (consulta_datos[num].nombre) }}</b></td>
+                                <td >
+                                <b>
+                                {{ consulta_datos[num].capa_n }}
+                                </b>
+                                </td>
+                                <td v-if="consulta_datos[num].si_subrasante==0" >Material </td>
+                                <td colspan=2>
+                                    <b>
+                                    {{ consulta_datos[num].material }}
+                                    </b>
+                                </td>
 
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
                             <tr v-for="(data,ns) in inf.granulares_detalle_all" v-bind:key="data.id" class="">
                                 <td v-html="consulta_datos[num].granulares_detalle_all[ns].item"></td>
                                 <td>{{ consulta_datos[num].granulares_detalle_all[ns].si_aplica }} </td>
@@ -229,6 +220,11 @@ export default {
             input_fecha: "",
             input_ConcretoDetalles_id: 0,
             data_id_subir: 0,
+            opcion_material:[
+                {text:'Relleno',value: 'Relleno'},
+                {text:'SBG - Subbase Granular',value: 'SBG - Subbase Granular'},
+                {text:'BG - Base Granular',value: 'BG - Base Granular'}
+                ],
 
             options: [{
                     text: 'SI',
@@ -242,45 +238,7 @@ export default {
                 },
             ],
 
-            fields: [{
-                    key: "Acciones",
-                    stickyColumn: true,
-                    label: "Acciones",
-                    sortable: false,
-                },
-                {
-                    key: "id",
-                    sortable: true
-                },
-                {
-                    key: "titulo",
-                    sortable: true
-                },
-                {
-                    key: "si_aplica",
-                    sortable: true
-                },
-                {
-                    key: "si_cumple",
-                    sortable: true
-                },
-                {
-                    key: "fecha",
-                    sortable: true
-                },
-                {
-                    key: "observaciones",
-                    sortable: true
-                },
-                {
-                    key: "registro_fotografico",
-                    sortable: true
-                },
-                {
-                    key: "concreto_id",
-                    sortable: true
-                },
-            ],
+
 
             //input_ConcretoDetalles_id:[],
             data_foraneo_concreto_id: [],
@@ -326,9 +284,33 @@ export default {
                     this.consulta();
                 });
         },
+        formulario_capa(data_capa){
+            const data = {
+                material: data_capa.material,
+                capa_n: data_capa.capa_n
+            }
+            axios.post(`${this.$url}/Api/TipoCapa/${data_capa.id}`,data)
+                .then(
+                    (response) => {
+                        //const datos = response.data;
+                        this.$toastr.success("operación exitosa", "Datos modificados");
+
+                    },
+                    (err) => {
+                        console.log("Err", err);
+                        this.$toastr.warning(err, "Error en el servidor");
+                        this.$toastr.warning(err.message, "Error en el servidor");
+                    }
+                );
+
+
+
+
+
+        },
         enviar_reporte_final() {
             const data = {
-                id: this.input_Concreto_id
+                id: this.input_Granulares_id
             }
 
             axios.post(`${this.$url}/Api/Granulares/reporte_final`, data)

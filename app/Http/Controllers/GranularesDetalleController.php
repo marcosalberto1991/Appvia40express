@@ -95,7 +95,8 @@ class GranularesDetalleController extends Controller
             return response()->json($GranularesDetalle);
         }
     }
-    public function nueva_capa($granulares_id){
+    public function nueva_capa($granulares_id)
+    {
 
         $capa = '[
             {
@@ -119,32 +120,30 @@ class GranularesDetalleController extends Controller
             }
          ]';
 
-         $tipocapa = new TipoCapaModel();
-            $tipocapa->nombre = 'Capa N°';
-            $tipocapa->material = ' ';
-            $tipocapa->capa_n = ' ';
-            $tipocapa->granulares_id = $granulares_id;
-            $tipocapa->si_subrasante=0;
-            $tipocapa->save();
-            $tipocapa_id = $tipocapa->id;
+        $tipocapa = new TipoCapaModel();
+        $tipocapa->nombre = 'Capa N°';
+        $tipocapa->material = ' ';
+        $tipocapa->capa_n = ' ';
+        $tipocapa->granulares_id = $granulares_id;
+        $tipocapa->si_subrasante = 0;
+        $tipocapa->save();
+        $tipocapa_id = $tipocapa->id;
 
-            $resultado = json_decode($capa, true);
+        $resultado = json_decode($capa, true);
 
-            foreach ($resultado as $key => $value) {
+        foreach ($resultado as $key => $value) {
 
-                $GranularesDetalles = new GranularesDetalleModel();
-                $GranularesDetalles->item = $value['item'];
+            $GranularesDetalles = new GranularesDetalleModel();
+            $GranularesDetalles->item = $value['item'];
 
-                $GranularesDetalles->tipo_capa_id = $tipocapa_id;
-               // $GranularesDetalles->titulo = $value['titulo'];
-                $GranularesDetalles->granulares_id = $granulares_id;
-                $GranularesDetalles->si_aplica = '3';
-                //$GranularesDetalles->si_cumple = '3';
-                $GranularesDetalles->fecha = Carbon::now()->format('Y-m-d');
-                $GranularesDetalles->save();
-            }
-
-
+            $GranularesDetalles->tipo_capa_id = $tipocapa_id;
+            // $GranularesDetalles->titulo = $value['titulo'];
+            $GranularesDetalles->granulares_id = $granulares_id;
+            $GranularesDetalles->si_aplica = '3';
+            //$GranularesDetalles->si_cumple = '3';
+            $GranularesDetalles->fecha = Carbon::now()->format('Y-m-d');
+            $GranularesDetalles->save();
+        }
     }
     public function consulta_data($granulares_id)
     {
@@ -166,7 +165,7 @@ class GranularesDetalleController extends Controller
 
 
             $tipocapa = new TipoCapaModel();
-            $tipocapa->nombre = ' ';
+            $tipocapa->nombre = 'SUBRASANTE ';
             $tipocapa->material = ' ';
             $tipocapa->capa_n = ' ';
             $tipocapa->si_subrasante = 1;
@@ -190,9 +189,9 @@ class GranularesDetalleController extends Controller
         }
 
         //$data = GranularesDetalleModel::where('granulares_id', $granulares_id)
-            //->with('concreto_registro_fotografico_all')
-            //->get();
-            $tipocapa = TipoCapaModel::where('granulares_id', $granulares_id)->with('granulares_detalle_all.registro_fotografico_all')->get();
+        //->with('concreto_registro_fotografico_all')
+        //->get();
+        $tipocapa = TipoCapaModel::where('granulares_id', $granulares_id)->with('granulares_detalle_all.registro_fotografico_all')->get();
 
         return response()->json($tipocapa);
     }
@@ -210,24 +209,37 @@ class GranularesDetalleController extends Controller
     public function update(Request $request, $id)
     {
 
-            $GranularesDetalle = GranularesDetalleModel::findOrFail($id);
+        $GranularesDetalle = GranularesDetalleModel::findOrFail($id);
 
-            //$GranularesDetalle->item = $request->item;
-            //$GranularesDetalle->tipo_capa_id = $request->tipo_capa_id;
-            $GranularesDetalle->si_aplica = $request->si_aplica;
+        //$GranularesDetalle->item = $request->item;
+        //$GranularesDetalle->tipo_capa_id = $request->tipo_capa_id;
+        $GranularesDetalle->si_aplica = $request->si_aplica;
+        $GranularesDetalle->abcisado_inicial = $request->abcisado_inicial;
+        $GranularesDetalle->abcisado_final = $request->abcisado_final;
+        $GranularesDetalle->si_supervisado = $request->si_supervisado;
+        $GranularesDetalle->fecha = $request->fecha;
+
+
+        if ($request->observaciones == null) {
+            $GranularesDetalle->observaciones = ' ';
+        } else {
+            $GranularesDetalle->observaciones = $request->observaciones;
+        }
+        if ($request->abcisado_inicial == null) {
+            $GranularesDetalle->abcisado_inicial = ' ';
+        } else {
             $GranularesDetalle->abcisado_inicial = $request->abcisado_inicial;
+        }
+        if ($request->abcisado_final == null) {
+            $GranularesDetalle->abcisado_final = ' ';
+        } else {
             $GranularesDetalle->abcisado_final = $request->abcisado_final;
-            $GranularesDetalle->si_supervisado = $request->si_supervisado;
-            $GranularesDetalle->fecha = $request->fecha;
-            if($request->observaciones!=''){
-                $GranularesDetalle->observaciones = $request->observaciones;
-            }
-            //$GranularesDetalle->granulares_id = $request->granulares_id;
+        }
+        //$GranularesDetalle->granulares_id = $request->granulares_id;
 
 
-            $GranularesDetalle->save();
-            return response()->json($GranularesDetalle);
-
+        $GranularesDetalle->save();
+        return response()->json($GranularesDetalle);
     }
 
     public function destroy($id)

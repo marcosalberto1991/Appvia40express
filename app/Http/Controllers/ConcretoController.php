@@ -177,7 +177,6 @@ class ConcretoController extends Controller
     public function reporte_final(Request $request)
     {
         $Concreto = ConcretoModel::findOrFail($request->id);
-        //$Concreto->delete();
         $Concreto->estado_tramite_id=2;
         $Concreto->save();
         return response()->json($Concreto);

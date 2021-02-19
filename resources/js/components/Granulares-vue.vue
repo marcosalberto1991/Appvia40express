@@ -146,7 +146,7 @@ export default {
       fields: [
       { key: "Acciones",stickyColumn: true, label:"Acciones" ,sortable: false },
       //{ key: 'id', sortable:true,class:'one-lineas'},
-      { key: 'users_id', sortable:true,class:'one-lineas'},
+      { key: 'users_id.name', sortable:true,label:'Usuario',class:'one-lineas'},
       { key: 'proyecto', sortable:true,class:'one-lineas'},
       { key: 'plano_informe', sortable:true,class:'one-lineas'},
       { key: 'version', sortable:true,class:'one-lineas'},
@@ -155,7 +155,7 @@ export default {
       //{ key: 'actividad_terraplen', sortable:true,class:'one-lineas'},
       //{ key: 'actividad_relleno', sortable:true,class:'one-lineas'},
       { key: 'especifique_estrutura', sortable:true,class:'one-lineas'},
-      { key: 'unidad_funcional_id', sortable:true,class:'one-lineas'},
+      { key: 'unidad_funcional_id.nombre',label:'Un.Fun', sortable:true,class:'one-lineas'},
       { key: 'abcisado_de', sortable:true,class:'one-lineas'},
       { key: 'abcisado_a', sortable:true,class:'one-lineas'},
       //{ key: 'latitud', sortable:true,class:'one-lineas'},

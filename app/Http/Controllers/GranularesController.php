@@ -44,7 +44,22 @@ class GranularesController extends Controller
     {
         $consulta_data = $request->get("consulta_data");
         if ($consulta_data == "") {
-            $data = GranularesModel::paginate(20);
+            if(Auth::user()->hasRole('Operado')){
+                $data = GranularesModel::where('estado_tramite_id',1)->where('users_id',Auth::user()->id)->with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
+            }
+            if(Auth::user()->hasRole('Tecnico')){
+                $data = GranularesModel::with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
+            }
+            if(Auth::user()->hasRole('Gerente')){
+                $data = GranularesModel::with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
+            }
+            if(Auth::user()->hasRole('Administrador')){
+                $data = GranularesModel::with('users_id','estado_tramite_id','unidad_funcional_id')->paginate(20);
+            }
+
+
+
+            //$data = GranularesModel::paginate(20);
         } else {
             $data = GranularesModel::where("id", 1)
                 ->orwhere("id", "like", "%" . $consulta_data . "%")
@@ -156,5 +171,12 @@ class GranularesController extends Controller
         $Granulares = GranularesModel::findOrFail($id);
         $Granulares->delete();
         return response()->json($Granulares);
+    }
+    public function reporte_final(Request $request)
+    {
+        $Concreto = GranularesModel::findOrFail($request->id);
+        $Concreto->estado_tramite_id=2;
+        $Concreto->save();
+        return response()->json($Concreto);
     }
 }

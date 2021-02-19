@@ -374,11 +374,15 @@ export default {
                     },
                     () => {
                         alert("No pude obtener tu ubicación. Intenta más tarde.")
+                        this.$toastr.warning("operaciónn no exitosa", "No pudimos obtener tu ubicación. Intenta más tarde.");
+
                     }, {
                         enableHighAccuracy: true,
                     }
                 );
-            } else alert("Lo siento, tu navegador no tiene soporte para obtener tu ubicación")
+            } else{
+                this.$toastr.warning("operaciónn no exitosa", "Lo siento, tu navegador no tiene soporte para obtener tu ubicación.");
+            } //alert("Lo siento, tu navegador no tiene soporte para obtener tu ubicación")
         },
 
     }
