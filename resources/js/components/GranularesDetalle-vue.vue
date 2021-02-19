@@ -80,7 +80,9 @@
                                    <td class="minimo" v-on:change="subir_imagen(consulta_datos[num].granulares_detalle_all[ns])">
                                     <b-form-file type="file" ref="files" accept=".jpg, .png, .gif" v-model="consulta_datos[num].granulares_detalle_all[ns].foto" size="sm"></b-form-file>
                                     <span v-for="foto in  consulta_datos[num].granulares_detalle_all[ns].registro_fotografico_all"  v-bind:key="foto.id">
-                                        <img height="60px" width="60px" :src="$url+'/Appvia40express/Concreto_file/'+foto.fotografia" alt="">
+                                        <div v-b-modal.moda-foto @click='show_imagen(foto.fotografia)' >
+                                            <img height="60px" width="60px" :src="$url+'/Appvia40express/Concreto_file/'+foto.fotografia" alt="">
+                                        </div>
                                      </span>
                                 </td>
                             </tr>
@@ -191,6 +193,16 @@
             <b-button class="mt-3 btn btn-danger" @click="eliminar_registro_delete()">Eliminar</b-button>
         </div>
     </b-modal>
+    <b-modal id="moda-show-foto" ref="my-modal-foto" size="xl" hide-footer>
+        <template slot="modal-title">Registro fotografico </template>
+        <div class="d-block text-center">
+        <img height="100%" width="100%" :src="$url+'/Appvia40express/Concreto_file/'+show_foto" alt="">
+
+
+
+
+        </div>
+    </b-modal>
 
 </div>
 </template>
@@ -206,6 +218,7 @@ export default {
     data() {
         return {
             validacion: [],
+            show_foto: '',
             editar_dato: false,
             show_reporte_final: false,
             data: [],
@@ -474,6 +487,7 @@ export default {
             this.$refs["my-modal_show"].show();
         },
         data_foraneo() {},
+        /*
         eliminar_registro_delete() {
             var data_id = this.input_ConcretoDetalles_id;
             axios
@@ -488,6 +502,7 @@ export default {
                     }
                 });
         },
+        */
 
         $can(permissionName) {
             //return true;
@@ -497,11 +512,16 @@ export default {
             this.show_reporte_final = bool
             window.scrollTo(0, 500);
         },
+        show_imagen(foto){
+            this.show_foto=foto;
+            this.$refs['moda-show-foto'].show()
+
+        },
         imagenes_eliminar(id) {
             if (confirm("¿desea eliminar la imagen?")) {
 
                 axios
-                    .delete(`${this.$url}/Api/ConcretoRegistroFotografico/${id}`)
+                    .delete(`${this.$url}/Api/GranularesRegistroFotografico/${id}`)
                     .then((response) => {
                         const data = response.data;
                         if (response.data.id) {

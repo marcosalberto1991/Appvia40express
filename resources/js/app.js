@@ -108,8 +108,8 @@ var url='/via40online';
 //
 //      TEST
 //
-Vue.prototype.$url = ''
-var url='';
+//Vue.prototype.$url = ''
+//var url='';
 
 const router = new VueRouter({
     mode:'history',
