@@ -241,7 +241,7 @@ export default {
             };
 
             if (this.editar_dato == true) {
-                axios.put(`${this.$url}Api/Granulares/${this.input_Granulares_id}`, data)
+                axios.put(`${this.$url}/Api/Granulares/${this.input_Granulares_id}`, data)
                     .then(response => {
 
                             const datos = response.data;
