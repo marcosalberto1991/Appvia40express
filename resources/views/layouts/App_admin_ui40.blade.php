@@ -589,6 +589,12 @@
                                     Fresado
                                 </router-link>
                                 @endcan
+                                @can('menu granulares')
+                                <router-link :to="{ name: 'granulares'}">
+                                    <i class="metismenu-icon pe-7s-rocket"></i>
+                                    Granulares
+                                </router-link>
+                                @endcan
                                 @can('menu auditoria')
                                 <router-link :to="{ name: 'Auditoria'}">
                                     <i class="metismenu-icon pe-7s-rocket"></i>

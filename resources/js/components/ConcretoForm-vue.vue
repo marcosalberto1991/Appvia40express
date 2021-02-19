@@ -281,9 +281,7 @@ export default {
                             this.validacion = "";
                             this.$toastr.success("operación exitosa", "Datos modificados");
 
-                            //this.consulta(this.page);
-                            //this.limpiar_form();
-                            //window.history.back();
+
                             this.input_Concreto_id = response.data.id
 
                             this.show_registro_proceso(response.data)

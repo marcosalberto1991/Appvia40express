@@ -796,7 +796,7 @@ export default {
     },
     eliminar_registro_delete(){
       var data_id=this.'.$input_id.';
-      axios.delete('.$tilde_grave.'/Api/'.$nombrecoNtrol.'/'.$peso.'{this.'.$input_id.'}'.$tilde_grave.').then(response => {
+      axios.delete('.$tilde_grave.'${this.$url}/Api/'.$nombrecoNtrol.'/'.$peso.'{this.'.$input_id.'}'.$tilde_grave.').then(response => {
         const data = response.data;
         if(response.data.id){
           this.validacion="";

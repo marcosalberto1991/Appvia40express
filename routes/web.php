@@ -84,9 +84,9 @@ Route::get('Appvia40express/Concreto_file/{file}', function ($file) {
 //
 Route::get('Api/Acero/consulta', 'AceroController@consulta');
 Route::resource('Api/Acero','AceroController');
-Route::get("Acero/create", function(){return View::make("home");});
-Route::get("Acero", function(){return View::make("home");});
-Route::get("Acero/{id}/edit", function(){return View::make("home");});
+Route::get("Acero/create", function(){return View::make("home");})->middleware('auth');
+Route::get("Acero", function(){return View::make("home");})->middleware('auth');
+Route::get("Acero/{id}/edit", function(){return View::make("home");})->middleware('auth');
 Route::get('Api/AceroDetalle/{id}/consulta_data', 'AceroDetalleController@consulta_data');
 Route::post('Api/AceroDetalles_update/{id}', 'AceroDetalleController@update');
 Route::resource('Api/AceroRegistroFotografico','AceroRegistroFotograficoController');
@@ -95,9 +95,9 @@ Route::post('Api/Acero/reporte_final', 'AceroController@reporte_final');
 //Fresado
 Route::get('Api/Fresado/consulta', 'FresadoController@consulta');
 Route::resource('Api/Fresado','FresadoController');
-Route::get("Fresado/create", function(){return View::make("home");});
-Route::get("Fresado", function(){return View::make("home");});
-Route::get("Fresado/{id}/edit", function(){return View::make("home");});
+Route::get("Fresado/create", function(){return View::make("home");})->middleware('auth');
+Route::get("Fresado", function(){return View::make("home");})->middleware('auth');
+Route::get("Fresado/{id}/edit", function(){return View::make("home");})->middleware('auth');
 Route::get('Api/FresadoDetalle/consulta', 'FresadoDetalleController@consulta');
 Route::resource('Api/FresadoDetalle','FresadoDetalleController');
 Route::get('Api/FresadoDetalle/{id}/consulta_data', 'FresadoDetalleController@consulta_data');
@@ -110,11 +110,25 @@ Route::post('Api/Fresado/reporte_final', 'FresadoController@reporte_final');
 //mezclas
 //Route::get('Api/Mezclas/consulta', 'MezclasController@consulta');
 Route::resource('Api/Mezclas','MezclasController');
-Route::get("Mezclas/create", function(){return View::make("home");});
-Route::get("Mezclas", function(){return View::make("home");});
-Route::get("Mezclas/{id}/edit", function(){return View::make("home");});
+Route::get("Mezclas/create", function(){return View::make("home");})->middleware('auth');
+Route::get("Mezclas", function(){return View::make("home");})->middleware('auth');
+Route::get("Mezclas/{id}/edit", function(){return View::make("home");})->middleware('auth');
 Route::resource('Api/MezclasDetalle','MezclasDetalleController');
 Route::get('Api/MezclasDetalle/{id}/consulta_data', 'MezclasDetalleController@consulta_data');
+
+
+Route::resource('Api/Granulares','GranularesController');
+
+Route::get('Api/GranularesDetalle/{id}/consulta_data', 'GranularesDetalleController@consulta_data');
+Route::get('Api/GranularesDetalle/{id}/nueva_capa', 'GranularesDetalleController@nueva_capa');
+
+Route::post('Api/GranularesDetalles_update/{id}', 'GranularesDetalleController@update');
+
+Route::get("Granulares/create", function(){return View::make("home");})->middleware('auth');
+Route::get("Granulares", function(){return View::make("home");})->middleware('auth');
+Route::get("Granulares/{id}/edit", function(){return View::make("home");})->middleware('auth');
+Route::post('Api/GranularesRegistroFotografico', 'GranularesRegistroFotograficoController@store');
+
 
 
 Route::resource('Api/PerfilSalud','PerfilSaludController');
@@ -133,7 +147,7 @@ Route::get('/permission/{permissionName}', 'PermissionController@check');
 
 Route::post('Api/Auditoria_SAM/consulta', 'Auditoria_SAMController@consulta');
 Route::resource('Api/Auditoria_SAM','Auditoria_SAMController');
-Route::get("Auditoria", function(){return View::make("home");});
+Route::get("Auditoria", function(){return View::make("home");})->middleware('auth');
 
 
 Route::get('/clear', function() {

@@ -59,7 +59,7 @@ Vue.component('concretodetalles-vue', require('./components/ConcretoDetalles-vue
 Vue.component('acerodetalle-vue', require('./components/acerodetalle-vue.vue').default);
 Vue.component('fresadodetalle-vue', require('./components/FresadoDetalle-vue.vue').default);
 Vue.component('mezclasdetalle-vue', require('./components/MezclasDetalle-vue.vue').default);
-
+Vue.component('granularesdetalle-vue', require('./components/GranularesDetalle-vue.vue').default);
 import home from './components/ExampleComponent.vue';
 
 import UnidadFuncional from './components/UnidadFuncional-vue.vue';
@@ -89,6 +89,12 @@ import MezclasDetalleForm from './components/MezclasDetalleForm-vue.vue';
 import PerfilSalud from './components/PerfilSalud-vue.vue';
 import PerfilSaludForm from './components/PerfilSaludForm-vue.vue';
 
+import Granulares from './components/Granulares-vue.vue';
+import GranularesForm from './components/GranularesForm-vue.vue';
+
+
+import GranularesDetalle from './components/GranularesDetalle-vue.vue';
+import GranularesDetalleForm from './components/GranularesDetalleForm-vue.vue';
 
 //import FresadoDetalle from './components/FresadoDetalle-vue.vue';
 //import FresadoDetalleForm from './components/FresadoDetalleForm-vue.vue';
@@ -141,9 +147,23 @@ const router = new VueRouter({
         { path: url+'/Mezclas', component: Mezclas, name: 'mezclas' },
         { path: url+'/Mezclas/:id/edit', component: MezclasForm, name: 'mezclasform' },
         { path: url+'/Mezclas/create', component: MezclasForm, name: 'mezclasformadd' },
+
+
+
+
+
+
         //{ path: '/MezclasDetalle', component: MezclasDetalle, name: 'mezclasdetalle' },
         { path: url+'/MezclasDetalle/:id/edit', component: MezclasDetalleForm, name: 'mezclasdetalleform' },
         { path: url+'/MezclasDetalle/create', component: MezclasDetalleForm, name: 'mezclasdetalleformadd' },
+        //granulares
+        { path: url+'/Granulares', component: Granulares, name: 'granulares' },
+        { path: url+'/Granulares/:id/edit', component: GranularesForm, name: 'granularesform' },
+        { path: url+'/Granulares/create', component: GranularesForm, name: 'granularesformadd' },
+        //
+        { path: '/GranularesDetalle', component: GranularesDetalle, name: 'granularesdetalle' },
+        { path: '/GranularesDetalle/:id/edit', component: GranularesDetalleForm, name: 'granularesdetalleform' },
+        { path: '/GranularesDetalle/create', component: GranularesDetalleForm, name: 'granularesdetalleformadd' },
 
         //perfil salud
         { path: url+'/PerfilSalud', component: PerfilSalud, name: 'perfilsalud' },
