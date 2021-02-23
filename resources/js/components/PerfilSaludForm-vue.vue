@@ -61,7 +61,10 @@
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">sexo<span class="tx-danger">*</span> </label>
-                <input type="text" v-model="input_sexo" placeholder="sexo" class="form-control"  :class="{ 'is-invalid':this.validacion.sexo, 'is-valid':!this.validacion.sexo && is_enviar  }" >
+                    <b-form-select v-model="input_sexo" :options="options" :class="{ 'is-invalid':this.validacion.sexo, 'is-valid':!this.validacion.sexo && is_enviar  }" ></b-form-select>
+                    <!--
+                        <input type="text" v-model="input_sexo" placeholder="sexo" class="form-control"  :class="{ 'is-invalid':this.validacion.sexo, 'is-valid':!this.validacion.sexo && is_enviar  }" >
+                    -->
                 <div class="invalid-feedback" style ="display:block" v-for="data in validacion.sexo" v-bind:key="data.sexo" >
                     <b>{{data}}</b>
                 </div>
@@ -167,7 +170,9 @@ export default {
       stickyHeader: true,
       noCollapse: false,
 
-
+      options: [
+          { value: 'M', text: 'Femenino' },
+          { value: 'H', text: 'Masculino' }],
 
       input_PerfilSalud_id:[],
       data_foraneo_tipo_documento_id:[],

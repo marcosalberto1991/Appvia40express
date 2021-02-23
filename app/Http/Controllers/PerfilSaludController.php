@@ -34,8 +34,7 @@ class PerfilSaludController extends Controller {
     if($consulta_data==""){
       $data=PerfilSaludModel::paginate(20);
     }else{
-      $data=PerfilSaludModel::where("id",1)
-      ->orwhere("id","like","%". $consulta_data."%")
+      $data=PerfilSaludModel::where("id","like","%". $consulta_data."%")
         ->orwhere("tipo_documento_id","like","%". $consulta_data."%")
         ->orwhere("cedula","like","%". $consulta_data."%")
         ->orwhere("nombre","like","%". $consulta_data."%")
