@@ -1,7 +1,7 @@
 <table>
     <thead>
     <tr>
-            <td>ID</td>
+            <td>Cedula</td>
             <td>Nombre</td>
             <td>Apellido</td>
             <td>Sexo</td>
@@ -22,7 +22,8 @@
 
         @foreach($data as $perfil)
             <tr>
-                <td>{{ $perfil['perfil_salud_id'] }}</td>
+
+                <td>{{ $perfil['perfil_salud']['cedula'] }}</td>
                 <td>{{ $perfil['perfil_salud']['nombre'] }}</td>
                 <td>{{ $perfil['perfil_salud']['apellido'] }}</td>
                 <td>{{ $perfil['perfil_salud']['sexo'] }}</td>
