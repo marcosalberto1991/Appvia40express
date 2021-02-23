@@ -15,13 +15,12 @@ class PerfilSaludController extends Controller {
 
 	protected $rules =
 	[
-    'id' => 'required|min:1|max:255',
           'tipo_documento_id' => 'required|min:1|max:255',
           'cedula' => 'required|min:2|max:255',
 	   			'nombre' => 'required|min:2|max:255',
 	   			'apellido' => 'required|min:2|max:255',
-	   			'sexo' => 'required|min:2|max:255',
-	   			'area' => 'required|min:2|max:255',
+	   			'sexo' => 'required|min:1|max:255',
+	   			'area' => 'required|min:1|max:255',
 	   			'cargo' => 'required|min:2|max:255',
 	   			'fecha_nacimiento' => 'required|min:2|max:255',
 
