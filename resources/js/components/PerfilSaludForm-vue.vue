@@ -88,11 +88,33 @@
 
             <div class="form-group col-md-4 col-sm-12">
                 <label for="exampleInputEmail1">fecha_nacimiento<span class="tx-danger">*</span> </label>
+<!--
                     <b-form-datepicker id="example-datepicker" v-model="input_fecha_nacimiento" class="mb-2" :class="{ 'is-invalid':this.validacion.fecha_nacimiento, 'is-valid':!this.validacion.fecha_nacimiento && is_enviar  }" ></b-form-datepicker>
+-->
+                <b-input-group class="mb-3">
+                    <b-form-input
+                    :class="{ 'is-invalid':this.validacion.fecha_nacimiento, 'is-valid':!this.validacion.fecha_nacimiento && is_enviar  }"
+                        id="example-input"
+                        v-model="input_fecha_nacimiento"
+                        type="text"
+                        placeholder="YYYY-MM-DD"
+                        autocomplete="off"
+                    ></b-form-input>
+                    <b-input-group-append>
+                        <b-form-datepicker
+                        v-model="input_fecha_nacimiento"
+                        button-only
+                        right
+
+                        aria-controls="example-input"
+                        @context="onContext"
+                        ></b-form-datepicker>
+                    </b-input-group-append>
+                    </b-input-group>
 <!--
                 <input type="text" v-model="input_fecha_nacimiento" placeholder="fecha_nacimiento" class="form-control"  :class="{ 'is-invalid':this.validacion.fecha_nacimiento, 'is-valid':!this.validacion.fecha_nacimiento && is_enviar  }" >
   -->
-                <div class="invalid-feedback" style ="display:block" v-for="data in validacion.fecha_nacimiento" v-bind:key="data.fecha_nacimiento" >
+                <div class="invalid-feedback" style="display:block" v-for="data in validacion.fecha_nacimiento" v-bind:key="data.fecha_nacimiento" >
                     <b>{{data}}</b>
                 </div>
             </div>
