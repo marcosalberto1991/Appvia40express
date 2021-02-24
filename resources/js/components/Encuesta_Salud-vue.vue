@@ -235,6 +235,7 @@ export default {
             }
             axios.post(`${this.$url}/Api/Encuesta_Salud/buscar_cedula`, data)
                 .then(response => {
+                    //alert(response.status);
                     if (response.data.perfil.id) {
                         this.perfil_usuario = response.data.perfil;
                         this.lista_preguntas = response.data.preguntas;
@@ -256,6 +257,14 @@ export default {
                     console.log("Err", err);
                     this.$toastr.warning(err, "Error en el servidor");
                     this.$toastr.warning(err.message, "Error en el servidor");
+                    this.$toastr.warning(err.status, "Error en el servidor");
+                    //location.reload();
+                    if( err=='Error: Request failed with status code 419'){
+                    location.reload();
+
+                    }
+
+
                 });
 
         },
