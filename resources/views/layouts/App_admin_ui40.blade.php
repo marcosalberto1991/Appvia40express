@@ -26,7 +26,6 @@
     <link href="./main.css" rel="stylesheet">
 -->
 
-    <link rel="stylesheet" src="{{asset('css/app.css')}}">
     <link href="{{ asset('Architectui/assets/css/main.css') }}" rel="stylesheet">
 
 </head>
@@ -863,6 +862,7 @@
         @endauth
       </script>
     <script type="text/javascript" src="{{ asset('Architectui/assets/scripts/main.js') }}"></script>
+    <link rel="stylesheet" src="{{asset('/public/css/app.css')}}">
 
     <script type="text/javascript" src="{{asset('/public/js/app.js?v=16.24.34')}}"></script>
     <script type="text/javascript" src="{{asset('js/app.js?v=15.64.37')}}"></script>
