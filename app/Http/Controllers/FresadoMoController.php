@@ -193,6 +193,7 @@ class FresadoMoController extends Controller
                 $Fresado = new FresadoModel();
             }
                 $Fresado->unidad_funcional_id = $fe['unidad_funcional_id'];
+                $Fresado->id_key = $fe['id_key'];
                 $Fresado->calzada = $fe['calzada'];
                 $Fresado->longitud = $fe['longitud'];
                 $Fresado->plano_codigo = $fe['plano_codigo'];
@@ -206,10 +207,11 @@ class FresadoMoController extends Controller
                 $Fresado->latitud = $fe['latitud'];
                 $Fresado->longitud_x = $fe['longitud_x'];
                 $Fresado->eje = $fe['eje'];
-                $Fresado->save();
+                $data=$Fresado->save();
 
         }
 
+        return response()->json($data);
 
 
     }
