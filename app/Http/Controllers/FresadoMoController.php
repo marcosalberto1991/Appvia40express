@@ -203,7 +203,8 @@ class FresadoMoController extends Controller
         foreach ($data_fresadodetallefoto as $key => $fe) {
 
             $FresadoFoto=FresadoRegistroFotograficoModel::where('id_key',$fe['id_key'])->first();
-            if(count($FresadoFoto)==1 ){
+            $FresadoDetalleCount=FresadoRegistroFotograficoModel::where('id_key',$fe['id_key'])->count();
+            if($FresadoDetalleCount==1 ){
                 $FresadoFoto = FresadoRegistroFotograficoModel::find($FresadoFoto->id);
                 $FresadoFoto->nombre = $fe['nombre'];
                 $FresadoFoto->file = $fe['file'];
