@@ -216,6 +216,42 @@ class FresadoMoController extends Controller
 
 
     }
+    public function subir_informen_fresado_detallev2(Request $request){
+
+        $data_fresadodetalle= $request->fresadodetalle;
+
+        foreach ($data_fresadodetalle as $key => $fe) {
+
+            $FresadoDetalle=FresadoDetalleModel::where('fresado_id_key',$fe['fresado_id_key'])->first();
+            $FresadoCount=FresadoDetalleModel::where('fresado_id_key',$fe['fresado_id_key'])->count();
+            if($FresadoCount>=1 ){
+                $fresadoDetalle = FresadoDetalleModel::find($FresadoDetalle->id);
+            }else{
+                $Fresado = new FresadoDetalleModel();
+            }
+                $FresadoDetalle->unidad_funcional_id = $fe['unidad_funcional_id'];
+                $FresadoDetalle->fresado_id_key = $fe['fresado_id_key'];
+                $FresadoDetalle->id_key = $fe['id_key'];
+                $FresadoDetalle->calzada = $fe['calzada'];
+                $FresadoDetalle->users_id = $fe['users_id'];
+                $FresadoDetalle->longitud = $fe['longitud'];
+                $FresadoDetalle->plano_codigo = $fe['plano_codigo'];
+                $FresadoDetalle->version = $fe['version'];
+                $FresadoDetalle->ancho_uno = $fe['ancho_uno'];
+                $FresadoDetalle->ancho_dos = $fe['ancho_dos'];
+                $FresadoDetalle->espesor_uno = $fe['espesor_uno'];
+                $FresadoDetalle->espesor_dos = $fe['espesor_dos'];
+                $FresadoDetalle->estado_tramite_id = $fe['estado_tramite_id'];
+                $FresadoDetalle->estado_tramite_id = $fe['estado_tramite_id'];
+                $FresadoDetalle->latitud = $fe['latitud'];
+                $FresadoDetalle->longitud_x = $fe['longitud_x'];
+                $FresadoDetalle->eje = $fe['eje'];
+              //  $data=$FresadoDetalle->save();
+
+        }
+
+
+    }
     public function subir_informen(Request $request){
         $countitem=0;
         $data_fresado= $request->fresado;
