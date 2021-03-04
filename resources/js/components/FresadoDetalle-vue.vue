@@ -182,6 +182,8 @@
 
                                 <td style="overflow-x: auto">
                                     <div style="float: right; overflow-x: auto;" v-for="imagen in data.fresado_registro_fotografico_all" v-bind:key="imagen.id">
+
+                                            <img :src="'data:imagen/jpg;base64,'+imagen.file" height="100px" />
                                         <img style="float: right;overflow-x: auto;" height="100px" :src="$url+'/Appvia40express/Concreto_file/'+imagen.nombre" alt="">
                                     </div>
 

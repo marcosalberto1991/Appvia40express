@@ -91,10 +91,7 @@
 
 
         </template>
-        <template v-slot:head(Acciones)='scope'>
-          <div class='text-nowrap'>Acciones</div>
-        </template>
-      </b-table>
+</b-table>
 
 </div>
 </div>

@@ -186,6 +186,62 @@ class FresadoMoController extends Controller
         $data_fresadodetalle= $request->fresadodetalle;
         $data_fresadodetallefoto= $request->fresadodetallefoto;
 
+        foreach ($data_fresadodetalle as $key => $fe) {
+            $Fresado=FresadoDetalleModel::where('id_key',$fe['id_key'])->first();
+            if(count($Fresado)==1 ){
+                $Fresado = FresadoDetalleModel::find($Fresado->id);
+                $Fresado->actividad = $fe['actividad'];
+                $Fresado->calzada = $fe['si_aplica'];
+                $Fresado->si_cumple = $fe['si_cumple'];
+                $Fresado->fecha = $fe['fecha'];
+                $Fresado->observaciones = $fe['observaciones'];
+                $Fresado->save();
+            }
+        }
+        foreach ($data_fresadodetallefoto as $key => $fe) {
+
+            $FresadoFoto=FresadoRegistroFotograficoModel::where('id_key',$fe['id_key'])->first();
+            if(count($FresadoFoto)==1 ){
+                $FresadoFoto = FresadoRegistroFotograficoModel::find($FresadoFoto->id);
+                $FresadoFoto->nombre = $fe['nombre'];
+                $FresadoFoto->file = $fe['file'];
+                $FresadoFoto->save();
+            }
+        }
+
+        foreach ($data_fresado as $key => $fe) {
+
+            $Fresado=FresadoModel::where('id_key',$fe['id_key'])->first();
+            if(count($Fresado)==1 ){
+                $Fresado = FresadoModel::find($Fresado->id);
+                $Fresado->unidad_funcional_id = $fe['unidad_funcional_id'];
+                $Fresado->calzada = $fe['calzada'];
+                $Fresado->longitud = $fe['longitud'];
+                $Fresado->plano_codigo = $fe['plano_codigo'];
+                $Fresado->version = $fe['version'];
+                $Fresado->ancho_uno = $fe['ancho_uno'];
+                $Fresado->ancho_dos = $fe['ancho_dos'];
+                $Fresado->espesor_uno = $fe['espesor_uno'];
+                $Fresado->espesor_dos = $fe['espesor_dos'];
+                $Fresado->estado_tramite_id = $fe['estado_tramite_id'];
+                $Fresado->estado_tramite_id = $fe['estado_tramite_id'];
+                $Fresado->latitud = $fe['latitud'];
+                $Fresado->longitud_x = $fe['longitud_x'];
+                $Fresado->eje = $fe['eje'];
+                $Fresado->save();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+        //guarda nuevos datos
         foreach ($data_fresado as $key => $fe) {
             //echo $fe['id_key'];
             //exit();
@@ -240,6 +296,21 @@ class FresadoMoController extends Controller
 
 
                 }
+
+
+            }else{
+
+
+
+
+
+
+
+
+
+
+                //$Fresado = FresadoModel::findOrFail($id);
+
 
 
             }
