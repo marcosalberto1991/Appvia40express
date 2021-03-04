@@ -185,8 +185,8 @@ class FresadoMoController extends Controller
 
         foreach ($data_fresado as $key => $fe) {
 
-            $Fresado=FresadoModel::where('id_key',$fe['id_key'])->first();
-            $FresadoCount=FresadoModel::where('users_id',$fe['users_id'] )->where('id_key',$fe['id_key'])->count();
+            $Fresado=FresadoModel::where('users_id',$fe['users_id'] )->where('id_key',$fe['id_key'])->first();
+            $FresadoCount=FresadoModel::where('users_id',$fe['users_id'])->where('id_key',$fe['id_key'])->count();
             if($FresadoCount==1 ){
                 $Fresado = FresadoModel::find($Fresado->id);
             }else{
