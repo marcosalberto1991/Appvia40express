@@ -102,14 +102,14 @@ import GranularesDetalleForm from './components/GranularesDetalleForm-vue.vue';
 //
 //      PRODUCCCIÓN
 //
-//Vue.prototype.$url = '/via40online'
-//var url='/via40online';
+Vue.prototype.$url = '/via40online'
+var url='/via40online';
 
 //
 //      TEST
 //
-Vue.prototype.$url = ''
-var url='';
+//Vue.prototype.$url = ''
+//var url='';
 
 const router = new VueRouter({
     mode:'history',
