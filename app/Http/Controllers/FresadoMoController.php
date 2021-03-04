@@ -180,6 +180,39 @@ class FresadoMoController extends Controller
         $Fresado->delete();
         return response()->json($Fresado);
     }
+    public function subir_informenv2(Request $request){
+        $data_fresado= $request->fresado;
+
+        foreach ($data_fresado as $key => $fe) {
+
+            $Fresado=FresadoModel::where('id_key',$fe['id_key'])->first();
+            $FresadoCount=FresadoModel::where('id_key',$fe['id_key'])->count();
+            if($FresadoCount==1 ){
+                $Fresado = FresadoModel::find($Fresado->id);
+            }else{
+                $Fresado = new FresadoModel();
+            }
+                $Fresado->unidad_funcional_id = $fe['unidad_funcional_id'];
+                $Fresado->calzada = $fe['calzada'];
+                $Fresado->longitud = $fe['longitud'];
+                $Fresado->plano_codigo = $fe['plano_codigo'];
+                $Fresado->version = $fe['version'];
+                $Fresado->ancho_uno = $fe['ancho_uno'];
+                $Fresado->ancho_dos = $fe['ancho_dos'];
+                $Fresado->espesor_uno = $fe['espesor_uno'];
+                $Fresado->espesor_dos = $fe['espesor_dos'];
+                $Fresado->estado_tramite_id = $fe['estado_tramite_id'];
+                $Fresado->estado_tramite_id = $fe['estado_tramite_id'];
+                $Fresado->latitud = $fe['latitud'];
+                $Fresado->longitud_x = $fe['longitud_x'];
+                $Fresado->eje = $fe['eje'];
+                $Fresado->save();
+
+        }
+
+
+
+    }
     public function subir_informen(Request $request){
         $countitem=0;
         $data_fresado= $request->fresado;
