@@ -227,7 +227,7 @@ class FresadoMoController extends Controller
             if($FresadoCount>=1 ){
                 $fresadoDetalle = FresadoDetalleModel::find($FresadoDetalle->id);
             }else{
-                $Fresado = new FresadoDetalleModel();
+                $fresadoDetalle = new FresadoDetalleModel();
             }
                 $FresadoDetalle->fresado_id_key = $fe['fresado_id_key'];
                 $FresadoDetalle->id_key = $fe['id_key'];
