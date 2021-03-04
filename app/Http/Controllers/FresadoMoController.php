@@ -231,6 +231,7 @@ class FresadoMoController extends Controller
             }else{
                 $FresadoDetalle = new FresadoDetalleModel();
             }
+                //$FresadoDetalle->fresado_id = $fe['fresado_id_key'];
                 $FresadoDetalle->fresado_id_key = $fe['fresado_id_key'];
                 $FresadoDetalle->id_key = $fe['id_key'];
                 $FresadoDetalle->actividad = $fe['actividad'];
@@ -238,7 +239,7 @@ class FresadoMoController extends Controller
                 $FresadoDetalle->si_cumple = $fe['si_cumple'];
                 $FresadoDetalle->fecha = $fe['fecha'];
                 $FresadoDetalle->observaciones = $fe['observaciones'];
-                $FresadoDetalle->fresado_id = $Fresado->id_key;
+                $FresadoDetalle->fresado_id = $Fresado->id;
                 $FresadoDetalle->columna = $fe['columna'];
                 $FresadoDetalle->save();
 
