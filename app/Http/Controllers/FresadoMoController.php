@@ -229,24 +229,16 @@ class FresadoMoController extends Controller
             }else{
                 $Fresado = new FresadoDetalleModel();
             }
-                $FresadoDetalle->unidad_funcional_id = $fe['unidad_funcional_id'];
                 $FresadoDetalle->fresado_id_key = $fe['fresado_id_key'];
                 $FresadoDetalle->id_key = $fe['id_key'];
-                $FresadoDetalle->calzada = $fe['calzada'];
-                $FresadoDetalle->users_id = $fe['users_id'];
-                $FresadoDetalle->longitud = $fe['longitud'];
-                $FresadoDetalle->plano_codigo = $fe['plano_codigo'];
-                $FresadoDetalle->version = $fe['version'];
-                $FresadoDetalle->ancho_uno = $fe['ancho_uno'];
-                $FresadoDetalle->ancho_dos = $fe['ancho_dos'];
-                $FresadoDetalle->espesor_uno = $fe['espesor_uno'];
-                $FresadoDetalle->espesor_dos = $fe['espesor_dos'];
-                $FresadoDetalle->estado_tramite_id = $fe['estado_tramite_id'];
-                $FresadoDetalle->estado_tramite_id = $fe['estado_tramite_id'];
-                $FresadoDetalle->latitud = $fe['latitud'];
-                $FresadoDetalle->longitud_x = $fe['longitud_x'];
-                $FresadoDetalle->eje = $fe['eje'];
-              //  $data=$FresadoDetalle->save();
+                $FresadoDetalle->actividad = $fe['actividad'];
+                $FresadoDetalle->si_aplica = $fe['si_aplica'];
+                $FresadoDetalle->si_cumple = $fe['si_cumple'];
+                $FresadoDetalle->fecha = $fe['fecha'];
+                $FresadoDetalle->observaciones = $fe['observaciones'];
+                $FresadoDetalle->fresado_id = $FresadoDetalle->fresado_id;
+                $FresadoDetalle->columna = $fe['columna'];
+                $FresadoDetalle->save();
 
         }
 
