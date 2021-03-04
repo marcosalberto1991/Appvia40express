@@ -222,12 +222,12 @@ class FresadoMoController extends Controller
 
         foreach ($data_fresadodetalle as $key => $fe) {
 
-            $FresadoDetalle=FresadoDetalleModel::where('fresado_id_key',$fe['fresado_id_key'])->first();
+            $FresadoDetalle__=FresadoDetalleModel::where('fresado_id_key',$fe['fresado_id_key'])->first();
             $FresadoCount=FresadoDetalleModel::where('fresado_id_key',$fe['fresado_id_key'])->count();
             if($FresadoCount>=1 ){
-                $fresadoDetalle = FresadoDetalleModel::find($FresadoDetalle->id);
+                $FresadoDetalle = FresadoDetalleModel::find($FresadoDetalle__->id);
             }else{
-                $fresadoDetalle = new FresadoDetalleModel();
+                $FresadoDetalle = new FresadoDetalleModel();
             }
                 $FresadoDetalle->fresado_id_key = $fe['fresado_id_key'];
                 $FresadoDetalle->id_key = $fe['id_key'];
@@ -236,7 +236,7 @@ class FresadoMoController extends Controller
                 $FresadoDetalle->si_cumple = $fe['si_cumple'];
                 $FresadoDetalle->fecha = $fe['fecha'];
                 $FresadoDetalle->observaciones = $fe['observaciones'];
-                $FresadoDetalle->fresado_id = $FresadoDetalle->fresado_id;
+                $FresadoDetalle->fresado_id = $FresadoDetalle__->fresado_id;
                 $FresadoDetalle->columna = $fe['columna'];
                 $FresadoDetalle->save();
 
