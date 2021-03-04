@@ -187,7 +187,7 @@ class FresadoMoController extends Controller
 
             $Fresado=FresadoModel::where('users_id',$fe['users_id'] )->where('id_key',$fe['id_key'])->first();
             $FresadoCount=FresadoModel::where('users_id',$fe['users_id'])->where('id_key',$fe['id_key'])->count();
-            if($FresadoCount==1 ){
+            if($FresadoCount>=1 ){
                 $Fresado = FresadoModel::find($Fresado->id);
             }else{
                 $Fresado = new FresadoModel();
