@@ -224,6 +224,7 @@ class FresadoMoController extends Controller
 
 
             $Fresado=FresadoModel::where('id_key',$fe['fresado_id_key'])->first();
+            var_dump($Fresado);exit();
             $FresadoDetalleFi=FresadoDetalleModel::where('id_key',$fe['id_key'])->first();
             $FresadoCount=FresadoDetalleModel::where('id_key',$fe['id_key'])->count();
             if($FresadoCount>=1 ){
