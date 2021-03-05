@@ -110,6 +110,9 @@ var url='/via40online';
 //
 //Vue.prototype.$url = ''
 //var url='';
+//
+//
+
 
 const router = new VueRouter({
     mode:'history',
