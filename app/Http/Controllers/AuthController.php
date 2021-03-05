@@ -66,6 +66,7 @@ class AuthController extends Controller{
             'expires_at' => Carbon::parse($token->expires_at)->toDateTimeString(),
             'user'=>$request->user(),
             'user_id'=>$request->user(),
+            'permisos' =>$request->user()->allPermissions,
 
         ]);
     }
