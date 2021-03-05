@@ -245,6 +245,30 @@ class FresadoMoController extends Controller
         return response()->json($data);
 
     }
+    public function subir_informen_fresado_detalle_fotov2(Request $request){
+        $data_fresadodetallefoto= $request->fresadodetallefoto;
+
+        foreach ($data_fresadodetallefoto as $key => $fe) {
+
+            $Fresado = FresadoDetalleModel::where('id_key',$fe['fresado_detalle_id_key'])->first();
+            $FresadoDetalleFi=FresadoRegistroFotograficoModel::where('id_key',$fe['id_key'])->first();
+            $FresadoCount=FresadoRegistroFotograficoModel::where('id_key',$fe['id_key'])->count();
+            if($FresadoCount>=1 ){
+                $FresadoDetalle = FresadoRegistroFotograficoModel::find($FresadoDetalleFi->id);
+            }else{
+                $FresadoDetalle = new FresadoRegistroFotograficoModel();
+                $FresadoDetalle->fresado_detalle_id = $Fresado->id;
+            }
+                $FresadoDetalle->fresado_detalle_id_key = $fe['fresado_detalle_id_key'];
+                $FresadoDetalle->id_key = $fe['id_key'];
+                $FresadoDetalle->nombre = $fe['nombre'];
+                $data=$FresadoDetalle->save();
+        }
+
+        return response()->json($data);
+    }
+
+
     public function subir_informen(Request $request){
         $countitem=0;
         $data_fresado= $request->fresado;

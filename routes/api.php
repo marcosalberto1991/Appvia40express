@@ -27,6 +27,8 @@ Route::group(['middleware' => ['api']], function () {
     Route::get('FresadoMo/consulta_data/{concreto_id}','FresadoMoController@consulta_data');//->middleware('auth:api');
     Route::post('FresadoMo/subir_informenv2','FresadoMoController@subir_informenv2')->middleware('auth:api');
     Route::post('FresadoMo/subir_informen_fresado_detallev2','FresadoMoController@subir_informen_fresado_detallev2')->middleware('auth:api');
+    Route::post('FresadoMo/subir_informen_fresado_detalle_fotov2','FresadoMoController@subir_informen_fresado_detalle_fotov2')->middleware('auth:api');
+
 
 
     Route::post('FresadoMo/subir_informen','FresadoMoController@subir_informen')->middleware('auth:api');
