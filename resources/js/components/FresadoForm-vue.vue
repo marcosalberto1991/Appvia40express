@@ -349,7 +349,7 @@ export default {
                     this.input_espesor_dos = data.espesor_dos;
                     this.input_estado_tramite_id = data.estado_tramite_id;
                     this.input_latitud = data.latitud;
-                    this.input_longitud = data.longitud;
+                    this.input_longitud_x = data.longitud_x;
                     this.input_eje = data.eje;
 
                 }
