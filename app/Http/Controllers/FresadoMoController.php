@@ -262,6 +262,7 @@ class FresadoMoController extends Controller
                 $FresadoDetalle->fresado_detalle_id_key = $fe['fresado_detalle_id_key'];
                 $FresadoDetalle->id_key = $fe['id_key'];
                 $FresadoDetalle->nombre = $fe['nombre'];
+                $FresadoDetalle->file = $fe['file'];
                 $data=$FresadoDetalle->save();
         }
 
