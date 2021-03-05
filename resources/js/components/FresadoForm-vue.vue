@@ -149,7 +149,12 @@
                                     </div>
                                     <div class="form-group col-md-2 col-sm-12">
                                         <label for="exampleInputEmail1">Eje<span class="tx-danger">*</span> </label>
-                                        <input type="text" v-model="input_eje" placeholder="Longitud" class="form-control" :class="{ 'is-invalid':this.validacion.eje, 'is-valid':!this.validacion.eje && is_enviar  }">
+                                        <b-input-group>
+                                            <b-input-group-prepend>
+                                                <a @click="obtener_pk()" class="btn btn-info" variant="outline-info">Obtener PK</a>
+                                            </b-input-group-prepend>
+                                            <input type="text" v-model="input_eje" placeholder="Longitud" class="form-control" :class="{ 'is-invalid':this.validacion.eje, 'is-valid':!this.validacion.eje && is_enviar  }">
+                                        </b-input-group>
                                         <div class="invalid-feedback" style="display:block" v-for="data in validacion.eje" v-bind:key="data.eje">
                                             <b>{{data}}</b>
                                         </div>
@@ -244,6 +249,12 @@ export default {
             axios.get(`${this.$url}/Api/Acero/create`).then((response) => {
                 this.data_foraneo_unidad_funcional_id = response.data.unidad_funcional_id;
                 this.data_foraneo_estado_tramite_id = response.data.estado_tramite_id;
+            });
+        },
+        obtener_pk(){
+            axios.get(`${this.$url}/obtener_pk/${this.input_latitud}/${this.input_longitud_x}`).then((response) => {
+                this.input_eje = response.data.pk;
+                //this.data_foraneo_estado_tramite_id = response.data.estado_tramite_id;
             });
         },
         formulario() {

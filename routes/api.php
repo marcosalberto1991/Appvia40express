@@ -29,6 +29,7 @@ Route::group(['middleware' => ['api']], function () {
     Route::post('FresadoMo/subir_informen_fresado_detallev2','FresadoMoController@subir_informen_fresado_detallev2')->middleware('auth:api');
     Route::post('FresadoMo/subir_informen_fresado_detalle_fotov2','FresadoMoController@subir_informen_fresado_detalle_fotov2')->middleware('auth:api');
 
+    Route::get('obtener_pk/{latitud}/{longitud}', 'HomeController@obtener_pk');
 
 
     Route::post('FresadoMo/subir_informen','FresadoMoController@subir_informen')->middleware('auth:api');
