@@ -239,9 +239,10 @@ class FresadoMoController extends Controller
                 $FresadoDetalle->fecha = $fe['fecha'];
                 $FresadoDetalle->observaciones = $fe['observaciones'];
                 $FresadoDetalle->columna = $fe['columna'];
-                $FresadoDetalle->save();
+                $data=$FresadoDetalle->save();
         }
 
+        return response()->json($data);
 
     }
     public function subir_informen(Request $request){
