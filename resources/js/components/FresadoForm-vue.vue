@@ -147,8 +147,8 @@
                                             <b>{{data}}</b>
                                         </div>
                                     </div>
-                                    <div class="form-group col-md-2 col-sm-12">
-                                        <label for="exampleInputEmail1">Eje<span class="tx-danger">*</span> </label>
+                                    <div class="form-group col-md-3 col-sm-12">
+                                        <label for="exampleInputEmail1">PK<span class="tx-danger">*</span> </label>
                                         <b-input-group>
                                             <b-input-group-prepend>
                                                 <a @click="obtener_pk()" class="btn btn-info" variant="outline-info">Obtener PK</a>
