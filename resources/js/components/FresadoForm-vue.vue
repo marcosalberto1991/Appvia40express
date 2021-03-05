@@ -253,7 +253,7 @@ export default {
         },
         obtener_pk(){
             axios.get(`${this.$url}/obtener_pk/${this.input_latitud}/${this.input_longitud_x}`).then((response) => {
-                this.input_eje = response.data.pk;
+                this.input_eje = response.data[0].pk;
                 //this.data_foraneo_estado_tramite_id = response.data.estado_tramite_id;
             });
         },
