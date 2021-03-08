@@ -68,7 +68,8 @@ class AuthController extends Controller{
 
 
         $permissions = [];
-        var_dump(Permission::all());
+        //var_dump(Permission::all());
+        //exit();
         foreach (Permission::all() as $permission) {
             if (Auth::user()->can($permission->name)) {
                 $permissions[] = $permission->name;
