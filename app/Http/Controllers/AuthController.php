@@ -10,8 +10,9 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use Illuminate\Support\Carbon;
-use Spatie\Permission\Models\Permission;
 
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Traits\HasRoles;
 
 class AuthController extends Controller{
     /**
@@ -67,6 +68,7 @@ class AuthController extends Controller{
 
 
         $permissions = [];
+        var_dump(Permission::all());
         foreach (Permission::all() as $permission) {
             if (Auth::user()->can($permission->name)) {
                 $permissions[] = $permission->name;
