@@ -8,13 +8,19 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use App\User;
+use App\ModelRolesModel;
+use App\RolePermissionsModel;
 use Auth;
 use Illuminate\Support\Carbon;
 
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Traits\HasRoles;
 
+//use Illuminate\Foundation\Auth\User as Authenticatable;
+
 class AuthController extends Controller{
+
+   // use HasRoles,HasPermission;
     /**
      * Registro de usuario
      */
@@ -68,26 +74,22 @@ class AuthController extends Controller{
 
 
         $permissions = [];
-        //var_dump(Permission::all());
-        //exit();
-        foreach (Permission::all() as $permission) {
-            if (Auth::user()->can($permission->name)) {
-                $permissions[] = $permission->name;
-            }
+        $user_id = $request->user()->id;
+        $roles =ModelRolesModel::where('model_id',$user_id)->pluck('role_id')->toarray();
+        $permisio = RolePermissionsModel::with('permission')->whereIn('role_id',$roles)->groupBy('permission_id')->get()->toarray();
+
+        foreach ($permisio as $permission) {
+            $permiso = $permission['permission']['name'];
+                $permissions[] = $permiso;
         }
-        //return $permissions;
-
-
-
 
         return response()->json([
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
             'expires_at' => Carbon::parse($token->expires_at)->toDateTimeString(),
-            'user'=>$request->user(),
-            'user_id'=>$request->user(),
-            'permisos' =>$permissions,
-
+            'user' => $request->user(),
+            'user_id' => $request->user(),
+            'permisos' => $permissions,
         ]);
     }
 
