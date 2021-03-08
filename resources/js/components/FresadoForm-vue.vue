@@ -130,10 +130,12 @@
                                         <label for="exampleInputEmail1">Latitud<span class="tx-danger">*</span> </label>
 
                                         <b-input-group>
+                                            <!--
                                             <b-input-group-prepend>
                                                 <a @click="actualiza_gps()" class="btn btn-info" variant="outline-info">Actualiza GPS</a>
                                             </b-input-group-prepend>
-                                            <input type="text" v-model="input_latitud" placeholder="resistencia_concreto" class="form-control" :class="{ 'is-invalid':this.validacion.latitud, 'is-valid':!this.validacion.latitud && is_enviar  }">
+                                            -->
+                                            <input type="text" disabled="disabled" v-model="input_latitud" placeholder="resistencia_concreto" class="form-control" :class="{ 'is-invalid':this.validacion.latitud, 'is-valid':!this.validacion.latitud && is_enviar  }">
                                         </b-input-group>
                                         <div class="invalid-feedback" style="display:block" v-for="data in validacion.latitud" v-bind:key="data.latitud">
                                             <b>{{data}}</b>
@@ -142,7 +144,7 @@
 
                                     <div class="form-group col-md-3 col-sm-12">
                                         <label for="exampleInputEmail1">Longitud<span class="tx-danger">*</span> </label>
-                                        <input type="text" v-model="input_longitud_x" placeholder="Longitud" class="form-control" :class="{ 'is-invalid':this.validacion.longitud_x, 'is-valid':!this.validacion.longitud_x && is_enviar  }">
+                                        <input type="text" disabled="disabled"  v-model="input_longitud_x" placeholder="Longitud" class="form-control" :class="{ 'is-invalid':this.validacion.longitud_x, 'is-valid':!this.validacion.longitud_x && is_enviar  }">
                                         <div class="invalid-feedback" style="display:block" v-for="data in validacion.longitud_x" v-bind:key="data.longitud_x">
                                             <b>{{data}}</b>
                                         </div>
@@ -151,9 +153,11 @@
                                         <label for="exampleInputEmail1">PK<span class="tx-danger">*</span> </label>
                                         <b-input-group>
                                             <b-input-group-prepend>
+                                                <!--
                                                 <a @click="obtener_pk()" class="btn btn-info" variant="outline-info">Obtener PK</a>
+                                                -->
                                             </b-input-group-prepend>
-                                            <input type="text" v-model="input_eje" placeholder="Longitud" class="form-control" :class="{ 'is-invalid':this.validacion.eje, 'is-valid':!this.validacion.eje && is_enviar  }">
+                                            <input type="text" disabled="disabled" v-model="input_eje" placeholder="Longitud" class="form-control" :class="{ 'is-invalid':this.validacion.eje, 'is-valid':!this.validacion.eje && is_enviar  }">
                                         </b-input-group>
                                         <div class="invalid-feedback" style="display:block" v-for="data in validacion.eje" v-bind:key="data.eje">
                                             <b>{{data}}</b>
