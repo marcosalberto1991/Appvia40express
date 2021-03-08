@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use Illuminate\Support\Carbon;
+use Spatie\Permission\Models\Permission;
+
 
 class AuthController extends Controller{
     /**
@@ -60,13 +62,28 @@ class AuthController extends Controller{
             $token->expires_at = Carbon::now()->addWeeks(1);
         $token->save();
 
+
+
+
+
+        $permissions = [];
+        foreach (Permission::all() as $permission) {
+            if (Auth::user()->can($permission->name)) {
+                $permissions[] = $permission->name;
+            }
+        }
+        //return $permissions;
+
+
+
+
         return response()->json([
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
             'expires_at' => Carbon::parse($token->expires_at)->toDateTimeString(),
             'user'=>$request->user(),
             'user_id'=>$request->user(),
-            'permisos' =>$request->user()->getAllPermissionsAttribute(),
+            'permisos' =>$permissions,
 
         ]);
     }
