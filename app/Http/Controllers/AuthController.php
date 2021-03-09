@@ -93,7 +93,7 @@ class AuthController extends Controller{
             'user' => $request->user(),
             'user_id' => $request->user(),
             'permisos' => $permissions,
-            'Roles' => $roles_name,
+            'roles_name' => $roles_name,
         ]);
     }
 
