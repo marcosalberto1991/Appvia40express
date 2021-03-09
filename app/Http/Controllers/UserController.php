@@ -129,6 +129,13 @@ class UserController extends Controller
             'password'=>'required|min:6|confirmed'
         ]);
 
+
+        if($request['password'] != '' || $request['password'] != null){
+            $request['password'] = bcrypt($request['password']);
+        }
+
+
+
         $input = $request->only(['name','primer_nombre','email', 'password']);
         $roles = $request['roles'];
         $user->fill($input)->save();
