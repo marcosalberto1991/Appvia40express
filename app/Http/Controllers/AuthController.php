@@ -9,6 +9,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use App\User;
 use App\ModelRolesModel;
+use App\RolesModel;
 use App\RolePermissionsModel;
 use Auth;
 use Illuminate\Support\Carbon;
@@ -75,7 +76,9 @@ class AuthController extends Controller{
 
         $permissions = [];
         $user_id = $request->user()->id;
-        $roles =ModelRolesModel::where('model_id',$user_id)->pluck('role_id')->toarray();
+        $roles = ModelRolesModel::where('model_id',$user_id)->pluck('role_id')->toarray();
+        $roles_name = RolesModel::whereIn('id',$roles)/*->pluck('name')*/->toarray();
+
         $permisio = RolePermissionsModel::with('permission')->whereIn('role_id',$roles)->groupBy('permission_id')->get()->toarray();
 
         foreach ($permisio as $permission) {
@@ -90,6 +93,7 @@ class AuthController extends Controller{
             'user' => $request->user(),
             'user_id' => $request->user(),
             'permisos' => $permissions,
+            'Roles' => $roles_name,
         ]);
     }
 
