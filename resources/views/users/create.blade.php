@@ -1,4 +1,4 @@
-@extends('layouts.App_admin_ui')
+@extends('layouts.App_admin_ui40')
 
 @section('title', '| Add User')
 
@@ -33,7 +33,7 @@
         {{ Form::label('Nomnre_Usuario', 'Nombre y Apellido de Usuario') }}
         {{ Form::text('primer_nombre', '', array('class' => 'form-control')) }}
     </div>
-    
+
 
     <div class="form-group">
         {{ Form::label('email', 'Correo') }}
