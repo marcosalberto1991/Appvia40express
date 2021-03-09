@@ -181,8 +181,8 @@ class FresadoMoController extends Controller
         return response()->json($Fresado);
     }
     public function bajar_informacion(Request $request){
-        $userd_id = $request->userd_id;
-        $fresado = FresadoModel::where('userd_id',$userd_id)->where('estado_tramite_id',1)->get();
+        $users_id = $request->userd_id;
+        $fresado = FresadoModel::where('users_id',$users_id)->where('estado_tramite_id',1)->get();
 
 
         $data=[
