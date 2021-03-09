@@ -17,6 +17,10 @@
     public function unidad_funcional_id(){
         return $this->belongsTo('App\UnidadFuncionalModel', 'unidad_funcional_id');
     }
+    public function fresado_detalle_all(){
+        return $this->HasMany('App\FresadoDetalleModel', 'fresado_id');
+      }
+
     //public $timestamps = false;
     /*
     public function tipo_factura_id_pk(){
