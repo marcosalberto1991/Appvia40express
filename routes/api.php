@@ -37,6 +37,9 @@ Route::group(['middleware' => ['api']], function () {
     Route::post('validaAuthApi', function () {
         return true;
     })->middleware('auth:api');
+    Route::post('FresadoMo/bajar_informacion','FresadoMoController@bajar_informacion')->middleware('auth:api');
+
+
 
 
 

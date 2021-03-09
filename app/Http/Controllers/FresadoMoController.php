@@ -180,6 +180,18 @@ class FresadoMoController extends Controller
         $Fresado->delete();
         return response()->json($Fresado);
     }
+    public function bajar_informacion(Request $request){
+        $userd_id = $request->userd_id;
+        $fresado = FresadoModel::where('userd_id',$userd_id)->where('estado_tramite_id',1)->get();
+
+
+        $data=[
+            'fresado' => $fresado
+        ];
+        return response()->json($data);
+
+    }
+
     public function subir_informenv2(Request $request){
         $data_fresado= $request->fresado;
 
