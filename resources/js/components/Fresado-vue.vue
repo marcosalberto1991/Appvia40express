@@ -141,6 +141,7 @@ export default {
       fields: [
       { key: "Acciones",stickyColumn: true, label:"Acciones" ,sortable: false,class:'' },
       //{ key: 'id', sortable:true},
+      { key: 'users_id.name',label:"Usuario", sortable:true,class:'one-lineas'},
       { key: 'unidad_funcional_id.nombre',label:"Unidad Funcional", sortable:true,class:'one-lineas'},
       { key: 'estado_tramite_id.nombre',label:"estado Tramite", sortable:true,class:'one-lineas'},
       { key: 'calzada', sortable:true,class:'one-lineas'},
