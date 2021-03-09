@@ -126,7 +126,7 @@ class UserController extends Controller
         $this->validate($request, [
             'primer_nombre'=>'required|max:120',
             'email'=>'required|email|unique:users,email,'.$id,
-            'password'=>'required|min:6|confirmed'
+         //   'password'=>'required|min:6|confirmed'
         ]);
 
 
