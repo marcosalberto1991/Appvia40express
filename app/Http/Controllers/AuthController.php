@@ -77,7 +77,7 @@ class AuthController extends Controller{
         $permissions = [];
         $user_id = $request->user()->id;
         $roles = ModelRolesModel::where('model_id',$user_id)->pluck('role_id')->toarray();
-        $roles_name = RolesModel::whereIn('id',$roles)->get()->select('name')->get()->toarray();
+        $roles_name = RolesModel::whereIn('id',$roles)->select('name')->get()->toarray();
 
         $permisio = RolePermissionsModel::with('permission')->whereIn('role_id',$roles)->groupBy('permission_id')->get()->toarray();
 
