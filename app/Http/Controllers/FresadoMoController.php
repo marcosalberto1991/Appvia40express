@@ -182,7 +182,7 @@ class FresadoMoController extends Controller
     }
     public function bajar_informacion(Request $request){
         $users_id = $request->userd_id;
-        $fresado = FresadoModel::with('fresado_detalle_all')->where('users_id',$users_id)->where('estado_tramite_id',1)->get();
+        $fresado = FresadoModel::with('fresado_detalle_all.fresado_registro_fotografico_all')->where('users_id',$users_id)->where('estado_tramite_id',1)->get();
 
 
         $data=[
